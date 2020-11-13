@@ -8,11 +8,11 @@ function Login() {
         <img src={logo} alt={"logo"} />
         <form>
             <input type="text" size="20" name="id" placeholder="아이디"/><br/>
-            <input type="text" size="20" name="pw" placeholder="비밀번호"/><br/>
+            <input type="password"  size="20" name="pw" placeholder="비밀번호"/><br/>
             <input type="button" className="btnLoginStyle" name="login" value="로그인"/>
             <input type="button" className="btnSignupStyle" name="sigup" value="회원가입"/>
         </form>
-        <p style={{fontSize: '0.7rem'}}>배우多는 로그인 후 이용할 수 있습니다.</p>
+        <p style={{fontSize: '0.8rem'}}>배우多는 로그인 후 이용할 수 있습니다.</p>
     </div>;
 }
 

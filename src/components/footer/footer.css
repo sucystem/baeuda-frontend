@@ -1,7 +1,8 @@
-p {
+.copyright {
     font-weight: 300;
     font-family: LotteMartDream;
     text-align: center;
-    color: #707070
+    color: #707070;
+    font-size: 1em;
 }
 
