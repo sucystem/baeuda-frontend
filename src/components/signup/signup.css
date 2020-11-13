@@ -1,4 +1,4 @@
-.loginStyle {
+.SignUpStyle {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,74 +7,53 @@
     flex-flow: nowrap column;
 }
 
-.loginStyle form {
+.SignUpStyle form {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-.loginStyle p {
+.SignUpStyle p {
     font-weight: 300;
     font-family: LotteMartDream;
     color: #707070;
 }
 
-.titleStyle {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    letter-spacing: 17px;
-    font-weight: 300;
-}
-
-.loginStyle img {
-    width: 320px;
+.SignUpStyle img {
+    width: 280px;
     object-fit: contain;
     margin-bottom: 30px;
 }
 
-.loginStyle input[type="text"] {
+.SignUpStyle input[type="text"] {
     font-family: LotteMartDream;
     font-weight: 200;
     padding: 0.7rem 0.7rem;
     font-size: 1.1rem;
     width: 370px;
-    margin-bottom: 0.7rem;
+    margin-bottom: 15px;
 }
 
-.loginStyle input[type="password"] {
+.SignUpStyle input[type="password"] {
     font-family: LotteMartDream;
     font-weight: 200;
     padding: 0.7rem 0.7rem;
     font-size: 1.1rem;
     width: 370px;
-    margin-bottom: 0.7rem;
+    margin-bottom: 15px;
 }
 
-.btnBindStyle {
-    flex-direction: row;
-}
-
-.loginStyle input[type="button"] {
-    margin-bottom: 0.6rem;
+.SignUpStyle input[type="submit"] {
     font-size: 1.1rem;
     padding: 0.8rem;
     font-family: LotteMartHappy;
     font-weight: 800;
     color: white;
     border-radius: 37px;
-    width: 47%;
+    width: 270px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    margin-left: 3%;
     border: none;
     outline: none;
-
-}
-
-.btnLoginStyle {
     background-color: #22a7f0;
-}
-
-.btnSignupStyle {
-    background-color: #9a9a9a;
-
+    margin: 0 auto;
 }
