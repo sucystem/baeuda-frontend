@@ -1,0 +1,44 @@
+.loginStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 80vh;
+    flex-flow: nowrap column;
+}
+
+p {
+    font-weight: 300;
+    font-family: LotteMartDream;
+    color: #707070
+}
+
+.titleStyle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    letter-spacing: 17px;
+}
+
+img {
+    width: 320px;
+    object-fit: contain;
+    margin-bottom: 30px;
+}
+
+.input [type="text"] {
+    padding: 1.3em 1.3em;
+}
+
+
+.btnLoginStyle {
+    width: 47%;
+    background-color: #22a7f0;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+
+}
+
+.btnSignupStyle {
+    width: 47%;
+    background-color: #9a9a9a;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
