@@ -1,0 +1,14 @@
+div.icon_menu{
+    position : fixed;
+    width : 210px;
+    height : 100px;
+    bottom : 100px;
+    right : 210px;
+}
+
+div.icon{
+    float : left;
+    width: 90px;
+    height: 90px;
+    margin : 5px;
+}

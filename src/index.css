@@ -8,6 +8,8 @@ html {
     font-family: sans-serif; /* 1 */
     -ms-text-size-adjust: 100%; /* 2 */
     -webkit-text-size-adjust: 100%; /* 2 */
+    width : 100vw;
+    height : 100vh;
 }
 
 /** * 기본 마진값을 제거. */
@@ -255,12 +257,22 @@ td, th {
 
 body {
     margin: 0;
+    width : 100%;
+    height : 100%;
     /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',*/
     /*'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'LotteMartHappy', 'LotteMartDream',*/
     /*sans-serif;*/
     font-family: 'LotteMartHappy', 'LotteMartDream';
     /*-webkit-font-smoothing: antialiased;*/
     /*-moz-osx-font-smoothing: grayscale;*/
+}
+
+div#root{
+    width: 100%;
+    height: 100%;
+}
+ul{
+    list-style-type: none;
 }
 
 code {

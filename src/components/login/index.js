@@ -12,7 +12,7 @@ function Login() {
             <input type="text" size="20" name="id" placeholder="아이디"/>
             <input type="password"  size="20" name="pw" placeholder="비밀번호"/>
             <div className="btnBindStyle">
-                <input type="button" className="btnLoginStyle" name="login" value="로그인"/>
+                <input type="button" className="btnLoginStyle" name="login" value="로그인" onClick={() => history.push("/main")}/>
                 <input type="button" className="btnSignupStyle" name="sigup" value="회원가입" onClick={() => history.push("/signup")}/>
             </div>
         </form>
