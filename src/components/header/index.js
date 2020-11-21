@@ -20,7 +20,7 @@ function Header() {
         <a href="" id="main_icon"><img src = {logo} alt={"logo"}/></a>
         <div id="menu_bar">
             <ul>
-                <li onClick={() => history.push("/signup")}>내 강의</li>
+                <li onClick={() => history.push("/myLecture")}>내 강의</li>
                 <li onClick={() => history.push("/signup")}>내 스터디</li>
                 <li onClick={() => history.push("/signup")}>팀 프로젝트</li>
                 <li onClick={() => history.push("/signup")}>내 일정</li>

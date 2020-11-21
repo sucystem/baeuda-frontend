@@ -1,0 +1,12 @@
+div#lec_side_bar{
+    font-size: 25px;
+    position : absolute;
+    height : auto;
+    width : auto;
+    left : 5%;
+    top : 30%;
+}
+
+div#lec_side_bar li{
+    margin : 70px auto;
+}

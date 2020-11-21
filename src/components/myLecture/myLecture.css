@@ -1,0 +1,55 @@
+div#myLecture{
+    position: absolute;
+    top : 30%;
+    left : 30%;
+    height : auto;
+    width : 50%;
+}
+
+div#myLectureRoom{
+    width : 100%;
+}
+
+div.lec_room_box{
+    position: absolute;
+    float : left;
+    height : 300px;
+    width : 300px;
+    border-radius: 41px;
+    box-shadow: 3px 3px 6px 0;
+    background-color: #ffffff;
+}
+
+div.lec_box_name{
+    position: absolute;
+    top : 15px; 
+    left: 50%; 
+    transform: translateX(-50%);
+}
+div.lec_box_subject{
+    width : 250px;
+    height : 35px;
+    font-size:26px;
+}
+
+div.lec_box_prof{
+    font-size : 20px;
+    color : #707070;
+}
+
+div.lec_box_button{
+    position : absolute;
+    width: 100px;
+    height : 35px;
+    line-height: 35px;
+    bottom : 25px;
+    right : 20px;
+    background-color: #22a7f0;
+    box-shadow: 0 3px 6px 0;
+    border-radius: 37px;
+    right : 10px;
+    text-align: center;
+    margin : auto;
+    font-size: 13px;
+    color : #ffffff;
+}

@@ -1,5 +1,4 @@
 import React from 'react'
-import logo from '../../assets/images/logo.jpg'
 import './main.css'
 import { useHistory } from 'react-router-dom';
 
