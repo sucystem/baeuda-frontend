@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../../assets/images/logo.jpg'
-import './login.css'
+import './login.scss'
 import { useHistory } from 'react-router-dom';
 
 function Login() {
