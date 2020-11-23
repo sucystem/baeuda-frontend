@@ -3,7 +3,7 @@ import logo from '../../assets/images/logo.jpg'
 import './login.scss'
 import { useHistory } from 'react-router-dom';
 
-function Login() {
+function LoginPage() {
     let history = useHistory();
     return <div className="loginStyle">
         <p className="titleStyle">대학생을위한학습네트워크</p>
@@ -20,4 +20,4 @@ function Login() {
     </div>;
 }
 
-export default Login;
+export default LoginPage;
