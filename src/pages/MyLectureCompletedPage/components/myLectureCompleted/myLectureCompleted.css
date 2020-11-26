@@ -1,0 +1,36 @@
+div#myLectureCompleted{
+    position : absolute;
+    top : 30%;
+    left : 30%;
+    height : auto;
+    width : 50%;
+}
+
+ul#completedList{
+    width : 700px;
+    height : auto;
+}
+
+li.completedInfo{
+    width : 700px;
+}
+
+li.completedInfo div{
+    box-sizing: border-box;
+    float : left;
+}
+
+div.LectureName{
+    width : 500px;
+    height : 40px;
+}
+
+div.LectureProf{
+    width : 100px;
+    height : 40px;
+}
+
+div.LectureGrade{
+    width : 100px;
+    height : 40px;
+}

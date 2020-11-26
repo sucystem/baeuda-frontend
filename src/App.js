@@ -6,6 +6,8 @@ import MainPage from "./pages/MainPage";
 import MyLecturePage from "./pages/MyLecturePage";
 import Footer from "./components/footer";
 import MyLectureListPage from "./pages/MyLectureListPage";
+import MyLectureCompletedPage from "./pages/MyLectureCompletedPage";
+import MyLectureWaitPage from "./pages/MyLectureWaitPage";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Route path="/main" component={MainPage}/>
       <Route path="/myLecture" component={MyLecturePage}/>
       <Route path="/myLectureList" component={MyLectureListPage}/>
+      <Route path="/myLectureCompleted" component={MyLectureCompletedPage}/>
+      <Route path="/myLectureWait" component={MyLectureWaitPage}/>
       <Footer />
     </>
   );
