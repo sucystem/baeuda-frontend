@@ -1,0 +1,64 @@
+div#myLectureList{
+    position: absolute;
+    top : 30%;
+    left : 30%; 
+    height : auto;
+    width : 70%;
+}
+
+div.lectureList{
+    height : 40px;
+    width : 80%;    
+}
+
+div.lectureList div{
+    float : left;
+}
+
+div.lectureName{
+    width : 54%;
+    height : 40px;
+    font-size : 25px;
+    color : #000000;
+    line-height: 40px;
+}
+
+div.lectureProf{
+    width: 15%;
+    height : 40px;
+    font-size : 21px;
+    color : #707070;
+    text-align: center;
+    line-height: 40px;
+}
+
+div.lectureQuota{
+    width: 15%;
+    height : 40px;
+    font-size : 21px;
+    color : #707070;
+    text-align: center;
+    line-height: 40px;
+}
+
+div.lectureEnroll{
+    width : 8%;
+    height : 35px;
+    border-radius: 37px;
+    box-shadow: 0 3px 6px 0;
+    background-color: #22a7f0;
+    color : #ffffff;
+    text-align: center;
+    line-height: 40px;
+}
+
+div.lectureInfo{
+    width : 8%;
+    height : 35px;
+    border-radius : 37px;
+    box-shadow: 0 3px 6px 0;
+    background-color: #707070;
+    color : #ffffff;
+    text-align: center;
+    line-height: 40px;
+}
