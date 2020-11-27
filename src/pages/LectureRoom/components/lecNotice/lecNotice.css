@@ -1,0 +1,15 @@
+div#lecNotice{
+    position: absolute;
+    top : 25%;
+    left : 20%;
+    height : auto;
+    width : 50%;
+}
+div#SubjectName{
+    width : 100%;
+    height : 80px;
+    font-size : 60px;
+    line-height : 80px;
+    color : #f89406;
+    text-align: left;
+}

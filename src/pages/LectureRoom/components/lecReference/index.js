@@ -1,8 +1,8 @@
 import React from 'react'
-import './myLecture.css'
+import './lecReference.css'
 import { useHistory } from 'react-router-dom';
 
-function MyLecture(){
+function LecReference(){
     let history = useHistory();
     return <div id="myLecture">
         <div id="myLectureRoom">
@@ -11,11 +11,11 @@ function MyLecture(){
                     <div class="lec_box_subject">소프트웨어 공학개론</div>
                     <div class="lec_box_prof">최은만</div>
                 </div>
-                <div class="lec_box_button" onClick={() => history.push("/lecClass") }>입장</div>
+                <div class="lec_box_button">입장</div>
             </div>
         </div>
     </div>
 
 }
 
-export default MyLecture;
+export default LecReference;
