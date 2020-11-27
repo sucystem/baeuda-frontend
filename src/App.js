@@ -3,11 +3,13 @@ import { Route } from 'react-router-dom'
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import MainPage from "./pages/MainPage";
-import MyLecturePage from "./pages/MyLecturePage";
+
 import Footer from "./components/footer";
-import MyLectureListPage from "./pages/MyLectureListPage";
-import MyLectureCompletedPage from "./pages/MyLectureCompletedPage";
-import MyLectureWaitPage from "./pages/MyLectureWaitPage";
+
+import MyLecturePage from "./pages/MyLecture/MyLecturePage";
+import MyLectureListPage from "./pages/MyLecture/MyLectureListPage";
+import MyLectureCompletedPage from "./pages/MyLecture/MyLectureCompletedPage";
+import MyLectureWaitPage from "./pages/MyLecture/MyLectureWaitPage";
 
 function App() {
   return (

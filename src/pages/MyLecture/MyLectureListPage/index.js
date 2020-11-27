@@ -1,17 +1,17 @@
 import Header from '../../components/header';
 import Lec_side_bar from '../../components/lec_side_bar';
-import MyLectureWait from './components/myLectureWait';
+import MyLectureList from '../components/myLectureList';
 import Footer from '../../components/footer';
 
-function MyLectureWaitPage() {
+function MyLectureListPage() {
     return (
         <>
             <Header />
             <Lec_side_bar/>
-            <MyLectureWait/>
+            <MyLectureList/>
             <Footer />
         </>
     );
 }
 
-export default MyLectureWaitPage;
+export default MyLectureListPage;
