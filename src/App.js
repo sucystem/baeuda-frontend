@@ -2,7 +2,7 @@ import './App.scss';
 import React, { Component } from "react";
 import { Route } from 'react-router-dom'
 import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage/index";
+import SignUpPage from "./pages/SignUpPage";
 import MainPage from "./pages/MainPage";
 
 import Footer from "./components/footer";

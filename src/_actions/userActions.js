@@ -12,7 +12,7 @@ export const userActions = {
 function SignUp(user){
     const actRegisteRequest = () => {return {type : Types.REGISTER_REQUEST}}
     return (dispatch) => {
-        return callAPI('users/join','POST',null,user).then(res => {
+        return callAPI('users/signup','POST',null,user).then(res => {
             let msg = res.data.msg; 
             alert(msg)
             if(msg === '회원가입에 성공하였습니다.'){
