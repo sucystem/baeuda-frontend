@@ -9,7 +9,7 @@ import myStore from './_heapers/Store'
 import {history} from './_heapers/history'
 
 ReactDOM.render(
-  <Provider stor = {myStore}>
+  <Provider store = {myStore}>
     <BrowserRouter history = {history}>
       <App />
     </BrowserRouter>
