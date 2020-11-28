@@ -16,20 +16,23 @@ import LecNoticePage from "./pages/LectureRoom/LecNoticePage";
 import LecReferencePage from "./pages/LectureRoom/LecReferencePage";
 import LecQnAPage from "./pages/LectureRoom/LecQnAPage";
 
+import CommunityPage from "./pages/CommunityPage";
+
 function App() {
   return (
     <>
-      <Route path="/" exact={true} component={LoginPage} />
-      <Route path="/signup" component={SignUpPage} />
-      <Route path="/main" component={MainPage}/>
-      <Route path="/myLecture" component={MyLecturePage}/>
-      <Route path="/myLectureList" component={MyLectureListPage}/>
-      <Route path="/myLectureCompleted" component={MyLectureCompletedPage}/>
-      <Route path="/myLectureWait" component={MyLectureWaitPage}/>
-      <Route path="/lecClass" component={LecClassPage}/>
-      <Route path="/lecNotice" component={LecNoticePage}/>
-      <Route path="/lecReference" component={LecReferencePage}/>
-      <Route path="/lecQnA" component={LecQnAPage}/>
+      <Route exact path="/" exact={true} component={LoginPage} />
+      <Route exact path="/signup" component={SignUpPage} />
+      <Route exact path="/main" component={MainPage}/>
+      <Route exact path="/myLecture" component={MyLecturePage}/>
+      <Route exact path="/myLectureList" component={MyLectureListPage}/>
+      <Route exact path="/myLectureCompleted" component={MyLectureCompletedPage}/>
+      <Route exact path="/myLectureWait" component={MyLectureWaitPage}/>
+      <Route exact path="/lecClass" component={LecClassPage}/>
+      <Route exact path="/lecNotice" component={LecNoticePage}/>
+      <Route exact path="/lecReference" component={LecReferencePage}/>
+      <Route exact path="/lecQnA" component={LecQnAPage}/>
+      <Route exact path="/community" component={CommunityPage}/>
       <Footer />
     </>
   );
