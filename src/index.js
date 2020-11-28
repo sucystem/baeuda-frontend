@@ -4,12 +4,17 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App'
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import myStore from './_heapers/Store'
+import {history} from './_heapers/history'
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('root')
+  <Provider stor = {myStore}>
+    <BrowserRouter history = {history}>
+      <App />
+    </BrowserRouter>
+  </Provider>
+  , document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

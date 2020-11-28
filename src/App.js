@@ -1,7 +1,8 @@
 import './App.scss';
+import React, { Component } from "react";
 import { Route } from 'react-router-dom'
 import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
+import SignUpPage from "./pages/SignUpPage/index";
 import MainPage from "./pages/MainPage";
 
 import Footer from "./components/footer";
@@ -16,8 +17,9 @@ import LecNoticePage from "./pages/LectureRoom/LecNoticePage";
 import LecReferencePage from "./pages/LectureRoom/LecReferencePage";
 import LecQnAPage from "./pages/LectureRoom/LecQnAPage";
 
-function App() {
-  return (
+class App extends Component {
+  render(){
+    return (
     <>
       <Route path="/" exact={true} component={LoginPage} />
       <Route path="/signup" component={SignUpPage} />
@@ -33,6 +35,7 @@ function App() {
       <Footer />
     </>
   );
+  }
 }
 
 export default App;
