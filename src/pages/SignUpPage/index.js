@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import { userActions } from "../../_actions"
 import { connect } from "react-redux"
 
+var crypto = require('crypto');
+
 var password_check;
 class SignUpPage extends Component {
     constructor(props){
@@ -52,6 +54,8 @@ class SignUpPage extends Component {
                 user.phone_number &&
                 this.checkPassword() 
             ) {
+                user.password = crypto.createHash('sha256').update(user.password).digest('base64');
+                password_check = this.state.user.password;
                 this.props.SignUp(user);
             }
         } catch(e){
