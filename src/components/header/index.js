@@ -24,7 +24,7 @@ function Header() {
                 <li onClick={() => history.push("/signup")}>내 스터디</li>
                 <li onClick={() => history.push("/signup")}>팀 프로젝트</li>
                 <li onClick={() => history.push("/signup")}>내 일정</li>
-                <li onClick={() => history.push("/signup")}>커뮤니티</li>
+                <li onClick={() => history.push("/community")}>커뮤니티</li>
             </ul>
         </div>
     </header>;
