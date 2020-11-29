@@ -14,6 +14,7 @@ class LoginPage extends Component {
         if (localStorage.getItem('token') && localStorage.getItem('user')) {
             this.props.history.push('/main');
         }
+        console.log(this.props.history)
 
         this.state = {
             userid: "", password: ""
@@ -34,12 +35,7 @@ class LoginPage extends Component {
             if (this.state.userid && this.state.password) {
                 password = await crypto.createHash('sha256').update(password).digest('base64');
                 await this.props.login(userid, password);
-                
-                setTimeout(function(history){
-                    if (localStorage.getItem('token') && localStorage.getItem('user')) {
-                        history.push('/main');
-                    }
-                }, 100, this.props.history);
+                this.props.history.push('/main');
             } 
         } catch(e) {
             console.log(e)

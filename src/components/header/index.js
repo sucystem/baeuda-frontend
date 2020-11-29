@@ -1,34 +1,58 @@
-import React from 'react'
+import React, { Component } from 'react'
 import logo from '../../assets/images/logo.jpg'
 import './header.css'
-import { useHistory } from 'react-router-dom';
+import callAPI from '../../_utils/apiCaller';
+import {Link} from 'react-router-dom'
+import { connect } from "react-redux"
 
-function Header() {
-    let history = useHistory();
-    var username = localStorage.getItem('user');
-    return <header id="MyPageHeader">
-        <div id="MyPage">
-            <div class="header_my_menu">
-                {username}님, 오늘도 열공해요!
+class Header extends Component {
+    constructor(props){
+        super(props);
+        console.log(this.props.history)
+        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
+    }
+    handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        callAPI('users/logout','GET',null,null).then(res=>{})
+    }
+
+    render() {
+        let history = this.props.history;
+        var username = localStorage.getItem('user');
+        return <header id="MyPageHeader">
+            <div id="MyPage">
+                <div class="header_my_menu">
+                    {username}님, 오늘도 열공해요!
             </div>
-            <div class="header_my_menu">
-                마이페이지
+                <div class="header_my_menu">
+                    마이페이지
             </div>
-            <div class="header_my_menu">
-                로그아웃
+                <div class="header_my_menu">
+                    <Link onClick = {() => this.handleLogout()} to = "/">로그아웃</Link>
             </div>
-        </div>
-        <a href="" onClick={() => history.push("/main")} id="main_icon"><img src = {logo} alt={"logo"}/></a>
-        <div id="menu_bar">
-            <ul>
-                <li onClick={() => history.push("/myLecture")}>내 강의</li>
-                <li onClick={() => history.push("/signup")}>내 스터디</li>
-                <li onClick={() => history.push("/signup")}>팀 프로젝트</li>
-                <li onClick={() => history.push("/signup")}>내 일정</li>
-                <li onClick={() => history.push("/community")}>커뮤니티</li>
-            </ul>
-        </div>
-    </header>;
+            </div>
+            <a href="" onClick={() => history.push("/main")} id="main_icon"><img src={logo} alt={"logo"} /></a>
+            <div id="menu_bar">
+                <ul>
+                    <li onClick={() => history.push("/myLecture")}>내 강의</li>
+                    <li onClick={() => history.push("/signup")}>내 스터디</li>
+                    <li onClick={() => history.push("/signup")}>팀 프로젝트</li>
+                    <li onClick={() => history.push("/signup")}>내 일정</li>
+                    <li onClick={() => history.push("/community")}>커뮤니티</li>
+                </ul>
+            </div>
+        </header>;
+    }
 }
 
-export default Header;
+const mapStateToProps = (state) =>{
+    const { isAccount } = state.user;
+    return {
+        isAccount: isAccount
+    }
+}
+
+export default connect(mapStateToProps)(Header);
