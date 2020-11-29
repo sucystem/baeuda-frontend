@@ -9,7 +9,6 @@ function MainPage() {
             <Header />
             <Main />
             <Icon/>
-            <Footer />
         </>
     );
 }

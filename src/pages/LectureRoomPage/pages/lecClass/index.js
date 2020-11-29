@@ -2,7 +2,7 @@ import React from 'react'
 import './lecClass.css'
 import { useHistory } from 'react-router-dom';
 
-function LecClass(){
+function LectureClass(){
     let history = useHistory();
     return <div id="LecClass">
         <div id="SubjectName">소프트웨어공학개론</div>
@@ -20,4 +20,4 @@ function LecClass(){
 
 }
 
-export default LecClass;
+export default LectureClass;

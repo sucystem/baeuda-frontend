@@ -1,5 +1,5 @@
 header{
-    height: 320px;
+    height: 180px;
     width : 100%;
 }
 
@@ -7,7 +7,7 @@ div#MyPage{
     position : absolute;
     top : 20px;
     right : 8%;
-    font-size : 20px;
+    font-size : 15px;
 }
 div.header_my_menu{
     float : left;
@@ -24,8 +24,8 @@ a#main_icon{
 div#menu_bar{
     position : absolute;
     top : 50px;
-    left : 35%;
-    font-size : 50px;
+    left : 30%;
+    font-size : 20px;
 
 }
 
@@ -36,4 +36,9 @@ div#menu_bar ul{
 div#menu_bar li{
     float : left;
     margin : 0px 25px;
+}
+
+header#MyPageHeader img{
+    width: 200px;
+    object-fit: contain;
 }

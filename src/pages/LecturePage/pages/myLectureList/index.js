@@ -2,7 +2,7 @@ import React from 'react'
 import './myLectureList.css'
 import { useHistory } from 'react-router-dom';
 
-function MyLectureList(){
+function MyLectureApply(){
     let history = useHistory();
     return <div id="myLectureList">
         <div class="lectureList">
@@ -16,4 +16,4 @@ function MyLectureList(){
 
 }
 
-export default MyLectureList;
+export default MyLectureApply;

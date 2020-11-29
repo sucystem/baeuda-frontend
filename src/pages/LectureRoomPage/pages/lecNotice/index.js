@@ -2,7 +2,7 @@ import React from 'react'
 import './lecNotice.css'
 import { useHistory } from 'react-router-dom';
 
-function LecNotice(){
+function LectureNotice(){
     let history = useHistory();
     return <div id="lecNotice">
         <div id="SubjectName">소프트웨어공학개론</div>
@@ -26,4 +26,4 @@ function LecNotice(){
 
 }
 
-export default LecNotice;
+export default LectureNotice;

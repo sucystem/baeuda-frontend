@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 function Header() {
     let history = useHistory();
-    return <header>
+    return <header id="MyPageHeader">
         <div id="MyPage">
             <div class="header_my_menu">
                 님, 오늘도 열공해요!
@@ -17,7 +17,7 @@ function Header() {
                 로그아웃
             </div>
         </div>
-        <a href="" id="main_icon"><img src = {logo} alt={"logo"}/></a>
+        <a href="" onClick={() => history.push("/main")} id="main_icon"><img src = {logo} alt={"logo"}/></a>
         <div id="menu_bar">
             <ul>
                 <li onClick={() => history.push("/myLecture")}>내 강의</li>

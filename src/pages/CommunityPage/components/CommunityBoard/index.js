@@ -7,9 +7,9 @@ function CommunityBoard(){
     return <div id="community_board">
         <table>
             <thead>
-                <th width = "5%">제목</th>
-                <th width = "70%">작성자</th>
-                <th width = "10%">조회수</th>
+                <th width = "70%">제목</th>
+                <th width = "10%">작성자</th>
+                <th width = "5%">조회수</th>
                 <th width = "15%">작성 시간</th>
             </thead>
             <tbody>
@@ -28,6 +28,7 @@ function CommunityBoard(){
             </tbody>
         </table>
         <button className="btn_new_post">새 글 작성</button>
+
     </div>
 
 }

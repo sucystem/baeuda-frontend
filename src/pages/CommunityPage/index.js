@@ -4,16 +4,18 @@ import Footer from "../../components/footer";
 import CommunitySidebar from "./components/CommunitySidebar";
 import {Switch, Route} from "react-router-dom";
 import CommunityBoard from "./components/CommunityBoard";
+import './style.scss'
 
 function CommunityPage() {
     return (
         <>
             <Header />
-            <div>
+            <div className="community-page">
                 <CommunitySidebar/>
-                <CommunityBoard/>
+                <div className="community-board">
+                    <CommunityBoard/>
+                </div>
             </div>
-            <Footer />
         </>
     );
 }

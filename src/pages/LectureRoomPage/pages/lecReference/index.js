@@ -1,8 +1,8 @@
 import React from 'react'
-import './lecQnA.css'
+import './lecReference.css'
 import { useHistory } from 'react-router-dom';
 
-function LecQnA(){
+function LectureReference(){
     let history = useHistory();
     return <div id="myLecture">
         <div id="myLectureRoom">
@@ -18,4 +18,4 @@ function LecQnA(){
 
 }
 
-export default LecQnA;
+export default LectureReference;
