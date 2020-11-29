@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import CommunitySidebar from "./components/CommunitySidebar";
@@ -9,11 +9,15 @@ import CommunityPostDetail from './components/CommunityPostDetail';
 import './style.scss';
 
 
-function CommunityPage() {
-    const match = useRouteMatch();
+class CommunityPage extends Component{
+    constructor(props){
+        super(props);
+    }
+    render() {
+    const match = this.props.match;
     return (
         <>
-            <Header />
+            <Header history={this.props.history}/>
             <div className="community-page">
                 <CommunitySidebar/>
                 <div className="community-content">
@@ -27,6 +31,7 @@ function CommunityPage() {
             </div>
         </>
     );
+}
 }
 
 export default CommunityPage;

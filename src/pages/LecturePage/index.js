@@ -5,12 +5,17 @@ import MyLectureWait from "./pages/myLectureWait";
 import MyLecture from "./pages/myLecture";
 import MyLectureCompleted from "./pages/myLectureCompleted";
 import MyLectureApply from "./pages/myLectureList";
+import React, { Component } from 'react';
 
-function MyLecturePage() {
-    const match = useRouteMatch();
+class MyLecturePage extends Component{
+    constructor(props){
+        super(props);
+    }
+render() {
+    const match = this.props.match;
     return (
         <>
-            <Header />
+            <Header history={this.props.history} />
             <LectureSidebar />
             <Switch>
                 <Route exact path = {`${match.url}`} component = {MyLecture} />
@@ -20,6 +25,7 @@ function MyLecturePage() {
             </Switch>
         </>
     );
+}
 }
 
 export default MyLecturePage;

@@ -5,13 +5,18 @@ import LectureClass from "./pages/lecClass";
 import LectureReference from "./pages/lecReference";
 import LectureQnA from "./pages/lecQnA";
 import LectureNotice from "./pages/lecNotice";
+import React, { Component } from 'react';
 
 
-function LectureRoomPage() {
-    const match = useRouteMatch();
+class LectureRoomPage extends Component {
+    constructor(props){
+        super(props)
+    }
+render() {
+    const match = this.props.match;
     return (
         <>
-            <Header />
+            <Header history={this.props.history} />
             <LectureRoomSidebar />
             <Switch>
                 <Route exact path = {`${match.url}`} component={LectureClass} />
@@ -21,6 +26,7 @@ function LectureRoomPage() {
             </Switch>
         </>
     );
+}
 }
 
 export default LectureRoomPage;
