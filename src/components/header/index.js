@@ -8,7 +8,6 @@ import { connect } from "react-redux"
 class Header extends Component {
     constructor(props){
         super(props);
-        console.log(this.props.history)
         if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
             this.props.history.push('/')
         }
@@ -21,11 +20,10 @@ class Header extends Component {
 
     render() {
         let history = this.props.history;
-        var username = localStorage.getItem('user');
         return <header id="MyPageHeader">
             <div id="MyPage">
                 <div class="header_my_menu">
-                    {username}님, 오늘도 열공해요!
+                    {this.props.user_name}님, 오늘도 열공해요!
             </div>
                 <div class="header_my_menu">
                     마이페이지

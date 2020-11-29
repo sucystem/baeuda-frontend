@@ -14,7 +14,6 @@ class LoginPage extends Component {
         if (localStorage.getItem('token') && localStorage.getItem('user')) {
             this.props.history.push('/main');
         }
-        console.log(this.props.history)
 
         this.state = {
             userid: "", password: ""

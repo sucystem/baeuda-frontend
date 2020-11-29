@@ -35,7 +35,7 @@ function Login(userid, password){
                 alert(resResult.data);
             } else {
                 localStorage.setItem('token', JSON.stringify(res.data.jwt));
-                localStorage.setItem('user', JSON.stringify(res.data.user.userid));
+                localStorage.setItem('user', JSON.stringify(res.data.user));
                 dispatch(actLoginRequest());
             }
         })
