@@ -34,7 +34,7 @@ class LoginPage extends Component {
             if (this.state.userid && this.state.password) {
                 password = await crypto.createHash('sha256').update(password).digest('base64');
                 await this.props.login(userid, password);
-                this.props.history.push('/main');
+                setTimeout(function(history){history.push('/main')}, 500, this.props.history);
             } 
         } catch(e) {
             console.log(e)
