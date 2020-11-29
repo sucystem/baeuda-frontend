@@ -5,10 +5,11 @@ import { useHistory } from 'react-router-dom';
 
 function Header() {
     let history = useHistory();
+    var username = localStorage.getItem('user');
     return <header id="MyPageHeader">
         <div id="MyPage">
             <div class="header_my_menu">
-                님, 오늘도 열공해요!
+                {username}님, 오늘도 열공해요!
             </div>
             <div class="header_my_menu">
                 마이페이지
