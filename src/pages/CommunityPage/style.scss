@@ -1,7 +1,9 @@
 .community-page {
   display: flex;
   padding: 0 4rem;
-  .community-board {
+
+  .community-content {
+    padding-left: 5rem;
     flex: 1;
   }
 }
