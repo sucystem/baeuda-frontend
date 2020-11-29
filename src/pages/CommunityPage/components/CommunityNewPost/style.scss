@@ -1,0 +1,74 @@
+div#community-post {
+  width: 960px;
+  margin: 0 auto;
+
+  input[type="text"] {
+    font-family: LotteMartDream;
+    font-weight: 200;
+    display: block;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  input[type="submit"] {
+    font-size: 14px;
+    padding: 0.6rem;
+    font-family: LotteMartHappy;
+    font-weight: 800;
+    color: white;
+    border-radius: 37px;
+    width: 10%;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border: none;
+    outline: none;
+    background-color: #22a7f0;
+    margin-top: 10px;
+  }
+
+  textarea {
+    font-family: LotteMartDream;
+    font-weight: 200;
+    resize: none;
+    width: 100%;
+    height: 400px;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+  }
+
+  #upload-file-name {
+    width: 87%;
+    margin-top: 10px;
+  }
+
+  .container-file-upload {
+    display: flex;
+    align-items: center;
+  }
+
+  .container-submit {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn_file_upload {
+    flex: 1;
+    font-size: 14px;
+    padding: 0.6rem;
+    font-family: LotteMartHappy;
+    font-weight: 800;
+    color: white;
+    border-radius: 37px;
+    width: 10%;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border: none;
+    outline: none;
+    background-color: #22a7f0;
+    // margin: 0 auto;
+    float: right;
+    margin-top: 10px;
+    margin-left: 3%;
+  }
+
+  
+}

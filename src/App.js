@@ -18,7 +18,7 @@ class App extends Component {
       <Route exact path="/main" component={MainPage}/>
       <Route path="/mylecture" component={MyLecturePage}/>
       <Route path="/lectureroom" component={LectureRoomPage}/>
-      <Route exact path="/community" component={CommunityPage}/>
+      <Route path="/community" component={CommunityPage}/>
       <Footer />
     </>
   );
