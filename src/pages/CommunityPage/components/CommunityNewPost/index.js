@@ -53,7 +53,8 @@ class CommunityNewPost extends Component {
         var { title, content, file } = this.state;
         try {
             if (this.state.title && this.state.content) {
-                const boardId = 2;
+                console.log(this.props.match.params);
+                const boardId = this.props.match.params.board_id;
                 const path = this.props.match.path;
                 //var formData = new FormData();
 
@@ -69,7 +70,7 @@ class CommunityNewPost extends Component {
                 //callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken(), ...{ 'content-Type': 'multipart/form-data' } }, data).then(res => {
                 callAPI(`board/${boardId}/newPost`, 'POST', {...this.getToken()}, data).then(res => {
                     if (res.data.msg === '게시글 등록에 성공했습니다.'){
-                        this.props.history.push(`/board/${boardId}`)
+                        this.props.history.push(`/community/${boardId}`)
                     } else {
                         alert(res.data.msg)
                     }

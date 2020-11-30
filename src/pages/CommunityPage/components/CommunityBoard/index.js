@@ -27,7 +27,7 @@ function CommunityBoard(){
             </tr>
             </tbody>
         </table>
-        <button className="btn_new_post" onClick={() => history.push("/community/newpost") }>새 글 작성</button>
+        <button className="btn_new_post" onClick={() => history.push("/community/2/newpost") }>새 글 작성</button>
 
     </div>
 
