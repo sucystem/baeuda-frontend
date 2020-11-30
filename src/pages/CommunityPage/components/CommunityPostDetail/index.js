@@ -48,7 +48,6 @@ class CommunityPostDetail extends Component {
                     alert(res.data.msg);
                 }
             });*/
-            console.log(this.state);
             this.render();
         } catch (e) {
             console.log(e);
@@ -73,7 +72,7 @@ class CommunityPostDetail extends Component {
             if (this.state.comment) {
                 callAPI(`board/${board_id}/${post_id}/addcomment`, 'POST', { ...this.getToken() }, data).then(res => {
                     if (res.data.msg === '댓글 등록에 성공했습니다.') {
-
+                        window.location.reload();
                     } else {
                         alert(res.data.msg);
                     }

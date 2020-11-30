@@ -29,7 +29,6 @@ class CommunityBoard extends Component{
             //     alert(res.data.msg)
             // }
             if(res.data.result === 'true'){
-                console.log(res.data);
                 this.setState ({
                     posts: res.data.data
                 })
