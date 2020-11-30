@@ -8,6 +8,7 @@ import Footer from "./components/footer";
 import MyLecturePage from "./pages/LecturePage";
 import CommunityPage from "./pages/CommunityPage";
 import LectureRoomPage from "./pages/LectureRoomPage";
+import MySchedulePage from './pages/MySchedulePage';
 
 class App extends Component {
   render(){
@@ -19,6 +20,7 @@ class App extends Component {
       <Route path="/mylecture" component={MyLecturePage}/>
       <Route path="/lectureroom" component={LectureRoomPage}/>
       <Route path="/community" component={CommunityPage}/>
+      <Route path="/myschedule" component={MySchedulePage}/>
       <Footer />
     </>
   );
