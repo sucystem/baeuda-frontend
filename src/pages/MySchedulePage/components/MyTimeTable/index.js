@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import TuiCalendar from 'tui-calendar';
 
@@ -9,7 +8,6 @@ import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 
 function MyTimeTable() {
-    const history = useHistory();
 
     const calendarRef = useRef(null);
 
