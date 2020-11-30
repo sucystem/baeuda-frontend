@@ -9,7 +9,7 @@ class Header extends Component {
     constructor(props){
         super(props);
         if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
-            // this.props.history.push('/')
+            this.props.history.push('/')
         }
     }
     handleLogout = () => {
