@@ -67,7 +67,7 @@ class MyCalendar extends React.Component {
             defaultView: 'month',
             taskView: true,
         });
-        this.fetchDatas().then(schedules => {console.log(schedules); newCalendar.createSchedules(schedules)});
+        this.fetchDatas().then(schedules => newCalendar.createSchedules(schedules));
         this.setState({ calendar: newCalendar }); 
     }
 

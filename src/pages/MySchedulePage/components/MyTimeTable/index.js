@@ -11,7 +11,6 @@ import callAPI from '../../../../_utils/apiCaller';
 
 class MyTimeTable extends React.Component {
     state = {
-
         calendar: null
     };
 
@@ -35,6 +34,7 @@ class MyTimeTable extends React.Component {
             { ...this.getToken() }, 
             null,
         );
+        console.log(res);
 
         if (res.data.result === 'true') {
             // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
