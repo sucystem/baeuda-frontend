@@ -28,8 +28,8 @@ class MyCalendar extends React.Component {
             auth_token: token,
         }
     }
-
     fetchDatas = async () => {
+
         const res = await callAPI(
             `schedule/${this.state.month}`, 
             'GET', 
@@ -61,12 +61,12 @@ class MyCalendar extends React.Component {
         return [];
     }
     
+
     componentDidMount() {
         const newCalendar = new TuiCalendar(this.calendarRef.current, { 
             defaultView: 'month',
             taskView: true,
         });
-
         this.fetchDatas().then(schedules => {console.log(schedules); newCalendar.createSchedules(schedules)});
         this.setState({ calendar: newCalendar }); 
     }
