@@ -53,7 +53,6 @@ class CommunityNewPost extends Component {
         var { title, content, file } = this.state;
         try {
             if (this.state.title && this.state.content) {
-                console.log(this.props.match.params);
                 const boardId = this.props.match.params.board_id;
                 const path = this.props.match.path;
                 //var formData = new FormData();
