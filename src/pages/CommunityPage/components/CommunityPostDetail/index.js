@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { useHistory } from 'react-router-dom';
 import './style.scss'
 import callAPI from '../../../../_utils/apiCaller'
+const moment = require('moment');
 
 class CommunityPostDetail extends Component {
     constructor(props) {
@@ -92,7 +93,7 @@ class CommunityPostDetail extends Component {
                     <p>
                         <span className="writer">{contact.user_name}</span>
                 &nbsp;
-                <span className="date">{contact.regDate}</span>
+                <span className="date">{moment(contact.regDate).format("YYYY-MM-DD")}</span>
                     </p>
                 </div>
             <div id="content">
@@ -113,7 +114,7 @@ class CommunityPostDetail extends Component {
                     &nbsp;
                     <span className="comment-content">{contact.content}</span>
                             </p>
-                            <p className="comment-date">{contact.date}</p>
+                            <p className="comment-date">{moment(contact.date).format("YYYY-MM-DD")}</p>
                         </div>
                     );
                 })}
