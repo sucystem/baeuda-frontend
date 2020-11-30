@@ -24,7 +24,7 @@ class CommunityPage extends Component{
                     <Switch>
                         <Route exact path = {`${match.url}/:board_id`} component = {CommunityBoard} />
                         <Route exact path = {`${match.url}/:board_id/newpost`} component = {CommunityNewPost} />
-                        <Route exact path = {`${match.url}/postdetail`} component = {CommunityPostDetail} />
+                        <Route exact path = {`${match.url}/:board_id/postdetail/:post_id`} component = {CommunityPostDetail} />
                         <Redirect path="*" to={`${match.url}/2`} />
                     </Switch>
                     
