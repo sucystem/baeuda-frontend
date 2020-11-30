@@ -31,7 +31,7 @@ class MyCalendar extends React.Component {
     fetchDatas = async () => {
 
         const res = await callAPI(
-            `schedule/${this.state.month}`, 
+            `schedule/month/${this.state.month}`, 
             'GET', 
             { ...this.getToken() }, 
             null,
