@@ -11,6 +11,9 @@ class Header extends Component {
         if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
             this.props.history.push('/')
         }
+        this.state={
+            user: JSON.parse(localStorage.getItem('user'))
+        }
     }
     handleLogout = () => {
         localStorage.removeItem('token');
@@ -23,7 +26,7 @@ class Header extends Component {
         return <header id="MyPageHeader">
             <div id="MyPage">
                 <div className="header_my_menu">
-                    {this.props.user_name}님, 오늘도 열공해요!
+                    {this.state.user.user_name}님, 오늘도 열공해요!
             </div>
                 <div className="header_my_menu">
                     마이페이지
