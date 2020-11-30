@@ -8,6 +8,9 @@ import callAPI from '../../../../_utils/apiCaller';
 class CommunityNewPost extends Component {
     constructor(props) {
         super(props);
+        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
 
         this.state = {
             title: "", 

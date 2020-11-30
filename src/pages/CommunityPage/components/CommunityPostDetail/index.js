@@ -7,6 +7,9 @@ const moment = require('moment');
 class CommunityPostDetail extends Component {
     constructor(props) {
         super(props);
+        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
 
         this.state = {
             board_id: this.props.match.params.board_id,
