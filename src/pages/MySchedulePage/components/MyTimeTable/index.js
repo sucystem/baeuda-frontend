@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { createRef } from 'react';
 
 import TuiCalendar from 'tui-calendar';
 
@@ -7,40 +6,77 @@ import 'tui-calendar/dist/tui-calendar.css';
 
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
+import callAPI from '../../../../_utils/apiCaller';
 
-function MyTimeTable() {
-    const history = useHistory();
 
-    const calendarRef = useRef(null);
+class MyTimeTable extends React.Component {
+    state = {
+        calendar: null
+    };
 
-    const [calendar, setCalendar] = useState(null);
+    constructor(props) {
+        super(props);
+        // https://ko.reactjs.org/docs/refs-and-the-dom.html
+        this.calendarRef = createRef(); 
+    }
 
-    useEffect(() => {
-        const newCalendar = new TuiCalendar(calendarRef.current, {
+    getToken = () => {
+        const token = localStorage.getItem('token');
+        return {
+            auth_token: token,
+        }
+    }
+
+    fetchDatas = async () => {
+        const res = await callAPI(
+            `schedule/thisweek`, // TO-DO : week에 맞게 수정
+            'GET', 
+            { ...this.getToken() }, 
+            null,
+        );
+        console.log(res);
+
+        if (res.data.result === 'true') {
+            // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+            return res.data.data.map(({
+                id,
+                calendarId,
+                title,
+                category,
+                dueDateClass,
+                start,
+                end,
+            }) => ({
+                id,
+                calendarId,
+                title,
+                category,
+                dueDateClass,
+                start,
+                end,
+            }));
+        }
+
+        return [];
+    }
+
+    componentDidMount() {
+        const newCalendar = new TuiCalendar(this.calendarRef.current, { 
             defaultView: 'week',
             taskView: false,
         });
 
-        newCalendar.createSchedules([
-            {
-                id: '1',
-                calendarId: '1',
-                title: '이준환 입소!!',
-                category: 'time',
-                dueDateClass: '',
-                start: '2020-12-01T09:30:00+09:00',
-                end: '2020-12-01T09:30:00+09:00'
-            },
-        ]);
+        this.fetchDatas().then(schedules => {console.log(schedules); newCalendar.createSchedules(schedules)});
+        this.setState({ calendar: newCalendar }); 
+    }
 
-        setCalendar(newCalendar);
-    }, []);
-
-    return (
-        <div>
-            <div ref={calendarRef}></div>
-        </div>
-    );
-}
+    render() {
+        return (
+            <div className='MyTimeTable'>
+                <div ref={this.calendarRef}></div>
+            </div>
+        );
+    }
+};
 
 export default MyTimeTable;

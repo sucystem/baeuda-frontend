@@ -1,10 +1,57 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { useHistory } from 'react-router-dom';
 import './style.scss'
+import callAPI from '../../../../_utils/apiCaller';
+const moment = require('moment');
 
-function CommunityBoard(){
-    let history = useHistory();
-    return <div id="community_board">
+class CommunityBoard extends Component{
+    constructor(props) {
+        super(props);
+        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
+
+        this.state = {
+            posts: []
+        }
+
+    }
+
+    getToken = () => {
+        const token = localStorage.getItem('token');
+        return {
+            auth_token: token,
+        }
+    }
+
+    getPosts = async() => {
+        const boardId = this.props.match.params.board_id;
+        callAPI(`board/${boardId}`, 'GET', {...this.getToken()}, null).then(res => {
+            // if (res.data.msg === '게시글 등록에 성공했습니다.'){
+            //     this.props.history.push(`/community/${boardId}`)
+            // } else {
+            //     alert(res.data.msg)
+            // }
+            if(res.data.result === 'true'){
+                this.setState ({
+                    posts: res.data.data
+                })
+            } else {
+                alert(res.data.msg)
+            }
+            
+        });
+    }
+
+    componentDidMount() {
+        this.getPosts();
+    }
+
+    
+    
+    render() {
+        let history = this.props.history;
+        return (<div id="community_board">
         <table>
             <thead>
                 <th width = "70%">제목</th>
@@ -13,23 +60,24 @@ function CommunityBoard(){
                 <th width = "15%">작성 시간</th>
             </thead>
             <tbody>
-            <tr>
-                <td>노트북 추천</td>
-                <td>송혜민</td>
-                <td>21</td>
-                <td>2020-11-29</td>
-            </tr>
-            <tr>
-                <td>노트북 추천</td>
-                <td>송혜민</td>
-                <td>21</td>
-                <td>2020-11-29</td>
-            </tr>
+                {
+                    this.state.posts.map((item, index) => {
+                        return (
+                            <tr key = {index} onClick={() => history.push("/community/2/postdetail/"+item.id)}>
+                                <td>{item.title}</td>
+                                <td>{item.user_name}</td>
+                                <td>{item.count}</td>
+                                <td>{moment(item.regDate).format("YYYY-MM-DD")}</td>
+                            </tr>
+                        )
+                    })
+                }
             </tbody>
         </table>
-        <button className="btn_new_post" onClick={() => history.push("/community/newpost") }>새 글 작성</button>
-
-    </div>
+        <button className="btn_new_post" onClick={() => history.push("/community/2/newpost") }>새 글 작성</button>
+    </div>)
+    }
+    
 
 }
 

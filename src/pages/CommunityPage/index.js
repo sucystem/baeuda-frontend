@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import CommunitySidebar from "./components/CommunitySidebar";
-import {Switch, Route, useRouteMatch} from "react-router-dom";
+import {Switch, Route, useRouteMatch, Redirect} from "react-router-dom";
 import CommunityBoard from "./components/CommunityBoard";
 import CommunityNewPost from "./components/CommunityNewPost";
 import CommunityPostDetail from './components/CommunityPostDetail';
@@ -22,9 +22,10 @@ class CommunityPage extends Component{
                 <CommunitySidebar/>
                 <div className="community-content">
                     <Switch>
-                        <Route exact path = {`${match.url}`} component = {CommunityBoard} />
-                        <Route exact path = {`${match.url}/newpost`} component = {CommunityNewPost} />
-                        <Route exact path = {`${match.url}/postdetail`} component = {CommunityPostDetail} />
+                        <Route exact path = {`${match.url}/:board_id`} component = {CommunityBoard} />
+                        <Route exact path = {`${match.url}/:board_id/newpost`} component = {CommunityNewPost} />
+                        <Route exact path = {`${match.url}/:board_id/postdetail/:post_id`} component = {CommunityPostDetail} />
+                        <Redirect path="*" to={`${match.url}/2`} />
                     </Switch>
                     
                 </div>
