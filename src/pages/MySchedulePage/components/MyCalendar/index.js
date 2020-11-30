@@ -13,7 +13,7 @@ class MyCalendar extends React.Component {
     state = {
         month: moment().format('MM'),
         calendar: null, 
-        datas: [],
+        datas: []
     };
 
     constructor(props) {
@@ -39,7 +39,7 @@ class MyCalendar extends React.Component {
         );
         
         if (res.data.result === 'true') {
-            console.log(res.data);
+            console.log(res.data.data);
             this.setState({ datas: res.data.data });
             return;
         }
@@ -48,36 +48,16 @@ class MyCalendar extends React.Component {
     };
 
     componentDidMount() {
+        this.getDatas();
         const newCalendar = new TuiCalendar(this.calendarRef.current, { 
             defaultView: 'month',
             taskView: true,
         });
-
-        // TODO 여기서 서버 데이터 받아오기
-        this.getDatas();
-
-        newCalendar.createSchedules([ // test용
-            {
-                id: '1',
-                calendarId: '1',
-                title: '이준환 입소',
-                category: 'time',
-                dueDateClass: '',
-                start: '2020-12-01T22:30:00+09:00',
-                end: '2020-12-03T02:30:00+09:00'
-            },
-            {
-                id: '2',
-                calendarId: '2',
-                title: '이준환 입소?!',
-                category: 'time',
-                dueDateClass: '',
-                start: '2020-12-05T22:30:00+09:00',
-                end: '2020-12-07T02:30:00+09:00'
-            }
-        ]);
+        newCalendar.createSchedules(this.state.datas);
+        console.log(this.state.datas);
 
         this.setState({ calendar: newCalendar });
+        
     }
 
     render() {
