@@ -1,10 +1,52 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { useHistory } from 'react-router-dom';
 import './style.scss'
+import callAPI from '../../../../_utils/apiCaller';
 
-function CommunityBoard(){
-    let history = useHistory();
-    return <div id="community_board">
+class CommunityBoard extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            posts: []
+        }
+
+    }
+
+    getToken = () => {
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+        return {
+            auth_token: token,
+            user: user
+        }
+    }
+
+    getPosts = async() => {
+        const boardId = this.props.match.params.board_id;
+        callAPI(`board/${boardId}`, 'GET', {...this.getToken()}, null).then(res => {
+            // if (res.data.msg === '게시글 등록에 성공했습니다.'){
+            //     this.props.history.push(`/community/${boardId}`)
+            // } else {
+            //     alert(res.data.msg)
+            // }
+            if(res.data.result === 'true'){
+                console.log(res.data)
+            } else {
+                alert(res.data.msg)
+            }
+            
+        });
+    }
+
+    componentDidMount() {
+        this.getPosts();
+    }
+
+    
+    
+    render() {
+        let history = this.props.history;
+        return <div id="community_board">
         <table>
             <thead>
                 <th width = "70%">제목</th>
@@ -13,12 +55,19 @@ function CommunityBoard(){
                 <th width = "15%">작성 시간</th>
             </thead>
             <tbody>
-            <tr>
-                <td>노트북 추천</td>
-                <td>송혜민</td>
-                <td>21</td>
-                <td>2020-11-29</td>
-            </tr>
+                {
+                    this.state.posts.map((item, index) => {
+                        return (
+                            <tr>
+                                <td>노트북 추천</td>
+                                <td>송혜민</td>
+                                <td>21</td>
+                                <td>2020-11-29</td>
+                            </tr>
+                        )
+                    })
+                }
+            
             <tr>
                 <td>노트북 추천</td>
                 <td>송혜민</td>
@@ -28,8 +77,9 @@ function CommunityBoard(){
             </tbody>
         </table>
         <button className="btn_new_post" onClick={() => history.push("/community/2/newpost") }>새 글 작성</button>
-
     </div>
+    }
+    
 
 }
 
