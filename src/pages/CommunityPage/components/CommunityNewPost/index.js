@@ -10,7 +10,9 @@ class CommunityNewPost extends Component {
         super(props);
 
         this.state = {
-            title: "", content: ""
+            title: "", 
+            content: "",
+            file: []
         }
     }
 
@@ -18,31 +20,54 @@ class CommunityNewPost extends Component {
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('user');
         return {
-            auth_token : token,
+            auth_token: token,
             user: user
         }
     }
 
+    handleClickAddFile = (event) => {
+        event.preventDefault();
+        const file = document.createElement('input');
+        file.setAttribute("type", "file");
+        file.setAttribute("name", "file");
+        document.body.appendChild(file);
+        file.click();
+        file.onchange = this.handleChange;
+    }
+
     handleChange = (event) => {
         const { name, value } = event.target;
-        this.setState({
-            [name]: value
-        })
+        if (name === "file") {
+            this.setState({
+                file : [...this.state.file, event.target.files[0]]
+            })
+        } else {
+            this.setState({
+                [name] : value
+            })
+        }
     }
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        var { title, content } = this.state;
+        var { title, content, file } = this.state;
         try {
             if (this.state.title && this.state.content) {
                 const boardId = 2;
                 const path = this.props.match.path;
-                const formData = new FormData();
+                //var formData = new FormData();
 
-                formData.append('title', title);
-                formData.append('content', content);
+                const data = {
+                    title: title,
+                    content: content
+                }
 
-                callAPI(`board/${boardId}/newPost`, 'POST', {...this.getToken(),...{'content-Type' : 'multipart/form-data'}}, formData).then(res => {
+                /*for(let i = 0; i < file.length; i++){
+                    formData.append('file', file[i]);
+                }*/
+
+                //callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken(), ...{ 'content-Type': 'multipart/form-data' } }, data).then(res => {
+                callAPI(`board/${boardId}/newPost`, 'POST', {...this.getToken()}, data).then(res => {
                     alert(res.data.msg)
                 });
             }
@@ -59,10 +84,10 @@ class CommunityNewPost extends Component {
                 <textarea name="content" placeholder="글 내용" onChange={event => this.handleChange(event)} />
                 <div className="container-file-upload">
                     <input disabled type="text" id="upload-file-name" placeholder="파일 첨부" />
-                    <button className="btn_file_upload">파일 선택</button>
+                    <button className="btn_file_upload" onclick={(event) => this.handleClickAddFile(event)}>파일 선택</button>
                 </div>
                 <div className="container-submit">
-                    <input type="submit" value="올리기" onclick = {(event) => this.handleSubmit(event)} />
+                    <input type="submit" value="올리기" onclick={(event) => this.handleSubmit(event)} />
                 </div>
             </form>
         </div>
