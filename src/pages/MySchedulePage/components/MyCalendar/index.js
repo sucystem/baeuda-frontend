@@ -1,19 +1,19 @@
 import React, { createRef } from 'react';
 
 import TuiCalendar from 'tui-calendar';
+import moment from 'moment';
 
 import 'tui-calendar/dist/tui-calendar.css';
 
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
+
 import callAPI from '../../../../_utils/apiCaller';
-const moment = require('moment');
 
 class MyCalendar extends React.Component {
     state = {
         month: moment().format('MM'),
-        calendar: null, 
-        datas: []
+        calendar: null
     };
 
     constructor(props) {
@@ -29,35 +29,46 @@ class MyCalendar extends React.Component {
         }
     }
 
-    getDatas = async () => {
-        console.log(`schedule/${this.state.month}`);
+    fetchDatas = async () => {
         const res = await callAPI(
             `schedule/${this.state.month}`, 
             'GET', 
             { ...this.getToken() }, 
             null,
         );
-        
+
         if (res.data.result === 'true') {
-            console.log(res.data.data);
-            this.setState({ datas: res.data.data });
-            return;
+            // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+            return res.data.data.map(({
+                id,
+                calendarId,
+                title,
+                category,
+                dueDateClass,
+                start,
+                end,
+            }) => ({
+                id,
+                calendarId,
+                title,
+                category,
+                dueDateClass,
+                start,
+                end,
+            }));
         }
 
-        alert(res.data.msg);
-    };
-
+        return [];
+    }
+    
     componentDidMount() {
-        this.getDatas();
         const newCalendar = new TuiCalendar(this.calendarRef.current, { 
             defaultView: 'month',
             taskView: true,
         });
-        newCalendar.createSchedules(this.state.datas);
-        console.log(this.state.datas);
 
-        this.setState({ calendar: newCalendar });
-        
+        this.fetchDatas().then(schedules => {console.log(schedules); newCalendar.createSchedules(schedules)});
+        this.setState({ calendar: newCalendar }); 
     }
 
     render() {
