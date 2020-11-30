@@ -9,6 +9,8 @@ import MyLecturePage from "./pages/LecturePage";
 import CommunityPage from "./pages/CommunityPage";
 import LectureRoomPage from "./pages/LectureRoomPage";
 import MySchedulePage from './pages/MySchedulePage';
+import StudyPage from './pages/StudyPage';
+import ProjectPage from './pages/ProjectPage';
 
 class App extends Component {
   render(){
@@ -21,6 +23,8 @@ class App extends Component {
       <Route path="/lectureroom" component={LectureRoomPage}/>
       <Route path="/community" component={CommunityPage}/>
       <Route path="/myschedule" component={MySchedulePage}/>
+      <Route path="/study" component={StudyPage}/>
+      <Route path="/project" component={ProjectPage}/>
       <Footer />
     </>
   );

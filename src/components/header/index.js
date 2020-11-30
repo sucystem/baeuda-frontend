@@ -36,8 +36,8 @@ class Header extends Component {
             <div id="menu_bar">
                 <ul>
                     <li onClick={() => history.push("/myLecture")}>내 강의</li>
-                    <li onClick={() => history.push("/signup")}>내 스터디</li>
-                    <li onClick={() => history.push("/signup")}>팀 프로젝트</li>
+                    <li onClick={() => history.push("/study")}>내 스터디</li>
+                    <li onClick={() => history.push("/project")}>팀 프로젝트</li>
                     <li onClick={() => history.push("/myschedule")}>내 일정</li>
                     <li onClick={() => history.push("/community")}>커뮤니티</li>
                 </ul>

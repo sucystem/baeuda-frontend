@@ -1,0 +1,81 @@
+div#ProjectRoom{
+
+}
+
+div#ProjectName{
+    width : 500px;
+    height : 80px;
+    font-size: 60px;
+    color : #f89406;
+    line-height: 80px;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+div#ProjectContent{
+    width : 1300px;
+    height : 800px;
+}
+
+div#ProjectReference{
+    width : 600px;
+    height : 800px;
+    float : left;
+    margin-right: 100px;
+}
+
+div#ProjectSchedule{
+    width : 600px;
+    height : 800px;
+    float : left;
+}
+
+div.Room_Title{
+    width : 400px;
+    height : 80px;
+    font-size: 55px;
+    color : #22a7f0;
+    text-align: left;
+}
+
+div.Room_Content{
+    width : 600px;
+    height : 720px;
+}
+
+div.Room_Content li{
+    width : 600px;
+    height : 60px;
+}
+
+div.Room_Content li div{
+    float : left;
+}
+
+div.RefName{
+    width : 500px;
+    height : 60px;
+    color : #000000;
+    font-size: 23px;
+}
+
+div.RefWriter{
+    width : 100px;
+    height : 60px;
+    color : #707070;
+    font-size: 15px;
+}
+
+div.ScheName{
+    width : 400px;
+    height : 60px;
+    color : #000000;
+    font-size: 23px;
+}
+
+div.ScheDate{
+    width : 200px;
+    height : 60px;
+    color : #707070;
+    font-size: 15px;
+}

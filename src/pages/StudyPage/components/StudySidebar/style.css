@@ -1,0 +1,12 @@
+div#study_side_bar{
+    font-size: 20px;
+    position : absolute;
+    height : auto;
+    width : auto;
+    left : 5%;
+    top : 20%;
+}
+
+div#study_side_bar li{
+    margin : 50px auto;
+}
