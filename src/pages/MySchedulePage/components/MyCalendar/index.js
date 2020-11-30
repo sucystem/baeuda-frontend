@@ -30,7 +30,6 @@ class MyCalendar extends React.Component {
     }
 
     getDatas = async () => {
-        console.log(`schedule/${this.state.month}`);
         const res = await callAPI(
             `schedule/${this.state.month}`, 
             'GET', 
@@ -39,25 +38,22 @@ class MyCalendar extends React.Component {
         );
         
         if (res.data.result === 'true') {
-            console.log(res.data.data);
             this.setState({ datas: res.data.data });
+            this.render();
             return;
         }
 
         alert(res.data.msg);
     };
 
-    componentDidMount() {
-        this.getDatas();
+    async componentDidMount() {
+        await this.getDatas();
         const newCalendar = new TuiCalendar(this.calendarRef.current, { 
             defaultView: 'month',
             taskView: true,
         });
         newCalendar.createSchedules(this.state.datas);
-        console.log(this.state.datas);
-
         this.setState({ calendar: newCalendar });
-        
     }
 
     render() {
