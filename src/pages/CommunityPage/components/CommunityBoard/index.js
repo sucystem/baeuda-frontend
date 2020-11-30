@@ -14,10 +14,8 @@ class CommunityBoard extends Component{
 
     getToken = () => {
         const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
         return {
             auth_token: token,
-            user: user
         }
     }
 

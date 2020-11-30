@@ -18,10 +18,8 @@ class CommunityNewPost extends Component {
 
     getToken = () => {
         const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
         return {
             auth_token: token,
-            user: user
         }
     }
 
@@ -55,17 +53,19 @@ class CommunityNewPost extends Component {
             if (this.state.title && this.state.content) {
                 const boardId = this.props.match.params.board_id;
                 const path = this.props.match.path;
-                //var formData = new FormData();
+                //const formData = new FormData();
 
                 const data = {
                     title: title,
                     content: content
                 }
-                /*for(let i = 0; i < file.length; i++){
-                    formData.append('file', file[i]);
-                }*/
+                //for(let i = 0; i < file.length; i++){
+                 //   formData.append('file', file[i]);
+                //}
+                //formData.append('title', title);
+                //formData.append('content', content);
 
-                //callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken(), ...{ 'content-Type': 'multipart/form-data' } }, data).then(res => {
+                //callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken(), ...{ 'Content-Type': `multipart/form-data` } }, formData).then(res => {
                 callAPI(`board/${boardId}/newPost`, 'POST', {...this.getToken()}, data).then(res => {
                     if (res.data.result === 'true'){
                         this.props.history.push(`/community/${boardId}/postdetail/${res.data.postid}`)
@@ -87,10 +87,11 @@ class CommunityNewPost extends Component {
                 <textarea name="content" placeholder="글 내용" onChange={event => this.handleChange(event)} />
                 <div className="container-file-upload">
                     <input disabled type="text" id="upload-file-name" placeholder="파일 첨부" />
-                    <button className="btn_file_upload" onclick={(event) => this.handleClickAddFile(event)}>파일 선택</button>
+                    <button className="btn_file_upload">파일 선택</button>
+                    <input type="file" name="file" multiple onChange={event => this.handleChange(event)}/>
                 </div>
                 <div className="container-submit">
-                    <input type="submit" value="올리기" onclick={(event) => this.handleSubmit(event)} />
+                    <input type="submit" value="올리기" onClick={(event) => this.handleSubmit(event)} />
                 </div>
             </form>
         </div>
