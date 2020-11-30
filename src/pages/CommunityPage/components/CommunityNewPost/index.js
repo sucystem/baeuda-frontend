@@ -68,7 +68,11 @@ class CommunityNewPost extends Component {
 
                 //callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken(), ...{ 'content-Type': 'multipart/form-data' } }, data).then(res => {
                 callAPI(`board/${boardId}/newPost`, 'POST', {...this.getToken()}, data).then(res => {
-                    alert(res.data.msg)
+                    if (res.data.msg === '게시글 등록에 성공했습니다.'){
+                        this.props.history.push(`/board/${boardId}`)
+                    } else {
+                        alert(res.data.msg)
+                    }
                 });
             }
         } catch (e) {
