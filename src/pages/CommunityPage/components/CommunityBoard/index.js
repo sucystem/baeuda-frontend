@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { useHistory } from 'react-router-dom';
 import './style.scss'
 import callAPI from '../../../../_utils/apiCaller';
+const moment = require('moment');
 
 class CommunityBoard extends Component{
     constructor(props) {
@@ -30,7 +31,10 @@ class CommunityBoard extends Component{
             //     alert(res.data.msg)
             // }
             if(res.data.result === 'true'){
-                console.log(res.data)
+                console.log(res.data);
+                this.setState ({
+                    posts: res.data.data
+                })
             } else {
                 alert(res.data.msg)
             }
@@ -46,7 +50,7 @@ class CommunityBoard extends Component{
     
     render() {
         let history = this.props.history;
-        return <div id="community_board">
+        return (<div id="community_board">
         <table>
             <thead>
                 <th width = "70%">제목</th>
@@ -58,26 +62,19 @@ class CommunityBoard extends Component{
                 {
                     this.state.posts.map((item, index) => {
                         return (
-                            <tr>
-                                <td>노트북 추천</td>
-                                <td>송혜민</td>
-                                <td>21</td>
-                                <td>2020-11-29</td>
+                            <tr key = {index} onClick={() => history.push("/community/2/postdetail/"+item.id)}>
+                                <td>{item.title}</td>
+                                <td>{item.user_name}</td>
+                                <td>{item.count}</td>
+                                <td>{moment(item.regDate).format("YYYY-MM-DD")}</td>
                             </tr>
                         )
                     })
                 }
-            
-            <tr>
-                <td>노트북 추천</td>
-                <td>송혜민</td>
-                <td>21</td>
-                <td>2020-11-29</td>
-            </tr>
             </tbody>
         </table>
         <button className="btn_new_post" onClick={() => history.push("/community/2/newpost") }>새 글 작성</button>
-    </div>
+    </div>)
     }
     
 
