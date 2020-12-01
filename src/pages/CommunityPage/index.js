@@ -13,6 +13,13 @@ class CommunityPage extends Component{
     constructor(props){
         super(props);
     }
+
+    componentDidMount() {
+            if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
+    }
+
     render() {
     const match = this.props.match;
     return (

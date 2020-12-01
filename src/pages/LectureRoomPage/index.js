@@ -19,7 +19,7 @@ render() {
             <Header history={this.props.history} />
             <LectureRoomSidebar />
             <Switch>
-                <Route exact path = {`${match.url}`} component={LectureClass} />
+                <Route exact path = {`${match.url}/:lecture_id`} component={LectureClass} />
                 <Route exact path = {`${match.url}/notice`} component={LectureNotice} />
                 <Route exact path = {`${match.url}/qna`} component={LectureQnA} />
                 <Route exact path = {`${match.url}/reference`} component={LectureReference} />

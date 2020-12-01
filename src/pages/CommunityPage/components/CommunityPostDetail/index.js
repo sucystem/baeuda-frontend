@@ -7,10 +7,7 @@ const moment = require('moment');
 class CommunityPostDetail extends Component {
     constructor(props) {
         super(props);
-        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
-            this.props.history.push('/')
-        }
-
+    
         this.state = {
             board_id: this.props.match.params.board_id,
             post_id: this.props.match.params.post_id,
@@ -21,6 +18,13 @@ class CommunityPostDetail extends Component {
 
         this.readPost();
     }
+
+    componentDidMount() {
+        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
+    }
+
 
     getToken = () => {
         const token = localStorage.getItem('token');

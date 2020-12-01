@@ -4,10 +4,12 @@ import './style.scss';
 class CommunitySidebar extends Component {
     constructor(props) {
         super(props);
-        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+    }
+
+    componentDidMount() {
+            if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
             this.props.history.push('/')
         }
-
     }
 
     render() {

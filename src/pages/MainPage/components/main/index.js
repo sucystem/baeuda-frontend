@@ -35,6 +35,9 @@ class Main extends Component {
     }
 
     componentDidMount() {
+        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
         this.getTodaySchedule();
     }
 

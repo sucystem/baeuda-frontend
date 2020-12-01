@@ -13,7 +13,7 @@ class MainPage extends Component{
     return (
         <>
             <Header history={this.props.history} />
-            <Main />
+            <Main history={this.props.history} />
             <Icon/>
         </>
     );
