@@ -42,7 +42,7 @@ class CommunitySidebar extends Component {
         return <div id="community_side_bar">
             <ul>
                 {this.state.boards.map((board) => { return (
-                    <li style={{ color: "#22a7f0" }} onClick={() => window.location.replace(`/community/${board.id}`)}>{board.name}</li>
+                    <li onClick={() => window.location.replace(`/community/${board.id}`)}>{board.name}</li>
                 )})}
             </ul>
         </div>
