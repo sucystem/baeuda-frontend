@@ -5,7 +5,7 @@ import './style.css'
 class LectureAccept extends Component {
     constructor(props) {
         super(props);
-        this.setState = {
+        this.state = {
             students: []
         }
 
@@ -22,12 +22,37 @@ class LectureAccept extends Component {
         const lecture_id = this.props.match.params.lecture_id;
         const res = await callAPI(
             `lecture/accept/${lecture_id}`,
-            'POST', 
-            { ...this.getToken() }, 
+            'GET',
+            { ...this.getToken() },
             null,
         );
-        console.log(res);
 
+        if (res.data.result === 'true') {
+            this.setState({
+                students: res.data.data
+            })
+        }
+    }
+
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        const lecture_id = this.props.match.params.lecture_id;
+        const { name, value } = event.target;
+        try {
+            const data = {
+                option: name,
+                studentId: value
+            }
+            const res = await callAPI(
+                `lecture/accept/${lecture_id}`,
+                'POST',
+                { ...this.getToken() },
+                data
+            );
+            window.location.reload();
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     componentDidMount() {
@@ -36,17 +61,21 @@ class LectureAccept extends Component {
 
     render() {
         return (
-        <div id="lecture-accept">
-            <ul id="students-list">
-                {/* {this.state.students.map((student, index) => {return(
-                <li class="student-info">
-                    <div class="student-univ">{student.name}</div>
-                    <div class="student-id">{student.user_name}</div>
-                    <div class="student-name">{student.grade}</div>
-                </li>
-                );})} */}
-            </ul>
-        </div>
+            <div id="lecture-accept">
+                <ul id="students-list">
+                    {this.state.students.map((student, index) => {
+                        return (
+                            <li class="student-info">
+                                <div class="student-univ">{student.univid}</div>
+                                <div class="student-id">{student.student_id}</div>
+                                <div class="student-name">{student.user_name}</div>
+                                <button name="accept" value={student.id} onClick={(event) => this.handleSubmit(event)}>승인</button>
+                                <button name="cancel" value={student.id} onClick={(event) => this.handleSubmit(event)}>취소</button>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
 
         )
     }
