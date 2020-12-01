@@ -13,16 +13,16 @@ class CommunityPostDetail extends Component {
             post: [],
             comment: "",
             commentList: [],
-            delete: ""
+            delete: "",
+            board_id: 0
         }
-
-        this.readPost();
     }
 
     componentDidMount() {
         if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
             this.props.history.push('/')
         }
+        this.readPost();
     }
 
 
@@ -78,7 +78,8 @@ class CommunityPostDetail extends Component {
                 if (res.data.result === 'true') {
                     this.setState({
                         post: res.data.data.post,
-                        commentList: res.data.data.comments
+                        commentList: res.data.data.comments,
+                        board_id: res.data.data.post[0].board_id
                     });
                     if(res.data.data.post[0].writer == (JSON.parse(localStorage.getItem('user'))).id){
                         this.setState({
@@ -98,7 +99,7 @@ class CommunityPostDetail extends Component {
                     alert(res.data.msg);
                 }
             });*/
-            this.render();
+            console.log(this.state);
         } catch (e) {
             console.log(e);
         }
