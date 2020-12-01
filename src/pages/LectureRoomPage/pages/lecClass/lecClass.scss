@@ -1,0 +1,80 @@
+div#LecClass{
+    position: absolute;
+    top : 15%;
+    left : 20%;
+    height : auto;
+    width : 100%;
+
+    div#SubjectName{
+        /* width : 100%;
+        height : 80px; */
+        font-size : 30px;
+        /* line-height : 40px; */
+        color : #f89406;
+        text-align: left;
+    }
+    
+    div#SubjectProgression{
+        width: 100%;
+        height : auto;
+    }
+    
+    li.classInfo{
+        width : 1100px;
+        height : 50px;
+        margin : 5px 3px 10px 5px;
+        border-radius: 41px;
+        border : solid 1px #707070;
+        background-color: #ffffff;
+        padding: 0;
+    }
+    
+    li.classInfo div{
+        float : left;
+    }
+    
+    div.classIndex{
+        width : 50px;
+        height : 60px;
+        line-height: 50px;
+        font-size: 17px;
+        color: #707070;
+        margin : 0px 25px 0 25px;
+    
+    }
+    
+    
+    
+    div.ProgressionFullBar {
+        width : 700px;
+        div.ProgressionBar{
+            width : 100%;
+            height : 32px;
+            margin : 9px 50px 14px 0px;
+            border-radius: 16px;
+            background-color: #22a7f0;
+        }
+    }
+    div.ProgressionPercent{
+        width : 50px;
+        font-size: 17px;
+        height : 50px;
+        line-height: 50px;
+        margin-left : 20px;
+        color : #707070;
+        text-align: left;
+    }
+    div.TakeCourse{
+        width : 200px;
+        height : 50px;
+        margin : 0px 0px 0px 30px;
+        float: right;
+        border-radius: 37px;
+        /* box-shadow: 0 3px 6px 0; */
+        background-color: #22a7f0;
+        line-height: 50px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+}
+
