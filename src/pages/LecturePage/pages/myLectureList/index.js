@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import './myLectureList.css'
 import callAPI from '../../../../_utils/apiCaller'
+import LectureInfoModal from '../../components/LectureInfoModal';
 
 class MyLectureApply extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            lectures: []
+            lectures: [],
+            isModalOpen: false
         }
     }
 
@@ -17,6 +19,16 @@ class MyLectureApply extends Component {
             auth_token: token,
         }
     }
+
+    openModal = () => {
+        this.setState({ isModalOpen: true });
+
+    }
+    closeModal = () => {
+        this.setState({ isModalOpen: false });
+
+    }
+
 
     getNotRegisterdLectures = async () => {
         callAPI(`lecture/notregist`, 'GET', { ...this.getToken() }, null).then(res => {
@@ -59,7 +71,8 @@ class MyLectureApply extends Component {
                         <div class="lectureProf">{lecture.prof_name}</div>
                         <div class="lectureQuota">{lecture.cur_student}/{lecture.max_student}</div>
                         <div class="lectureEnroll" id={lecture.id} onClick={(event) => this.handleRegist(event)}>신청</div>
-                        <div class="lectureInfo">정보보기</div>
+                        <div class="lectureInfo" onClick={this.openModal}>정보보기</div>
+                        <LectureInfoModal token={this.getToken()} lectureId={lecture.id} isOpen={this.state.isModalOpen} close={this.closeModal} />
                     </li>);
                     })}
                 </ul>
