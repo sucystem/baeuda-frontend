@@ -20,7 +20,6 @@ class MyLecture extends Component {
     }
 
     getMyLectures = async () => {
-        const boardId = this.props.match.params.board_id;
         callAPI(`lecture`, 'GET', { ...this.getToken() }, null).then(res => {
             if (res.data.result === 'true') {
                 this.setState({
