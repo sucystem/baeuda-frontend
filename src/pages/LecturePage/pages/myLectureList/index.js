@@ -22,11 +22,11 @@ class MyLectureApply extends Component {
 
     openModal = () => {
         this.setState({ isModalOpen: true });
-        console.log('True')
+
     }
     closeModal = () => {
         this.setState({ isModalOpen: false });
-        console.log('True')
+
     }
 
 
