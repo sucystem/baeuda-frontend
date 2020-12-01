@@ -23,7 +23,7 @@ class LectureClass extends Component {
 
     getLecture = async () => {
         const lecture_id = this.state.lecture_id;
-        callAPI(`lecture/${lecture_id}/info`, 'GET', { ...this.getToken() }, null).then(res => {
+        callAPI(`lecture/info/${lecture_id}`, 'GET', { ...this.getToken() }, null).then(res => {
             if (res.data.result === 'true') {
                 this.setState({
                     lecture: res.data.data
@@ -36,7 +36,7 @@ class LectureClass extends Component {
 
     getLessons = async () => {
         const lecture_id = this.state.lecture_id;
-        callAPI(`lecture/${lecture_id}/lessons`, 'GET', { ...this.getToken() }, null).then(res => {
+        callAPI(`lecture/lessons/${lecture_id}`, 'GET', { ...this.getToken() }, null).then(res => {
             if (res.data.result === 'true') {
                 this.setState({
                     lessons: res.data.data

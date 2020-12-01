@@ -20,7 +20,7 @@ class App extends Component {
       <Route exact path="/signup" component={SignUpPage} />
       <Route exact path="/main" component={MainPage}/>
       <Route path="/mylecture" component={MyLecturePage}/>
-      <Route path="/lectureroom" component={LectureRoomPage}/>
+      <Route path="/lectureroom/:lecture_id" component={LectureRoomPage}/>
       <Route path="/community" component={CommunityPage}/>
       <Route path="/myschedule" component={MySchedulePage}/>
       <Route path="/study" component={StudyPage}/>

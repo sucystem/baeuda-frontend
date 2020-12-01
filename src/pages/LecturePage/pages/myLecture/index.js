@@ -50,7 +50,7 @@ class MyLecture extends Component {
                                 <div class="lec_box_subject">{lecture.name}</div>
                                 <div class="lec_box_prof">{lecture.user_name}</div>
                             </div>
-                            <div class="lec_box_button" onClick={() => history.push(`/lectureroom/${lecture.id}`)}>입장</div>
+                            <div class="lec_box_button" onClick={() => history.push(`/lectureroom/${lecture.id}/${lecture.id}`)}>입장</div>
                         </div>
                     );
                 })
