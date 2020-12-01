@@ -91,7 +91,6 @@ class CommunityPostDetail extends Component {
                 }
             });
 
-            console.log(this.state);
             /*await callAPI(`board/${board_id}/${post_id}/comments`, 'GET', { ...this.getToken() }, null).then(res => {
                 if (res.data.msg === '댓글 목록을 읽었습니다.') {
                     this.setState({
