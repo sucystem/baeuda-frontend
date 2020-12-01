@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './lecClass.css'
+import './lecClass.scss'
 import callAPI from '../../../../_utils/apiCaller'
 
 class LectureClass extends Component {
@@ -60,11 +60,11 @@ class LectureClass extends Component {
                 <ul>
                     {this.state.lessons.map((lesson, i) => {
                         return (
-                            <li class="classInfo">
-                                <div class="classIndex">{i+1}강</div>
-                                <div class="ProgressionBar"></div>
-                                <div class="ProgressionPercent">{lesson.progress}%</div>
-                                <a href={lesson.link} target='_blank'><div class="TakeCourse">수강하기</div></a>
+                            <li className="classInfo">
+                                <div className="classIndex">{i+1}강</div>
+                                <div className="ProgressionFullBar"><div className="ProgressionBar" style={{width: `${lesson.progress}%`}}/></div>
+                                <div className="ProgressionPercent">{lesson.progress}%</div>
+                                <a href={lesson.link} target='_blank'><div className="TakeCourse">수강하기</div></a>
                             </li>
                         );
                     })
