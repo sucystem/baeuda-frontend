@@ -53,11 +53,11 @@ class MyLectureWait extends Component {
         return <div id="myLectureWait">
             <ul id="LectureWaitList">
                 {this.state.lectures.map((lecture, i) => { return(
-                    <li class="LectureWaitInfo">
-                        <div class="LectureName">{lecture.name}</div>
-                        <div class="LectureProf">{lecture.user_name}</div>
-                        <div class="LectureQuota">{lecture.cur_student}/{lecture.max_student}</div>
-                        <div class="lectureEnroll" id={lecture.id} onClick={(event) => this.handleCancel(event)}>취소</div>
+                    <li className="LectureWaitInfo">
+                        <div className="LectureName">{lecture.name}</div>
+                        <div className="LectureProf">{lecture.user_name}</div>
+                        <div className="LectureQuota">{lecture.cur_student}/{lecture.max_student}</div>
+                        <div className="lectureEnroll" id={lecture.id} onClick={(event) => this.handleCancel(event)}>취소</div>
                     </li>
                 );})}
             </ul>
