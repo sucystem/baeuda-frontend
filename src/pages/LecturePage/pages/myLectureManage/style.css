@@ -38,22 +38,6 @@ div.lec_box_prof{
     color : #707070;
 }
 
-div.lec_box_button{
-    position : absolute;
-    width: 100px;
-    height : 35px;
-    line-height: 35px;
-    bottom : 25px;
-    right : 20px;
-    background-color: #22a7f0;
-    box-shadow: 0 3px 6px 0;
-    border-radius: 37px;
-    right : 10px;
-    text-align: center;
-    margin : auto;
-    font-size: 13px;
-    color : #ffffff;
-}
 
 div.lec_add_button {
     width: 100px;

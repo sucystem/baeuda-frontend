@@ -65,7 +65,7 @@ class MyLectureManage extends Component {
             } else {
                 alert(res.data.msg)
             }
-            console.log(res);
+            
         });
     }
 
