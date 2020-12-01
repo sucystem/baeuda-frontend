@@ -1,8 +1,8 @@
 import { React, Component } from 'react';
 import './style.scss';
-import callAPI from '../../../_utils/apiCaller';
+import callAPI from '../../../../_utils/apiCaller';
 
-class LectureInfoModal extends Component {
+class LectureUpdateModal extends Component {
     constructor(props) {
         super(props);
         this.handleClose = this.handleClose.bind(this);
@@ -52,4 +52,4 @@ class LectureInfoModal extends Component {
 
 }
 
-export default LectureInfoModal;
+export default LectureUpdateModal;

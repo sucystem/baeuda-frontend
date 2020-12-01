@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './myLectureList.css'
 import callAPI from '../../../../_utils/apiCaller'
-import LectureInfoModal from '../../components/LectureInfoModal';
+import LectureInfoModal from '../../components/LectureInfoModal/LectureInfoModal';
 
 class MyLectureApply extends Component {
     constructor(props) {
