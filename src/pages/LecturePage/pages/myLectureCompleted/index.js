@@ -1,15 +1,56 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './myLectureCompleted.css'
-import { useHistory } from 'react-router-dom';
+import callAPI from '../../../../_utils/apiCaller'
 
-function MyLectureCompleted(){
-    let history = useHistory();
-    return <div id="myLectureCompleted">
-        <ul id="completedList">
-            <li class="completedInfo"><div class="LectureName">소프트웨어공학개론</div><div class="LectureProf">최은만</div><div class="LectureGrade">A+</div></li>
-        </ul>    
-    </div>
+class MyLectureCompleted extends Component {
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            lectures: []
+        }
+    }
+    
+    getToken = () => {
+        const token = localStorage.getItem('token');
+        return {
+            auth_token: token,
+        }
+    }
+
+    getCompleteLectures = async () => {
+        callAPI(`lecture/complete`, 'GET', { ...this.getToken() }, null).then(res => {
+            if (res.data.result === 'true') {
+                this.setState({
+                    lectures: res.data.data
+                })
+            } else {
+                alert(res.data.msg)
+            }
+        });
+    }
+    
+    componentDidMount() {
+        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
+        this.getCompleteLectures();
+    }
+
+    render() {
+        let history = this.props.history;
+        return <div id="myLectureCompleted">
+            <ul id="completedList">
+                {this.state.lectures.map((lecture, i) => {return(
+                <li class="completedInfo">
+                    <div class="LectureName">{lecture.name}</div>
+                    <div class="LectureProf">{lecture.user_name}</div>
+                    <div class="LectureGrade">{lecture.grade}</div>
+                </li>
+                );})}
+            </ul>
+        </div>
+    }
 }
 
 export default MyLectureCompleted;
