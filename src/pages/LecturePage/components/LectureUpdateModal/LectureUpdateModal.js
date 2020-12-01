@@ -12,27 +12,27 @@ class LectureUpdateModal extends Component {
         this.props.close();
     }
 
-    getInfo = async() => {
-        const res = await callAPI(
-            `lecture/info/${this.props.lectureId}`, 
-            'GET', 
-            { ...this.props.token }, 
-            null,
-        );
-        return String(res.data.data.comment);
-    }
+    // getInfo = async() => {
+    //     const res = await callAPI(
+    //         `lecture/info/${this.props.lectureId}`, 
+    //         'GET', 
+    //         { ...this.props.token }, 
+    //         null,
+    //     );
+    //     return String(res.data.data.comment);
+    // }
 
     componentDidMount() {
-        this.getInfo().then(res =>
-            this.setState({
-            comment: res
-        }));
+        // this.getInfo().then(res =>
+        //     this.setState({
+        //     comment: res
+        // }));
        
     }
 
     render() {
         return(<>
-        {this.props.isOpen ? (
+        {/* {this.props.isOpen ? (
             <div className="modal">
                 <div onClick={this.handleClose}>
                     <div className="info-modal">
@@ -45,7 +45,7 @@ class LectureUpdateModal extends Component {
                     </div>
                 </div>
             </div>
-        ) : null}
+        ) : null} */}
         </>);
     
     }
