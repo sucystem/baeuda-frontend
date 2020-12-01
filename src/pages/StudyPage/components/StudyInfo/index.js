@@ -8,7 +8,8 @@ class StudyInfo extends Component{
     constructor(props) {
         super(props);    
         this.state = {
-            post : []
+            post : [],
+            study_id: 0
         }
 
         this.readPost();
@@ -30,6 +31,7 @@ class StudyInfo extends Component{
 
     getPosts = async() => {
         const boardId = this.props.match.params.board_id;
+        const {study_id} = this.state;
         callAPI(`study/${study_id}/recruit_info`, 'GET', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
@@ -43,11 +45,11 @@ class StudyInfo extends Component{
     }
 
     handleSubmitJoin = async (event) => {
-        const study_id = event.target;
+        const {study_id} = event.target;
         event.preventDefault();
         try {
             if (this.state.comment) {
-                callAPI(`study/${study_id}/joinStudy`, 'POST', { ...this.getToken() }, data).then(res => {
+                callAPI(`study/${study_id}/joinStudy`, 'POST', { ...this.getToken() }, null).then(res => {
                     if (res.data.msg === '가입 신청을 성공했습니다.') {
                         window.location.reload();
                     } else {
