@@ -16,7 +16,7 @@ render() {
     return (
         <>
             <Header history={this.props.history} />
-            <LectureSidebar />
+            <LectureSidebar history={this.props.history} />
             <Switch>
                 <Route exact path = {`${match.url}`} component = {MyLecture} />
                 <Route exact path = {`${match.url}/completed`} component = {MyLectureCompleted} />

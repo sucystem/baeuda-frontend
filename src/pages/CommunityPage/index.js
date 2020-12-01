@@ -26,7 +26,7 @@ class CommunityPage extends Component{
         <>
             <Header history={this.props.history}/>
             <div className="community-page">
-                <CommunitySidebar/>
+                <CommunitySidebar history={this.props.history}/>
                 <div className="community-content">
                     <Switch>
                         <Route exact path = {`${match.url}/:board_id`} component = {CommunityBoard} />

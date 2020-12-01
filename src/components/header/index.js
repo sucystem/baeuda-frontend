@@ -9,7 +9,7 @@ class Header extends Component {
     constructor(props){
         super(props);
         this.state={
-            user: JSON.parse(localStorage.getItem('user'))
+            user: {}
         }
     }
 
@@ -17,6 +17,10 @@ class Header extends Component {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         callAPI('users/logout','GET',null,null).then(res=>{})
+    }
+
+    componentDidMount() {
+        this.setState({user: JSON.parse(localStorage.getItem('user'))});
     }
 
     render() {
