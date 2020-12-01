@@ -9,12 +9,10 @@ class CommunityPostDetail extends Component {
         super(props);
     
         this.state = {
-            board_id: this.props.match.params.board_id,
             post_id: this.props.match.params.post_id,
             post: [],
             comment: "",
             commentList: [],
-            delete: ""
         }
 
         this.readPost();
@@ -34,64 +32,19 @@ class CommunityPostDetail extends Component {
         }
     }
 
-    handleDelete = async (event) =>{
-        event.preventDefault();
-        try{
-            const data ={
-                boardId: this.state.board_id,
-                postId: this.state.post_id
-            }
-            callAPI('board/delete/post', 'POST', { ...this.getToken()}, data).then(res => {
-                if(res.data.result === 'true'){
-                    this.props.history.push(`community/${this.state.board_id}`);
-                } else {
-                    alert(res.data.msg);
-                }
-            })
-        }catch(e){
-            console.log(e);
-        }
-    }
-
-    handleDeleteComment = async (event) => {
-        event.preventDefault();
-        const {id} = event.target;
-        try{
-            const data ={
-                commentId: id
-            }
-            callAPI('board/delete/comment', 'POST', { ...this.getToken()}, data).then(res => {
-                if(res.data.result === 'true'){
-                    window.location.reload();
-                } else {
-                    alert(res.data.msg);
-                }
-            })
-        }catch(e){
-            console.log(e);
-        }
-    }
-
     readPost = async () => {
-        const { board_id, post_id } = this.state;
+        const { post_id } = this.state;
         try {
-            await callAPI(`board/${board_id}/post/${post_id}`, 'GET', { ...this.getToken() }, null).then(res => {
+            await callAPI(`board/post/${post_id}`, 'POST', { ...this.getToken() }, null).then(res => {
                 if (res.data.result === 'true') {
                     this.setState({
                         post: res.data.data.post,
                         commentList: res.data.data.comments
                     });
-                    if(res.data.data.post[0].writer == (JSON.parse(localStorage.getItem('user'))).id){
-                        this.setState({
-                            delete: <span id="delete" onClick={(event) => this.handleDelete(event)}>[삭제]</span>
-                        })
-                    }
                 } else {
                     alert(res.data.msg);
                 }
             });
-
-            console.log(this.state);
             /*await callAPI(`board/${board_id}/${post_id}/comments`, 'GET', { ...this.getToken() }, null).then(res => {
                 if (res.data.msg === '댓글 목록을 읽었습니다.') {
                     this.setState({
@@ -101,6 +54,7 @@ class CommunityPostDetail extends Component {
                     alert(res.data.msg);
                 }
             });*/
+            this.render();
         } catch (e) {
             console.log(e);
         }
@@ -140,14 +94,11 @@ class CommunityPostDetail extends Component {
         return <div id="community-post-detail">
             {this.state.post.map((contact, i) => {
                 return (<div><div id="title-writer-date">
-                    <p className="title">{contact.title}
-                    </p>
-                    
+                    <p className="title">{contact.title}</p>
                     <p>
                         <span className="writer">{contact.user_name}</span>
                 &nbsp;
                 <span className="date">{moment(contact.regDate).format("YYYY-MM-DD")}</span>
-                {this.state.delete}
                     </p>
                 </div>
             <div id="content">
@@ -168,8 +119,7 @@ class CommunityPostDetail extends Component {
                     &nbsp;
                     <span className="comment-content">{contact.content}</span>
                             </p>
-                            <p className="comment-date">{moment(contact.date).format("YYYY-MM-DD")}
-                            <span id={contact.id} onClick={(event) => this.handleDeleteComment(event)}>{contact.delete}</span></p>
+                            <p className="comment-date">{moment(contact.date).format("YYYY-MM-DD")}</p>
                         </div>
                     );
                 })}

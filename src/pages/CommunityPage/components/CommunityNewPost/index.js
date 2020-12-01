@@ -8,14 +8,16 @@ import callAPI from '../../../../_utils/apiCaller';
 class CommunityNewPost extends Component {
     constructor(props) {
         super(props);
-        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
-            this.props.history.push('/')
-        }
-
-        this.state = {
+                this.state = {
             title: "", 
             content: "",
             file: []
+        }
+    }
+
+    componentDidMount() {
+        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
         }
     }
 
@@ -56,19 +58,19 @@ class CommunityNewPost extends Component {
             if (this.state.title && this.state.content) {
                 const boardId = this.props.match.params.board_id;
                 const path = this.props.match.path;
-                //const formData = new FormData();
+                let formData = new FormData();
 
                 const data = {
                     title: title,
                     content: content
                 }
-                //for(let i = 0; i < file.length; i++){
-                 //   formData.append('file', file[i]);
-                //}
-                //formData.append('title', title);
-                //formData.append('content', content);
+                for(let i = 0; i < file.length; i++){
+                   formData.append('file', file[i]);
+                }
+                formData.append('title', title);
+                formData.append('content', content);
 
-                //callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken(), ...{ 'Content-Type': `multipart/form-data` } }, formData).then(res => {
+                //callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken() }, formData).then(res => {
                 callAPI(`board/${boardId}/newPost`, 'POST', {...this.getToken()}, data).then(res => {
                     if (res.data.result === 'true'){
                         this.props.history.push(`/community/${boardId}/postdetail/${res.data.postid}`)
@@ -82,6 +84,7 @@ class CommunityNewPost extends Component {
         }
     }
 
+                    //<input type="file" name="file" multiple onChange={event => this.handleChange(event)}/>
     render() {
         let history = this.props.history;
         return <div id="community-post">
@@ -91,7 +94,6 @@ class CommunityNewPost extends Component {
                 <div className="container-file-upload">
                     <input disabled type="text" id="upload-file-name" placeholder="파일 첨부" />
                     <button className="btn_file_upload">파일 선택</button>
-                    <input type="file" name="file" multiple onChange={event => this.handleChange(event)}/>
                 </div>
                 <div className="container-submit">
                     <input type="submit" value="올리기" onClick={(event) => this.handleSubmit(event)} />

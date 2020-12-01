@@ -13,13 +13,20 @@ class CommunityPage extends Component{
     constructor(props){
         super(props);
     }
+
+    componentDidMount() {
+            if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
+    }
+
     render() {
     const match = this.props.match;
     return (
         <>
             <Header history={this.props.history}/>
             <div className="community-page">
-                <CommunitySidebar/>
+                <CommunitySidebar history={this.props.history}/>
                 <div className="community-content">
                     <Switch>
                         <Route exact path = {`${match.url}/:board_id`} component = {CommunityBoard} />

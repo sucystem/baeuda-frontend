@@ -5,6 +5,7 @@ import LectureClass from "./pages/lecClass";
 import LectureReference from "./pages/lecReference";
 import LectureQnA from "./pages/lecQnA";
 import LectureNotice from "./pages/lecNotice";
+import Post from "./pages/post";
 import React, { Component } from 'react';
 
 
@@ -17,12 +18,13 @@ render() {
     return (
         <>
             <Header history={this.props.history} />
-            <LectureRoomSidebar />
+            <LectureRoomSidebar history={this.props.history} match={this.props.match} />
             <Switch>
-                <Route exact path = {`${match.url}`} component={LectureClass} />
-                <Route exact path = {`${match.url}/notice`} component={LectureNotice} />
-                <Route exact path = {`${match.url}/qna`} component={LectureQnA} />
-                <Route exact path = {`${match.url}/reference`} component={LectureReference} />
+                <Route exact path = {`${match.url}/:lecture_id`} param={match.params.lecture_id} component={LectureClass} />
+                <Route exact path = {`${match.url}/:lecture_id/notice`} component={LectureNotice} />
+                <Route exact path = {`${match.url}/:lecture_id/qna`} component={LectureQnA} />
+                <Route exact path = {`${match.url}/:lecture_id/reference`} component={LectureReference} />
+                <Route exact path = {`${match.url}/:lecture_id/post/:post_id`} component = {Post} />
             </Switch>
         </>
     );

@@ -2,12 +2,14 @@ import React, {Component} from 'react'
 import './main.css'
 import { useHistory } from 'react-router-dom';
 import callAPI from '../../../../_utils/apiCaller'
+var moment = require('moment');
 
 class Main extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            notice: [],
             schedule: []
         }
     }
@@ -16,6 +18,21 @@ class Main extends Component {
         const token = localStorage.getItem('token');
         return {
             auth_token: token,
+        }
+    }
+
+    getNotice = async() => {
+        const res = await callAPI(
+            'board/1',
+            'GET',
+            { ...this.getToken() },
+            null,
+        );
+
+        if(res.data.result === 'true') {
+            this.setState({
+                notice: res.data.data
+            });
         }
     }
 
@@ -35,6 +52,10 @@ class Main extends Component {
     }
 
     componentDidMount() {
+        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
+        this.getNotice();
         this.getTodaySchedule();
     }
 
@@ -45,9 +66,9 @@ class Main extends Component {
                 <div class="box_head">공지사항</div>
                 <div>
                     <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                        {this.state.notice.map((post) => { return(
+                            <li onClick={() => window.location.replace(`/community/1/postdetail/${post.id}`)}>{post.title} - {moment(post.regDate).format("YYYY-MM-DD")}</li>
+                        )})}
                     </ul>
                 </div>
             </div>
@@ -57,7 +78,7 @@ class Main extends Component {
                     <ul>
                         {this.state.schedule.map((schedule) => {
                             return (
-                                <li>{schedule.title}</li>
+                                <li>{schedule.title} - {moment(schedule.start).format("HH:mm")}</li>
                             )
                         })}
                     </ul>

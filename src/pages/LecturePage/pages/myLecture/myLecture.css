@@ -11,7 +11,8 @@ div#myLectureRoom{
 }
 
 div.lec_room_box{
-    position: absolute;
+    position: relative;
+    margin: 10px 10px 10px 10px;
     float : left;
     height : 300px;
     width : 300px;

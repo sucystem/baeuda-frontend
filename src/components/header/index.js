@@ -8,17 +8,19 @@ import { connect } from "react-redux"
 class Header extends Component {
     constructor(props){
         super(props);
-        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
-            this.props.history.push('/')
-        }
         this.state={
-            user: JSON.parse(localStorage.getItem('user'))
+            user: {}
         }
     }
+
     handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         callAPI('users/logout','GET',null,null).then(res=>{})
+    }
+
+    componentDidMount() {
+        this.setState({user: JSON.parse(localStorage.getItem('user'))});
     }
 
     render() {

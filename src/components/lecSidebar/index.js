@@ -1,18 +1,37 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './lec_side_bar.css'
 import { useHistory } from 'react-router-dom';
 
-function LectureSidebar(){
-    let history = useHistory();
-    return <div id="lec_side_bar">
+class LectureSidebar extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            manage: ""
+        }
+    }
+    
+    componentDidMount(){
+        let history = this.props.history;
+        if(JSON.parse(localStorage.getItem('user')).level == 2){
+            this.setState({
+                manage: <li onClick={() => history.push("/myLecture/manage")}>강좌 관리</li>
+            })
+        }
+    }
+
+    render() {
+        let history = this.props.history;
+        return (<div id="lec_side_bar">
             <ul>
-                <li onClick={() => history.push("/myLecture") }>수강중 과목</li>
+                {this.state.manage}
+                <li onClick={() => history.push("/myLecture")}>수강중 과목</li>
                 <li onClick={() => history.push("/myLecture/completed")}>이수한 과목</li>
                 <li onClick={() => history.push("/myLecture/wait")}>승인대기 과목</li>
                 <li onClick={() => history.push("/myLecture/apply")}>강의 신청</li>
             </ul>
-    </div>
-
+        </div>);
+    }
 }
 
 export default LectureSidebar;

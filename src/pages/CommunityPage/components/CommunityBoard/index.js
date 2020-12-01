@@ -7,11 +7,7 @@ const moment = require('moment');
 class CommunityBoard extends Component{
     constructor(props) {
         super(props);
-        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
-            this.props.history.push('/')
-        }
-
-        this.state = {
+                this.state = {
             posts: []
         }
 
@@ -44,6 +40,10 @@ class CommunityBoard extends Component{
     }
 
     componentDidMount() {
+        if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
+            this.props.history.push('/')
+        }
+
         this.getPosts();
     }
 
@@ -63,7 +63,7 @@ class CommunityBoard extends Component{
                 {
                     this.state.posts.map((item, index) => {
                         return (
-                            <tr key = {index} onClick={() => history.push("/community/2/postdetail/"+item.id)}>
+                            <tr key = {index} onClick={() => history.push(`/community/${this.props.match.params.board_id}/postdetail/`+item.id)}>
                                 <td>{item.title}</td>
                                 <td>{item.user_name}</td>
                                 <td>{item.count}</td>
@@ -74,7 +74,7 @@ class CommunityBoard extends Component{
                 }
             </tbody>
         </table>
-        <button className="btn_new_post" onClick={() => history.push("/community/2/newpost") }>새 글 작성</button>
+        <button className="btn_new_post" onClick={() => history.push(`/community/${this.props.match.params.board_id}/newpost`) }>새 글 작성</button>
     </div>)
     }
     

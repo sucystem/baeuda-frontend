@@ -1,6 +1,7 @@
 div#StudyRecruit{
     width : 1200px;
     height : 800px;
+    
 }
 
 div#StudyRecruit li{
@@ -68,3 +69,4 @@ div#MakeStudy{
     line-height: 50px;
     text-align: center;
 }
+
