@@ -55,9 +55,9 @@ div.boardInfo{
 }
 
 div#MakeProject{
-    position : absolute;
-    bottom : 20px;
-    right : 50px;
+    position : fixed;
+    bottom : 10%;
+    right : 20%;
     width : 200px;
     height : 50px;
     border-radius: 37px;
