@@ -5,6 +5,7 @@ import LectureClass from "./pages/lecClass";
 import LectureReference from "./pages/lecReference";
 import LectureQnA from "./pages/lecQnA";
 import LectureNotice from "./pages/lecNotice";
+import LectureAccept from "./pages/lecAccept";
 import Post from "./pages/post";
 import React, { Component } from 'react';
 
@@ -25,6 +26,7 @@ render() {
                 <Route exact path = {`${match.url}/:lecture_id/qna`} component={LectureQnA} />
                 <Route exact path = {`${match.url}/:lecture_id/reference`} component={LectureReference} />
                 <Route exact path = {`${match.url}/:lecture_id/post/:post_id`} component = {Post} />
+                <Route exact path = {`${match.url}/:lecture_id/accept`} component = {LectureAccept} />
             </Switch>
         </>
     );
