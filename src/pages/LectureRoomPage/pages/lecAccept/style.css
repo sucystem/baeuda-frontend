@@ -1,0 +1,36 @@
+div#lecture-accept{
+    position : absolute;
+    top : 30%;
+    left : 30%;
+    height : auto;
+    width : 50%;
+}
+
+ul#students-list{
+    width : 700px;
+    height : auto;
+}
+
+li.student-info{
+    width : 700px;
+}
+
+li.student-info div{
+    box-sizing: border-box;
+    float : left;
+}
+
+div.student-univ{
+    width : 500px;
+    height : 40px;
+}
+
+div.student-id{
+    width : 100px;
+    height : 40px;
+}
+
+div.student-name{
+    width : 100px;
+    height : 40px;
+}

@@ -5,6 +5,7 @@ import MyLectureWait from "./pages/myLectureWait";
 import MyLecture from "./pages/myLecture";
 import MyLectureCompleted from "./pages/myLectureCompleted";
 import MyLectureApply from "./pages/myLectureList";
+import MyLectureManage from "./pages/myLectureManage";
 import React, { Component } from 'react';
 
 class MyLecturePage extends Component{
@@ -22,6 +23,7 @@ render() {
                 <Route exact path = {`${match.url}/completed`} component = {MyLectureCompleted} />
                 <Route exact path = {`${match.url}/wait`} component = {MyLectureWait} />
                 <Route exact path = {`${match.url}/apply`} component = {MyLectureApply} />
+                <Route exact path = {`${match.url}/manage`} component = {MyLectureManage} />
             </Switch>
         </>
     );

@@ -91,7 +91,6 @@ class CommunityPostDetail extends Component {
                 }
             });
 
-            console.log(this.state);
             /*await callAPI(`board/${board_id}/${post_id}/comments`, 'GET', { ...this.getToken() }, null).then(res => {
                 if (res.data.msg === '댓글 목록을 읽었습니다.') {
                     this.setState({
@@ -169,7 +168,7 @@ class CommunityPostDetail extends Component {
                     <span className="comment-content">{contact.content}</span>
                             </p>
                             <p className="comment-date">{moment(contact.date).format("YYYY-MM-DD")}
-                            <span id={contact.id} onClick={(event) => this.handleDeleteComment(event)}>{contact.delete}</span></p>
+                            <span className="comment-delete" id={contact.id} onClick={(event) => this.handleDeleteComment(event)}>{contact.delete}</span></p>
                         </div>
                     );
                 })}

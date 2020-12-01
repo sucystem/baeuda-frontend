@@ -13,6 +13,7 @@ class CommunityPostDetail extends Component {
             post: [],
             comment: "",
             commentList: [],
+            delete: ""
         }
 
         this.readPost();
@@ -32,6 +33,44 @@ class CommunityPostDetail extends Component {
         }
     }
 
+    handleDelete = async (event) =>{
+        event.preventDefault();
+        try{
+            const data ={
+                boardId: this.state.board_id,
+                postId: this.state.post_id
+            }
+            callAPI('board/delete/post', 'POST', { ...this.getToken()}, data).then(res => {
+                if(res.data.result === 'true'){
+                    this.props.history.push(`community/${this.state.board_id}`);
+                } else {
+                    alert(res.data.msg);
+                }
+            })
+        }catch(e){
+            console.log(e);
+        }
+    }
+
+    handleDeleteComment = async (event) => {
+        event.preventDefault();
+        const {id} = event.target;
+        try{
+            const data ={
+                commentId: id
+            }
+            callAPI('board/delete/comment', 'POST', { ...this.getToken()}, data).then(res => {
+                if(res.data.result === 'true'){
+                    window.location.reload();
+                } else {
+                    alert(res.data.msg);
+                }
+            })
+        }catch(e){
+            console.log(e);
+        }
+    }
+
     readPost = async () => {
         const { post_id } = this.state;
         try {
@@ -41,6 +80,11 @@ class CommunityPostDetail extends Component {
                         post: res.data.data.post,
                         commentList: res.data.data.comments
                     });
+                    if(res.data.data.post[0].writer == (JSON.parse(localStorage.getItem('user'))).id){
+                        this.setState({
+                            delete: <span id="delete" onClick={(event) => this.handleDelete(event)}>[삭제]</span>
+                        })
+                    }
                 } else {
                     alert(res.data.msg);
                 }
@@ -99,6 +143,7 @@ class CommunityPostDetail extends Component {
                         <span className="writer">{contact.user_name}</span>
                 &nbsp;
                 <span className="date">{moment(contact.regDate).format("YYYY-MM-DD")}</span>
+                {this.state.delete}   
                     </p>
                 </div>
             <div id="content">
@@ -119,7 +164,8 @@ class CommunityPostDetail extends Component {
                     &nbsp;
                     <span className="comment-content">{contact.content}</span>
                             </p>
-                            <p className="comment-date">{moment(contact.date).format("YYYY-MM-DD")}</p>
+                            <p className="comment-date">{moment(contact.date).format("YYYY-MM-DD")}
+                            <span className="comment-delete" id={contact.id} onClick={(event) => this.handleDeleteComment(event)}>{contact.delete}</span></p>
                         </div>
                     );
                 })}
