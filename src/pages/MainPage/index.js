@@ -14,7 +14,6 @@ class MainPage extends Component{
         <>
             <Header history={this.props.history} />
             <Main history={this.props.history} />
-            <Icon/>
         </>
     );
     }

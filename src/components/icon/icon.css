@@ -2,8 +2,8 @@ div.icon_menu{
     position : fixed;
     width : 210px;
     height : 100px;
-    bottom : 100px;
-    right : 210px;
+    bottom : 0px;
+    right : 20px;
 }
 
 div.icon{
@@ -11,4 +11,15 @@ div.icon{
     width: 90px;
     height: 90px;
     margin : 5px;
+}
+
+.popup{
+    position: fixed;
+    top: 180px;
+    right: 10px;
+    height: 600px;
+    width: 400px;
+    border-style: solid;
+    background-color: white;
+    z-index: 1000;
 }

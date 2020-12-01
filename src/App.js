@@ -11,6 +11,7 @@ import LectureRoomPage from "./pages/LectureRoomPage";
 import MySchedulePage from './pages/MySchedulePage';
 import StudyPage from './pages/StudyPage';
 import ProjectPage from './pages/ProjectPage';
+import Icon from './components/icon'
 
 class App extends Component {
   render(){
@@ -25,6 +26,7 @@ class App extends Component {
       <Route path="/myschedule" component={MySchedulePage}/>
       <Route path="/study" component={StudyPage}/>
       <Route path="/project" component={ProjectPage}/>
+      <Icon/>
       <Footer />
     </>
   );
