@@ -169,7 +169,7 @@ class CommunityPostDetail extends Component {
                     <span className="comment-content">{contact.content}</span>
                             </p>
                             <p className="comment-date">{moment(contact.date).format("YYYY-MM-DD")}
-                            <span id={contact.id} onClick={(event) => this.handleDeleteComment(event)}>{contact.delete}</span></p>
+                            <span className="comment-delete" id={contact.id} onClick={(event) => this.handleDeleteComment(event)}>{contact.delete}</span></p>
                         </div>
                     );
                 })}
