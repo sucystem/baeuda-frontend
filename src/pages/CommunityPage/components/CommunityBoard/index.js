@@ -63,7 +63,7 @@ class CommunityBoard extends Component{
                 {
                     this.state.posts.map((item, index) => {
                         return (
-                            <tr key = {index} onClick={() => history.push("/community/2/postdetail/"+item.id)}>
+                            <tr key = {index} onClick={() => history.push(`/community/${this.props.match.params.board_id}/postdetail/`+item.id)}>
                                 <td>{item.title}</td>
                                 <td>{item.user_name}</td>
                                 <td>{item.count}</td>

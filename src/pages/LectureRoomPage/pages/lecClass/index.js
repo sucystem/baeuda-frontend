@@ -19,13 +19,26 @@ class LectureClass extends Component {
     }
 
     getLecture = async () => {
+        const {lecture_id} = this.props.match.params;
+        callAPI(`lecture/${lecture_id}/info`, 'GET', {...this.getToken()}, null).then(res => {
+            if(res.data.result === 'true') {
+                this.setState({
+                    lecture: res.data.data
+                });
+            } else {
+                alert(res.data.msg);
+            }
+        })
+    }
 
+    componentDidMount() {
+        this.getLecture();
     }
 
     render() {
         let history = this.props.history;
         return <div id="LecClass">
-            <div id="SubjectName">소프트웨어공학개론</div>
+            <div id="SubjectName">{this.state.lecture.name}</div>
             <div id="SubjectProgression">
                 <ul>
                     <li class="classInfo">

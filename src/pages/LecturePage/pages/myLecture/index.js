@@ -29,8 +29,6 @@ class MyLecture extends Component {
             } else {
                 alert(res.data.msg)
             }
-
-            console.log(this.state);
         });
     }
 
