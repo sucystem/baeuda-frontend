@@ -39,7 +39,7 @@ class StudyRecruit extends Component{
         event.preventDefault();
         try {
             if (this.state.comment) {
-                callAPI(`study/${study_id}/joinStudy`, 'POST', { ...this.getToken() }, data).then(res => {
+                callAPI(`study/${study_id}/joinStudy`, 'POST', { ...this.getToken() }, null).then(res => {
                     if (res.data.msg === '가입 신청을 성공했습니다.') {
                         window.location.reload();
                     } else {
