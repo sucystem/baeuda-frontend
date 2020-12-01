@@ -62,7 +62,7 @@ class StudyInfo extends Component{
 
     render() {
         let history = this.props.history;
-        return <div id="study-post-detail">
+        return (<div id="study-post-detail">
         {this.state.post.map((item, i) => {
             return (<div><div id="title-writer-date">
                 <p className="title">{item.recruitTitle}
@@ -83,5 +83,6 @@ class StudyInfo extends Component{
             );
         }
         )}
-        </div>
+        </div>);
+    }
 }
