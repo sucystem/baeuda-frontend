@@ -16,17 +16,18 @@ class MyLectureManage extends Component {
         }
 
         this.handleDeleteLecture = this.handleDeleteLecture.bind();
-        this.handleAddLecture = this.handleAddLecture.bind();
-        this.handleUpdateLecture = this.handleUpdateLecture.bind();
+        // this.handleAddLecture = this.handleAddLecture.bind();
+        // this.handleUpdateLecture = this.handleUpdateLecture.bind();
+
+        
     }
 
     openAddModal = () => {
         this.setState({ isAddModalOpen: true });
-
     }
+
     closeAddModal = () => {
         this.setState({ isAddModalOpen: false });
-
     }
 
     openUpdateModal = () => {
@@ -54,7 +55,6 @@ class MyLectureManage extends Component {
             } else {
                 alert(res.data.msg);
             }
-            console.log(res);
         });
     }
 
@@ -95,14 +95,14 @@ class MyLectureManage extends Component {
                 {this.state.lectures.map((lecture, i) => {
                     return (
                         <div>
-                            <div className="lec_add_button" onClick={this.handleAddLecture}>생성</div>
+                            <div className="lec_add_button" onClick={this.openAddModal}>생성</div>
                             <div className="lec_room_box">
                                 <div className="lec_box_name">
                                     <div className="lec_box_subject">{lecture.name}</div>
                                     <div className="lec_box_prof">{lecture.user_name}</div>
                                 </div>
                                 <div className="lec_del_button" onClick={this.handleDeleteLecture}>삭제</div>
-                                <div className="lec_update_button" onClick={this.handleUpdateLecture}>수정</div>
+                                <div className="lec_update_button" onClick={this.openUpdateModal}>수정</div>
                                 <div className="lec_box_button" onClick={() => history.push(`/lectureroom/${lecture.id}/${lecture.id}`)}>입장</div>
                             </div>
                             <LectureAddModal token={this.getToken()} isOpen={this.state.isAddModalOpen} close={this.closeAddModal} />
