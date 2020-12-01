@@ -50,11 +50,11 @@ class MyLectureManage extends Component {
             if (res.data.result === 'true') {
                 this.setState({
                     lectures: res.data.data
-                })
+                });
             } else {
-                alert(res.data.msg)
+                alert(res.data.msg);
             }
-            console.log(res)
+            console.log(res);
         });
     }
 
@@ -110,7 +110,7 @@ class MyLectureManage extends Component {
                         </div>
                     );
                 })
-                }
+            }
             </div>
         </div>
     }
