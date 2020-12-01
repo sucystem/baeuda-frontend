@@ -53,6 +53,25 @@ class CommunityPostDetail extends Component {
         }
     }
 
+    handleDeleteComment = async (event) => {
+        event.preventDefault();
+        const {id} = event.target;
+        try{
+            const data ={
+                commentId: id
+            }
+            callAPI('board/delete/comment', 'POST', { ...this.getToken()}, data).then(res => {
+                if(res.data.result === 'true'){
+                    window.location.reload();
+                } else {
+                    alert(res.data.msg);
+                }
+            })
+        }catch(e){
+            console.log(e);
+        }
+    }
+
     readPost = async () => {
         const { board_id, post_id } = this.state;
         try {
@@ -150,7 +169,7 @@ class CommunityPostDetail extends Component {
                     <span className="comment-content">{contact.content}</span>
                             </p>
                             <p className="comment-date">{moment(contact.date).format("YYYY-MM-DD")}
-                            <span id={contact.id} onClick={(event) => alert(`${contact.id}`)}>{contact.delete}</span></p>
+                            <span id={contact.id} onClick={(event) => this.handleDeleteComment(event)}>{contact.delete}</span></p>
                         </div>
                     );
                 })}
