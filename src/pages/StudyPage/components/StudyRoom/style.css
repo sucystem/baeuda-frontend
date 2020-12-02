@@ -9,7 +9,7 @@ div#StudyName{
     color : #f89406;
     line-height: 80px;
     text-align: left;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 div#StudyContent{
@@ -21,7 +21,6 @@ div#StudyReference{
     width : 600px;
     height : 800px;
     float : left;
-    margin-right: 100px;
 }
 
 div#StudySchedule{
@@ -32,24 +31,43 @@ div#StudySchedule{
 
 div.Room_Title{
     width : 400px;
-    height : 80px;
     font-size: 30px;
     color : #22a7f0;
     text-align: left;
 }
 
 div.Room_Content{
-    width : 600px;
+    width : 400px;
     height : 720px;
 }
 
-div.Room_Content li{
-    width : 600px;
-    height : 60px;
+div#btnMeetingRoom {
+    /* margin : 0px 30px 0px 50px; */
+    width : 150px;
+    height : 40px;
+    background-color: #f89406;
+    border-radius: 37px;
+    font-size : 15px;
+    color : #ffffff;
+    box-shadow: 0 3px 6px 0;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-div.Room_Content li div{
-    float : left;
+div#btnShare {
+    /* margin : 0px 30px 0px 50px; */
+    width : 150px;
+    height : 40px;
+    background-color: #22a7f0;
+    border-radius: 37px;
+    font-size : 15px;
+    color : #ffffff;
+    box-shadow: 0 3px 6px 0;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 div.RefName{
