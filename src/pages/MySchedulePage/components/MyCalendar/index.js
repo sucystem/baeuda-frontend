@@ -66,6 +66,7 @@ class MyCalendar extends React.Component {
         const newCalendar = new TuiCalendar(this.calendarRef.current, { 
             defaultView: 'month',
             taskView: true,
+            useDetailPopup: true
         });
         this.fetchDatas().then(schedules => newCalendar.createSchedules(schedules));
         this.setState({ calendar: newCalendar }); 
