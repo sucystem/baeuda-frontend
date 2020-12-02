@@ -4,12 +4,12 @@ import './style.scss'
 import callAPI from '../../../../_utils/apiCaller'
 const moment = require('moment');
 
-class StudyInfo extends Component{
+class ProjectInfo extends Component{
     constructor(props) {
         super(props);    
         this.state = {
             post : [],
-            study_id: 0
+            project_id: 0
         }
 
         this.readPost();
@@ -31,8 +31,8 @@ class StudyInfo extends Component{
 
     getPosts = async() => {
         const boardId = this.props.match.params.board_id;
-        const {study_id} = this.state;
-        callAPI(`study/${study_id}/recruit_info`, 'POST', {...this.getToken()}, null).then(res => {
+        const {Project_id} = this.state;
+        callAPI(`project/${Project_id}/recruit_info`, 'POST', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
                     posts: res.data.data
@@ -45,11 +45,11 @@ class StudyInfo extends Component{
     }
 
     handleSubmitJoin = async (event) => {
-        const {study_id} = event.target;
+        const {Project_id} = event.target;
         event.preventDefault();
         try {
             if (this.state.comment) {
-                callAPI(`study/${study_id}/joinStudy`, 'POST', { ...this.getToken() }, null).then(res => {
+                callAPI(`project/${Project_id}/joinProject`, 'POST', { ...this.getToken() }, null).then(res => {
                     if (res.data.msg === '가입 신청을 성공했습니다.') {
                         window.location.reload();
                     } else {
@@ -64,7 +64,7 @@ class StudyInfo extends Component{
 
     render() {
         let history = this.props.history;
-        return (<div id="study-post-detail">
+        return (<div id="Project-post-detail">
         {this.state.post.map((item, i) => {
             return (<div><div id="title-writer-date">
                 <p className="title">{item.recruitTitle}
@@ -80,7 +80,7 @@ class StudyInfo extends Component{
         <div id="content">
             <p>{item.recruitContent}</p>
         </div>
-        <input type="submit" name={item.studyid} value="신청" onClick={(event) => this.handleSubmitJoin(event)}/>
+        <input type="submit" name={item.Projectid} value="신청" onClick={(event) => this.handleSubmitJoin(event)}/>
         </div>
             );
         }
@@ -89,4 +89,4 @@ class StudyInfo extends Component{
     }
 }
 
-export default StudyInfo;
+export default ProjectInfo;

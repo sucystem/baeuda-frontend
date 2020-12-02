@@ -44,7 +44,7 @@ class MakeStudy extends Component{
                     maxseat : maxseat,
                     recruitContent: recruitContent
                 }
-                callAPI(`study/new_study`, 'POST', {...this.getToken()}, data).then(res => {
+                callAPI(`study/newStudy`, 'POST', {...this.getToken()}, data).then(res => {
                     if (res.data.result === 'true'){
                         this.props.history.push(`/study/StudyRoom/${res.data.studyid}`)
                     } else {
