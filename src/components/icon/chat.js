@@ -12,7 +12,8 @@ class Chat extends Component{
             chat: [],
             text: "",
             textbox: "",
-            visibility : true
+            visibility : true,
+            interval: "",
         }
     }
     
@@ -62,10 +63,11 @@ class Chat extends Component{
         }
     }
 
-    handleChat = async (event) => {
-        event.preventDefault();
-        const { id } = event.target;
-        
+    getChat = async (id) => {
+        if(!this.state.visibility){
+            clearInterval(this.state.interval);
+        }
+
         const res = await callAPI(
             `chat/chatting/${id}`,
             'GET',
@@ -85,6 +87,13 @@ class Chat extends Component{
                         <input class="chat-textbox" type="text" id="text" name="text"></input>
                     </form>
         })
+    }
+
+    handleChat = async (event) => {
+        event.preventDefault();
+        const { id } = event.target;
+
+        this.state.interval = setInterval(this.getChat, 1000, id);
     }
 
     componentDidMount() {
@@ -111,7 +120,7 @@ class Chat extends Component{
             <ul>
                 {this.state.chatRoom.map((chat, i) => {
                     return(
-                        <li id={chat.id} onClick={(event) => this.handleChat(event)}>{chat.receiver}</li>
+                        <li id={chat.id} onClick={(event) => this.handleChat(event)}>{chat.name}<br/><br/></li>
                     )
                 })}
                 {this.state.chat.map((chat) => {
