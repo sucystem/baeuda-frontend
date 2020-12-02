@@ -6,13 +6,14 @@ div#lecReference{
     width : 50%;
 }
 div#SubjectName{
-    width : 100%;
-    height : 80px;
-    font-size : 60px;
-    line-height : 80px;
+    /*width : 100%;
+    height : 80px;*/
+    font-size : 30px;
+    /*line-height : 80px;*/
     color : #f89406;
     text-align: left;
 }
+
 
 div#SubjectReference{
     margin-top : 60px;

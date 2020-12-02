@@ -1,0 +1,26 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    font-family: LotteMartDream;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    .info-modal {
+        background-color: white;
+        margin: 50px auto;
+        padding: 20px;
+        background: #fff;
+        .close {
+            font-size: 25px;
+        }
+        
+    }
+    #content {
+        white-space: pre-line;
+    }
+}
