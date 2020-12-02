@@ -17,8 +17,8 @@ class Icon extends Component {
 
     handleIcon = (event) => {
         event.preventDefault();
-        const { id } = event.target;
-        if (id === 'icon_message') {
+        const { name } = event.target;
+        if (name === 'icon_message') {
             if (this.state.chat === "") {
                 this.setState({
                     chat: <Chat />
@@ -28,7 +28,7 @@ class Icon extends Component {
                     chat: ""
                 });
             }
-        } else if (id === 'icon_alarm') {
+        } else if (name === 'icon_alarm') {
             if (this.state.alarm === "") {
                 this.setState({
                     alarm: <Alarm />
@@ -48,11 +48,11 @@ class Icon extends Component {
                 {this.state.alarm}
                 {this.state.chat}
                 <div class="icon_menu">
-                    <div id="icon_alarm" class="icon" onClick={(event => this.handleIcon(event))}>
-                        <img src={aicon} alt={"logo"} onClick={(event => this.handleIcon(event))}/>
+                    <div id="icon_alarm" name="icon_alarm" class="icon" onClick={(event => this.handleIcon(event))}>
+                        <img src={aicon} name="icon_alarm" alt={"logo"} onClick={(event => this.handleIcon(event))}/>
             </div>
-                    <div id="icon_message" class="icon" onClick={(event) => this.handleIcon(event)}>
-                        <img src={micon} alt={"logo"} onClick={(event) => this.handleIcon(event)}/>
+                    <div id="icon_message" name="icon_message" class="icon" onClick={(event) => this.handleIcon(event)}>
+                        <img src={micon} name="icon_message" alt={"logo"} onClick={(event) => this.handleIcon(event)}/>
             </div>
                 </div>
             </>
