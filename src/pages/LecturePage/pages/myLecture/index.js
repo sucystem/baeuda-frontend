@@ -8,7 +8,8 @@ class MyLecture extends Component {
         super(props);
 
         this.state = {
-            lectures: []
+            lectures: [],
+            error: ""
         }
     }
 
@@ -26,7 +27,9 @@ class MyLecture extends Component {
                     lectures: res.data.data
                 })
             } else {
-                alert(res.data.msg)
+                this.setState({
+                    error: res.data.msg
+                });
             }
         });
     }
@@ -35,6 +38,9 @@ class MyLecture extends Component {
         if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
             this.props.history.push('/')
         }
+        /*if(JSON.parse(localStorage.getItem('user')).level == 2){
+            window.location.replace('/myLecture/manage');
+        }*/
         this.getMyLectures();
     }
 
@@ -55,6 +61,7 @@ class MyLecture extends Component {
                     );
                 })
                 }
+                {this.state.error}
             </div>
         </div>
     }

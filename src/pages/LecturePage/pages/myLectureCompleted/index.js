@@ -7,7 +7,8 @@ class MyLectureCompleted extends Component {
         super(props);
 
         this.state = {
-            lectures: []
+            lectures: [],
+            error:""
         }
     }
     
@@ -25,7 +26,7 @@ class MyLectureCompleted extends Component {
                     lectures: res.data.data
                 })
             } else {
-                alert(res.data.msg)
+                this.setState({error:res.data.msg})
             }
         });
     }
@@ -49,6 +50,7 @@ class MyLectureCompleted extends Component {
                     <div class="LectureGrade">{lecture.grade}</div>
                 </li>
                 );})}
+                {this.state.error}
             </ul>
         </div>
     }

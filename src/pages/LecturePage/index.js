@@ -11,7 +11,19 @@ import React, { Component } from 'react';
 class MyLecturePage extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            main: MyLecture
+        }
     }
+
+    componentDidMount(){
+        if(JSON.parse(localStorage.getItem('user')).level==2){
+            this.setState({
+                main: MyLectureManage
+            })
+        }
+    }
+
 render() {
     const match = this.props.match;
     return (
@@ -19,7 +31,7 @@ render() {
             <Header history={this.props.history} />
             <LectureSidebar history={this.props.history} />
             <Switch>
-                <Route exact path = {`${match.url}`} component = {MyLecture} />
+                <Route exact path = {`${match.url}`} component = {this.state.main} />
                 <Route exact path = {`${match.url}/completed`} component = {MyLectureCompleted} />
                 <Route exact path = {`${match.url}/wait`} component = {MyLectureWait} />
                 <Route exact path = {`${match.url}/apply`} component = {MyLectureApply} />

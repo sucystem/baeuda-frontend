@@ -12,7 +12,8 @@ class MyLectureManage extends Component {
         this.state = {
             lectures: [],
             isAddModalOpen: false,
-            openUpdateModalIndex: -1
+            openUpdateModalIndex: -1,
+            error:""
         }
        
     }
@@ -59,7 +60,7 @@ class MyLectureManage extends Component {
                 alert(res.data.msg)
                 window.location.reload();
             } else {
-                alert(res.data.msg)
+                this.setState({error:res.data.msg})
             }
         });
     }
@@ -95,6 +96,7 @@ class MyLectureManage extends Component {
                     );
                 })
             }
+            {this.state.error}
             <LectureAddModal token={this.getToken()} isOpen={this.state.isAddModalOpen} close={this.closeAddModal} />
             </div>
         </div>

@@ -81,9 +81,9 @@ class Chat extends Component{
         }
 
         this.setState({
-            textbox: <form method="post" onSubmit={this.handleSubmit}>
-                    <input type="text" id="text" name="text"></input>
-                  </form>
+            textbox:<form method="post" onSubmit={this.handleSubmit}>
+                        <input class="chat-textbox" type="text" id="text" name="text"></input>
+                    </form>
         })
     }
 
