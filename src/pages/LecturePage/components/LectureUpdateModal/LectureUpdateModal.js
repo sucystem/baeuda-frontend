@@ -51,6 +51,7 @@ class LectureUpdateModal extends Component {
             this.handleClose();
         } else {
             this.handleClose();
+            window.location.reload();
         }
         console.log(res);
         

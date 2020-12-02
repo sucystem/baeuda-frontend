@@ -2,8 +2,8 @@ div.icon_menu{
     position : fixed;
     width : 210px;
     height : 100px;
-    bottom : 0px;
-    right : 20px;
+    bottom : 10%;
+    right : 10%;
 }
 
 div.icon{
@@ -11,6 +11,8 @@ div.icon{
     width: 90px;
     height: 90px;
     margin : 5px;
+    text-align: center;
+    line-height: 90px;
 }
 
 .popup{
@@ -19,7 +21,44 @@ div.icon{
     right: 10px;
     height: 600px;
     width: 400px;
+    border : 1px solid #000000;
     border-style: solid;
+    border-radius : 44px;
     background-color: white;
     z-index: 1000;
+}
+
+div.chat_popup{
+    background-color: #f64747;
+}
+
+div.alarm_popup{
+    background-color: #f89406;
+}
+
+div.popup_menu{
+    border-top-left-radius : 44px;
+    border-top-right-radius: 44px;
+    width : 400px;
+    height : 100px;
+    color : #ffffff;
+}
+
+div.popup_title{
+    float : left;
+    margin-left: 50px;
+    width : 250px;
+    height : 100px;    
+    font-size : 33px;
+    text-align: left;
+    line-height: 100px;
+}
+
+div.popup_exit{
+    float : left;
+    width : 100px;
+    height : 100px;
+    font-size : 40px;
+    text-align: center;
+    line-height: 100px;
 }
