@@ -56,8 +56,8 @@ class StudySchedule extends React.Component {
     }
 
     addData = async(schedule) => {
-        const res = callAPI(
-            `schedule/add/${this.props.calendar_id}`, 
+        const res = await callAPI(
+            `schedule/add`, 
             'POST', 
             { ...this.props.token },
             {
@@ -68,9 +68,10 @@ class StudySchedule extends React.Component {
                 category: 'time'
             }
         );
-        if(res.data.result === 'false') {
-            alert(res.data.msg)
-        }
+        console.log(res);
+        // if(res.data.result === 'false') {
+        //     alert(res.data.msg)
+        // }
 
     }
     
