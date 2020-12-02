@@ -15,7 +15,7 @@ class LectureSidebar extends Component {
         let history = this.props.history;
         if(JSON.parse(localStorage.getItem('user')).level == 2){
             this.setState({
-                manage: <li onClick={() => history.push("/myLecture/manage")}>강좌 관리</li>
+                manage: <li onClick={() => history.push("/myLecture/manage")}>강의 관리</li>
             })
         }
     }
@@ -25,9 +25,9 @@ class LectureSidebar extends Component {
         return (<div id="lec_side_bar">
             <ul>
                 {this.state.manage}
-                <li onClick={() => history.push("/myLecture")}>수강중 과목</li>
-                <li onClick={() => history.push("/myLecture/completed")}>이수한 과목</li>
-                <li onClick={() => history.push("/myLecture/wait")}>승인대기 과목</li>
+                <li onClick={() => history.push("/myLecture")}>수강중 강의</li>
+                <li onClick={() => history.push("/myLecture/completed")}>이수한 강의</li>
+                <li onClick={() => history.push("/myLecture/wait")}>승인대기 강의</li>
                 <li onClick={() => history.push("/myLecture/apply")}>강의 신청</li>
             </ul>
         </div>);

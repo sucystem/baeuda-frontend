@@ -62,6 +62,9 @@ class LectureNewPost extends Component {
             this.setState({
                 file : [...this.state.file, event.target.files[0]]
             })
+            if(document.getElementById('upload-file-name').value !== '')
+                document.getElementById('upload-file-name').value += ', ';
+            document.getElementById('upload-file-name').value += event.target.files[0].name;
         } else {
             this.setState({
                 [name] : value
@@ -74,24 +77,27 @@ class LectureNewPost extends Component {
         var { title, content, file } = this.state;
         try {
             if (this.state.title && this.state.content) {
-                const boardId = this.props.match.params.board_id;
+                const lecture_id = this.props.match.params.lecture_id;
                 const path = this.props.match.path;
                 let formData = new FormData();
 
                 const data = {
+                    lectureId: lecture_id,
                     title: title,
                     content: content
                 }
                 for(let i = 0; i < file.length; i++){
                    formData.append('file', file[i]);
                 }
+                formData.append('lectureId', lecture_id);
+                formData.append('board', this.props.match.params.board);
                 formData.append('title', title);
                 formData.append('content', content);
 
-                //callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken() }, formData).then(res => {
-                callAPI(`board/${boardId}/newPost`, 'POST', {...this.getToken()}, data).then(res => {
+                callAPI(`lecture/newPost`, 'POST', { ...this.getToken() }, formData).then(res => {
+                //callAPI(`lecture/newPost`, 'POST', {...this.getToken()}, data).then(res => {
                     if (res.data.result === 'true'){
-                        this.props.history.push(`/community/${boardId}/postdetail/${res.data.postid}`)
+                        this.props.history.push(`/lectureroom/${lecture_id}/${lecture_id}/post/${res.data.postid}`)
                     } else {
                         alert(res.data.msg)
                     }
@@ -106,13 +112,13 @@ class LectureNewPost extends Component {
     render() {
         let history = this.props.history;
         return <div id="community-post">
-            <div id="SubjectName">{this.state.lecture.name}</div><br/>
+            <div id="SubjectName">{this.state.lecture.name} - 새 글</div><br/>
             <form method="post" onSubmit={this.handleSubmit}>
                 <input type="text" name="title" placeholder="글 제목" onChange={event => this.handleChange(event)} />
                 <textarea name="content" placeholder="글 내용" onChange={event => this.handleChange(event)} />
                 <div className="container-file-upload">
                     <input disabled type="text" id="upload-file-name" placeholder="파일 첨부" />
-                    <button className="btn_file_upload">파일 선택</button>
+                    <button className="btn_file_upload" onClick={(event) => this.handleClickAddFile(event)}>파일 선택</button>
                 </div>
                 <div className="container-submit">
                     <input type="submit" value="올리기" onClick={(event) => this.handleSubmit(event)} />

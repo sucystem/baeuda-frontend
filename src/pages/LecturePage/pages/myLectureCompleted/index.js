@@ -40,6 +40,7 @@ class MyLectureCompleted extends Component {
     render() {
         let history = this.props.history;
         return <div id="myLectureCompleted">
+            <div id="SubjectName">이수한 강의</div><br/>
             <ul id="completedList">
                 {this.state.lectures.map((lecture, i) => {return(
                 <li class="completedInfo">

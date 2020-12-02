@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './style.scss'
 import callAPI from '../../../../_utils/apiCaller'
 const moment = require('moment');
@@ -135,6 +135,16 @@ class CommunityPostDetail extends Component {
             console.log(e)
         }
     }
+    
+    handleDownloadFile = async (event) => {
+        event.preventDefault();
+        var { name } = event.target;
+        const link = document.createElement('a');
+        link.href = `${process.env.REACT_APP_SERVER_API}/download/${name}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 
     render() {
         let history = this.props.history;
@@ -162,7 +172,7 @@ class CommunityPostDetail extends Component {
             {this.state.files.map((file) => {
                 return (
                     <>
-                    <a>{file.name}</a>&nbsp;
+                    <a name={file.path + '/' + file.name} onClick={(event) => this.handleDownloadFile(event)}>{file.name}</a>&nbsp;
                     </>
                 );
             })}

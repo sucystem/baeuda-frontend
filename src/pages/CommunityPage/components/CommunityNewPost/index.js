@@ -38,7 +38,7 @@ class CommunityNewPost extends Component {
         file.onchange = this.handleChange;
     }
 
-    handleChange = (event) => {
+    handleChange = async (event) => {
         const { name, value } = event.target;
         if (name === "file") {
             this.setState({
@@ -96,7 +96,7 @@ class CommunityNewPost extends Component {
         let history = this.props.history;
         return <div id="community-post">
             <form method="post" enctype = "multipart/form-data" onSubmit={this.handleSubmit}>
-                <input type="text" name="title" placeholder="글 목" onChange={event => this.handleChange(event)} />
+                <input type="text" name="title" placeholder="글 제목" onChange={event => this.handleChange(event)} />
                 <textarea name="content" placeholder="글 내용" onChange={event => this.handleChange(event)} />
                 <div className="container-file-upload">
                     <input disabled type="text" id="upload-file-name" placeholder="파일 첨부" />

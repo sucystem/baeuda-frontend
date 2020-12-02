@@ -34,3 +34,12 @@ li.completedInfo div.LectureGrade{
     width : 100px;
     height : 40px;
 }
+
+div#SubjectName{
+    /*width : 100%;
+    height : 80px;*/
+    font-size : 30px;
+    /*line-height : 80px;*/
+    color : #f89406;
+    text-align: left;
+}

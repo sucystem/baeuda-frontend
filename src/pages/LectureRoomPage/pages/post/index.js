@@ -14,7 +14,8 @@ class CommunityPostDetail extends Component {
             comment: "",
             commentList: [],
             delete: "",
-            board_id: 0
+            board_id: 0,
+            files: [],
         }
     }
 
@@ -71,6 +72,16 @@ class CommunityPostDetail extends Component {
         }
     }
 
+    handleDownloadFile = async (event) => {
+        event.preventDefault();
+        var { name } = event.target;
+        const link = document.createElement('a');
+        link.href = `${process.env.REACT_APP_SERVER_API}/download/${name}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     readPost = async () => {
         const { post_id } = this.state;
         try {
@@ -79,7 +90,8 @@ class CommunityPostDetail extends Component {
                     this.setState({
                         post: res.data.data.post,
                         commentList: res.data.data.comments,
-                        board_id: res.data.data.post[0].board_id
+                        board_id: res.data.data.post[0].board_id,
+                        files: res.data.data.files
                     });
                     if(res.data.data.post[0].writer == (JSON.parse(localStorage.getItem('user'))).id){
                         this.setState({
@@ -153,7 +165,15 @@ class CommunityPostDetail extends Component {
                 );
             }
             )}
-
+            
+            <div id="head-comment">첨부파일</div>
+            {this.state.files.map((file) => {
+                return (
+                    <>
+                    <a name={file.path + '/' + file.name} onClick={(event) => this.handleDownloadFile(event)}>{file.name}</a>&nbsp;
+                    </>
+                );
+            })}
 
             <div id="head-comment">덧글</div>
             <div className="comments">

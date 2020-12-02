@@ -75,6 +75,7 @@ class MyLectureManage extends Component {
     render() {
         let history = this.props.history;
         return <div id="myLecture">
+            <div id="SubjectName">강의 관리</div><br/>
             <div id="myLectureRoom">
             <div className="lec_add_button" onClick={this.openAddModal}>생성</div>
                 {this.state.lectures.map((lecture, index) => {
