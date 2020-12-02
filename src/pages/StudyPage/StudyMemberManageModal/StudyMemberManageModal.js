@@ -19,13 +19,13 @@ class StudyMemberManageModal extends Component {
     getStudentsList = async () => {
         await callAPI(`study/member/${this.props.study_id}`, 'GET', { ...this.props.token }, null).then(res => {
             console.log(res)
-            // if (res.data.result === 'true') {
-            //     this.setState({
-            //         students: res.data.data
-            //     });
-            // } else {
-            //     alert(res.data.msg);
-            // }
+            if (res.data.result === 'true') {
+                this.setState({
+                    students: res.data.data
+                });
+            } else {
+                alert(res.data.msg);
+            }
             
         });
     }
@@ -39,14 +39,34 @@ class StudyMemberManageModal extends Component {
         return(<>
         {this.props.isOpen ? (
             <div className="modal">
-                <div onClick={this.handleClose}>
-                    <div className="info-modal">
-                        <span className="close" onClick={this.handleClose}>
+                <div className="manage-modal">
+                    <span className="close" onClick={this.handleClose}>
                         &times;
-                        </span>
+                    </span>
                         <div id="content">
-                            <p>{this.props.info}</p>
-                        </div>
+                            {this.state.students.map((student, index) => {
+                                return(
+                                    <div className="div-student">
+                                        <div className="div-univ">{student.univid}</div>
+                                        <div className="div-student-id">{student.student_id}</div>
+
+                                            <div className="div-user-name">{student.user_name}</div>
+                                            <div className="container-btn-group">
+                                            {student.state == 0 ? <div className="btn-approve">승인</div>
+                                            : null}
+                                            {student.state == 0 ? <div className="btn-reject">거절</div>
+                                            : null}
+                                            {student.state == 1 ? <div className="btn-ban">추방</div>
+                                            : null}
+                                            {
+                                                student.state == 2 ? <div className="div-leader">팀장</div>
+                                            : null}
+                                            </div>
+                                                                              
+                                    </div>
+                                )
+                            })
+                            }
                     </div>
                 </div>
             </div>

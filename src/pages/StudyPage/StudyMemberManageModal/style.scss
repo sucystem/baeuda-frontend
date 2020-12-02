@@ -11,7 +11,7 @@
     justify-content: center;
     z-index: 999;
 
-    .info-modal {
+    .manage-modal {
         background-color: white;
         margin: 50px auto;
         padding: 20px;
@@ -24,5 +24,91 @@
     }
     #content {
         white-space: pre-line;
+
+        div.div-student {
+            font-family: LotteMartDream;
+            font-weight: 300;
+            display: flex;
+            align-content: center;
+            padding : 5px;
+
+            div.div-univ {
+                align-self: center;
+            }
+            div.div-student-id {
+                width: 100px;
+                margin-left: 20px;
+                align-self: center;
+                
+            }
+            div.div-user-name {
+                align-self: center;
+                margin-left: 20px;
+            }
+            div.container-btn-group {
+                display: flex;
+                justify-content: flex-end;
+
+                div.btn-approve {
+
+                    font-family: LotteMartHappy;
+                    width : 70px;
+                    height : 40px;
+                    background-color: #22a7f0;
+                    border-radius: 37px;
+                    font-size : 15px;
+                    color : #ffffff;
+                    box-shadow: 0 3px 6px 0;
+                    line-height: 40px;
+                    text-align: center;
+    
+        
+                }
+                div.btn-reject {
+    
+                    font-family: LotteMartHappy;
+                    width : 70px;
+                    height : 40px;
+                    background-color: #707070;
+                    border-radius: 37px;
+                    font-size : 15px;
+                    color : #ffffff;
+                    box-shadow: 0 3px 6px 0;
+                    line-height: 40px;
+                    text-align: center;
+    
+        
+                }
+                div.btn-ban {
+    
+                    font-family: LotteMartHappy;
+                    width : 70px;
+                    height : 40px;
+                    background-color: red;
+                    border-radius: 37px;
+                    font-size : 15px;
+                    color : #ffffff;
+                    box-shadow: 0 3px 6px 0;
+                    line-height: 40px;
+                    text-align: center;
+                    justify-content: flex-end;
+    
+                }
+                div.div-leader {
+    
+                    font-family: LotteMartHappy;
+                    color: #707070;
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+    
+    
+        
+                }
+
+
+            }
+            
+        }
+        
     }
 }
