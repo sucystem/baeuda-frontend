@@ -51,10 +51,6 @@ class LectureAddModal extends Component {
         } else {
             this.handleClose();
         }
-        
-        console.log(res);
-        
-        // return String(res.data.data.comment);
     }
 
 

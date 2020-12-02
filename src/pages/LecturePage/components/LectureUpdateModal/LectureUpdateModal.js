@@ -6,10 +6,11 @@ class LectureUpdateModal extends Component {
     constructor(props) {
         super(props);
         this.handleClose = this.handleClose.bind(this);
+        console.log(props.infoData)
         this.state = {
-            name: "",
-            comment: "",
-            max_student: ""
+            name: props.infoData.name,
+            comment: props.infoData.comment,
+            max_student: props.infoData.max_student
         }
     }
     handleNameChange = (e) => {
@@ -34,28 +35,9 @@ class LectureUpdateModal extends Component {
         this.props.close();
     }
 
-    // getLectureInfo = async() => {
-    //     const res = await callAPI(
-    //         `lecture/add`, 
-    //         'POST', 
-    //         { ...this.props.token }, 
-    //         {
-    //             name: this.state.name,
-    //             comment: this.state.comment,
-    //             max_student: this.state.max_student
-    //         },
-    //     );
-    //     if(res.data.result === 'false') {
-    //         alert(res.data.msg);
-    //     } else {
-    //     }
-        
-    //     console.log(res);
-    // }
-
     updateLecture = async() => {
         const res = await callAPI(
-            `lecture/add`, 
+            `lecture/update/${this.props.infoData.id}`, 
             'POST', 
             { ...this.props.token }, 
             {
@@ -70,10 +52,8 @@ class LectureUpdateModal extends Component {
         } else {
             this.handleClose();
         }
-        
         console.log(res);
         
-        // return String(res.data.data.comment);
     }
 
 
@@ -96,7 +76,7 @@ class LectureUpdateModal extends Component {
                                 <input type="text" placeholder="강좌명" value={this.state.name} onChange={this.handleNameChange} />
                                 <textarea placeholder="강좌소개" value={this.state.comment} onChange={this.handleCommentChange} />
                                 <input type="text" placeholder="최대 인원" value={this.state.max_student} onChange={this.handleMaxStudentChange} />
-                                <input className="btn-submit" type="button" value="생성" onClick={this.addLecture}/>
+                                <input className="btn-submit" type="button" value="수정" onClick={this.updateLecture}/>
                             </form>
                         </div>
                     </div>

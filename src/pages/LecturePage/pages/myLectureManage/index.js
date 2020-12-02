@@ -15,7 +15,7 @@ class MyLectureManage extends Component {
             isUpdateModalOpen: false
         }
 
-        this.handleDeleteLecture = this.handleDeleteLecture.bind();
+        // this.handleDeleteLecture = this.handleDeleteLecture.bind();
         // this.handleAddLecture = this.handleAddLecture.bind();
         // this.handleUpdateLecture = this.handleUpdateLecture.bind();
 
@@ -55,16 +55,18 @@ class MyLectureManage extends Component {
             } else {
                 alert(res.data.msg);
             }
+            console.log(res.data.data)
         });
     }
 
-    deleteLecture = async () => {
-        const lecture_id = this.props.match.params.lecture_id;
-        callAPI(`/lecture/delete/${lecture_id}`, 'POST', { ...this.getToken() }, null).then(res => {
-            if (res.data.result === 'true') {
-            } else {
-                alert(res.data.msg)
-            }
+    deleteLecture = async (id) => {
+        callAPI(`lecture/delete/${id}`, 'POST', { ...this.getToken() }, null).then(res => {
+            // if (res.data.result === 'true') {
+            //     alert(res.data.msg)
+            // } else {
+            //     alert(res.data.msg)
+            // }
+            console.log(res)
             
         });
     }
@@ -77,9 +79,6 @@ class MyLectureManage extends Component {
         this.openAddModal();
     }
     
-    handleDeleteLecture() {
-        this.deleteLecture();
-    }
 
     componentDidMount() {
         if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
@@ -92,25 +91,25 @@ class MyLectureManage extends Component {
         let history = this.props.history;
         return <div id="myLecture">
             <div id="myLectureRoom">
+            <div className="lec_add_button" onClick={this.openAddModal}>생성</div>
                 {this.state.lectures.map((lecture, i) => {
                     return (
                         <div>
-                            <div className="lec_add_button" onClick={this.openAddModal}>생성</div>
                             <div className="lec_room_box">
                                 <div className="lec_box_name">
                                     <div className="lec_box_subject">{lecture.name}</div>
                                     <div className="lec_box_prof">{lecture.user_name}</div>
                                 </div>
-                                <div className="lec_del_button" onClick={this.handleDeleteLecture}>삭제</div>
+                                <div className="lec_del_button" onClick={this.deleteLecture(lecture.id)}>삭제</div>
                                 <div className="lec_update_button" onClick={this.openUpdateModal}>수정</div>
                                 <div className="lec_box_button" onClick={() => history.push(`/lectureroom/${lecture.id}/${lecture.id}`)}>입장</div>
                             </div>
-                            <LectureAddModal token={this.getToken()} isOpen={this.state.isAddModalOpen} close={this.closeAddModal} />
-                            <LectureUpdateModal token={this.getToken()} isOpen={this.state.isUpdateModalOpen} close={this.closeUpdateModal} />
+                            <LectureUpdateModal token={this.getToken()} infoData={lecture} isOpen={this.state.isUpdateModalOpen} close={this.closeUpdateModal} />
                         </div>
                     );
                 })
             }
+            <LectureAddModal token={this.getToken()} isOpen={this.state.isAddModalOpen} close={this.closeAddModal} />
             </div>
         </div>
     }
