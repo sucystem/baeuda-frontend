@@ -50,6 +50,7 @@ class LectureAddModal extends Component {
             this.handleClose();
         } else {
             this.handleClose();
+            window.location.reload();
         }
     }
 
