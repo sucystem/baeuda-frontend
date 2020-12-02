@@ -11,7 +11,8 @@ class LectureNotice extends Component {
         this.state = {
             lecture_id: lecture_id,
             lecture: [],
-            posts: []
+            posts: [],
+            prof : false
         }
     }
 
@@ -49,6 +50,11 @@ class LectureNotice extends Component {
     }
 
     componentDidMount() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(user.level >= 1)
+            this.setState({
+                prof : true
+            })
         this.getLecture();
         this.getNotices();
     }
@@ -56,7 +62,7 @@ class LectureNotice extends Component {
     render() {
         let history = this.props.history;
         return <div id="lecNotice">
-            <div id="SubjectName">{this.state.lecture.name}</div>
+            <div id="SubjectName">{this.state.lecture.name} - 공지사항</div>
             <div id="SubjectNotice">
                 <ul>
                     <li>
@@ -76,7 +82,7 @@ class LectureNotice extends Component {
                         );
                     })}
                 </ul>
-        <button className="btn_new_post" onClick={() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/newpost/notice`) }>새 글 작성</button>
+        {this.state.prof && <button className="btn_new_post" onClick={() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/newpost/notice`) }>새 글 작성</button>}
         </div>
         </div>
     }

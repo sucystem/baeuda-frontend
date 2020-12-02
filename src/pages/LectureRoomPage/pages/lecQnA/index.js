@@ -49,6 +49,7 @@ class LectureQnA extends Component {
     }
 
     componentDidMount() {
+        
         this.getLecture();
         this.getNotices();
     }
@@ -56,7 +57,7 @@ class LectureQnA extends Component {
     render() {
         let history = this.props.history;
         return <div id="lecNotice">
-            <div id="SubjectName">{this.state.lecture.name}</div>
+            <div id="SubjectName">{this.state.lecture.name} - 질문답변</div>
             <div id="SubjectNotice">
                 <ul>
                     <li>

@@ -57,6 +57,7 @@ class SignUpPage extends Component {
                 user.password = crypto.createHash('sha256').update(user.password).digest('base64');
                 password_check = this.state.user.password;
                 this.props.SignUp(user);
+                this.props.history.push("/");
             }
         } catch(e){
             console.log(e)

@@ -4,6 +4,7 @@ div.icon_menu{
     height : 100px;
     bottom : 10%;
     right : 10%;
+    z-index: 999;
 }
 
 div.icon{
