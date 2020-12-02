@@ -38,7 +38,6 @@ class StudyReference extends Component {
                 this.setState ({
                     reference: res.data.data
                 })
-                console.log(this.state);
             } else {
                 console.log(res.data.msg)
             }            
