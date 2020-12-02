@@ -63,3 +63,11 @@ div.popup_exit{
     text-align: center;
     line-height: 100px;
 }
+
+.chat-textbox{
+    position:absolute;
+    bottom:30px;
+    margin-left: 10px;
+    width: 370px;
+    height: 60px;
+}

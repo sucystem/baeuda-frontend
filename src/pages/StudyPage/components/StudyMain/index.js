@@ -56,7 +56,7 @@ class Main extends Component {
                         {   
                             this.state.study_list.map((item) => {
                                 return (
-                                    <li key={item.id} onClick={() => history.push("/studyRoom/" + item.id)}>
+                                    <li key={item.id} onClick={() => history.push("/study/studyRoom/" + item.id)}>
                                         <div>{item.name}</div>
                                     </li>
                                 )
