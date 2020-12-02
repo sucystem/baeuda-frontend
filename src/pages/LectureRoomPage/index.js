@@ -7,6 +7,7 @@ import LectureQnA from "./pages/lecQnA";
 import LectureNotice from "./pages/lecNotice";
 import LectureAccept from "./pages/lecAccept";
 import LectureNewPost from './pages/lecNewPost';
+import LectureAssignment from './pages/lecAssignment';
 import Post from "./pages/post";
 import React, { Component } from 'react';
 
@@ -29,6 +30,7 @@ render() {
                 <Route exact path = {`${match.url}/:lecture_id/post/:post_id`} component = {Post} />
                 <Route exact path = {`${match.url}/:lecture_id/accept`} component = {LectureAccept} />
                 <Route exact path = {`${match.url}/:lecture_id/newpost/:board`} component = {LectureNewPost} />
+                <Route exact path = {`${match.url}/:lecture_id/assignment`} component = {LectureAssignment} />
             </Switch>
         </>
     );
