@@ -25,16 +25,16 @@ class StudyList extends Component{
     }
 
     getPosts = async() => {
-        const boardId = this.props.match.params.board_id;
         callAPI(`study/showList`, 'GET', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
                     posts: res.data.data
                 })
+                
             } else {
                 alert(res.data.msg)
             }
-            
+            console.log(res)
         });
     }
 

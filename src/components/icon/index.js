@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import logo from '../../assets/images/logo.jpg'
+import micon from '../../assets/images/message.png'
+import aicon from '../../assets/images/alarm.png'
 import './icon.css'
 import Chat from './chat'
 import Alarm from './alarm'
@@ -48,10 +49,10 @@ class Icon extends Component {
                 {this.state.chat}
                 <div class="icon_menu">
                     <div id="icon_alarm" class="icon" onClick={(event => this.handleIcon(event))}>
-                        알람
+                        <img src={aicon} alt={"logo"} onClick={(event => this.handleIcon(event))}/>
             </div>
                     <div id="icon_message" class="icon" onClick={(event) => this.handleIcon(event)}>
-                        메세지
+                        <img src={micon} alt={"logo"} onClick={(event) => this.handleIcon(event)}/>
             </div>
                 </div>
             </>

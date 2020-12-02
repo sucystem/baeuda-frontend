@@ -21,16 +21,20 @@ li.student-info div{
 }
 
 div.student-univ{
-    width : 500px;
+    width : 20%;
     height : 40px;
 }
 
 div.student-id{
-    width : 100px;
+    width : 20%;
+    height : 40px;
+}
+
+div.student-grade{
     height : 40px;
 }
 
 div.student-name{
-    width : 100px;
+    width: 40%;
     height : 40px;
 }

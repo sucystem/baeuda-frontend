@@ -50,7 +50,7 @@ class Main extends Component {
         let history = this.props.history;
         return <div id="studyMain">
             <div id="studyList" class="menu_box">
-                <div class="box_head" onClick={() => history.push("/StudyList") }>스터디 목록</div>
+                <div class="box_head" onClick={() => history.push("study/StudyList") }>스터디 목록</div>
                 <div>
                     <ul>
                         {   
@@ -72,7 +72,7 @@ class Main extends Component {
                         {   
                             this.state.study_schedule.map((item) => {
                                 return (
-                                    <li key={item.id} onClick={() => history.push("/schedule/" + item.id)}>
+                                    <li key={item.id} onClick={() => history.push("/study/StudySchedule/" + item.id)}>
                                         <div>{item.name}</div>
                                     </li>
                                 )
@@ -88,7 +88,7 @@ class Main extends Component {
                         {   
                             this.state.study_recruit.map((item) => {
                                 return (
-                                    <li key={item.id} onClick={() => history.push("/studyRoom/" + item.id)}>
+                                    <li key={item.id} onClick={() => history.push("/study/StudyRoom/" + item.id)}>
                                         <div>{item.name}</div>
                                     </li>
                                 )

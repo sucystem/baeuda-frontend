@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './icon.css'
-import logo from '../../assets/images/logo.jpg'
 import callAPI from '../../_utils/apiCaller';
 
 class Chat extends Component{
@@ -13,6 +12,7 @@ class Chat extends Component{
             chat: [],
             text: "",
             textbox: "",
+            visibility : true
         }
     }
     
@@ -91,9 +91,23 @@ class Chat extends Component{
         this.getChatRoom();
     }
 
+    handleIcon = async(event) => {
+        event.preventDefault();
+        this.setState({
+            visibility : false
+        });
+    }
+
+    
+
     render() {
-        return (
+        if(this.state.visibility){
+        return (            
         <div id='chat' class='popup'>
+            <div class="popup_menu chat_popup">
+            <div class="popup_title">채팅 리스트</div>            
+            <div class="popup_exit" onClick={(event) => this.handleIcon(event)}>×</div>
+            </div>
             <ul>
                 {this.state.chatRoom.map((chat, i) => {
                     return(
@@ -109,7 +123,11 @@ class Chat extends Component{
             {this.state.textbox}
         </div>
         );
+    } else{
+        return null;
     }
+}
+
 }
 
 export default Chat;
