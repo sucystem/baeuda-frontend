@@ -10,10 +10,6 @@ class LectureSidebar extends Component {
             manage: "",
             user_level : 1
         }
-    }
-    
-    componentDidMount(){
-        let history = this.props.history;
         this.state.user_level = JSON.parse(localStorage.getItem('user')).level;
     }
 
