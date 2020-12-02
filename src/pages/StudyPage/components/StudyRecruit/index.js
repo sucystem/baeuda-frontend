@@ -8,7 +8,7 @@ class StudyRecruit extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            posts: []
+            post: []
         }
 
     }
@@ -25,7 +25,7 @@ class StudyRecruit extends Component{
         callAPI(`study/recruit_list`, 'GET', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
-                    posts: res.data.data
+                    post: res.data.data
                 })
             } else {
                 alert(res.data.msg)
