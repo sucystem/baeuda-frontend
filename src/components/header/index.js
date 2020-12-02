@@ -31,9 +31,6 @@ class Header extends Component {
                     {this.state.user && this.state.user.user_name}님, 오늘도 열공해요!
             </div>
                 <div className="header_my_menu">
-                    마이페이지
-            </div>
-                <div className="header_my_menu">
                     <Link onClick = {() => this.handleLogout()} to = "/">로그아웃</Link>
             </div>
             </div>
