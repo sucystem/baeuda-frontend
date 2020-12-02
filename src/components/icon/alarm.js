@@ -7,7 +7,8 @@ class Alarm extends Component{
         super(props);
 
         this.state = {
-            alarm : []
+            alarm : [],
+            visibility : true
         }
 
     }
@@ -63,12 +64,20 @@ class Alarm extends Component{
         }
     }
 
+    handleIcon = async(event) => {
+        event.preventDefault();
+        this.setState({
+            visibility : false
+        });
+    }
+
     render() {
+        if(this.state.visibility){
         return (
         <div id='alarm' class='popup'>
             <div class="popup_menu">
             <div class="popup_title">알람 리스트</div>            
-            <div class="popup_exit">×</div>
+            <div class="popup_exit" onClick={(event) => this.handleIcon(event)}>×</div>
             </div>
             <ul>
                 {
@@ -85,7 +94,13 @@ class Alarm extends Component{
             </ul>
         </div>
         );
+    } else{
+        return null;
     }
+}
+
+
+
 }
 
 export default Alarm;
