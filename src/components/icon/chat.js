@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './icon.css'
-import logo from '../../assets/images/logo.jpg'
 import callAPI from '../../_utils/apiCaller';
 
 class Chat extends Component{
