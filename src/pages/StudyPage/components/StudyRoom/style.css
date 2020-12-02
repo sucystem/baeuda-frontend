@@ -43,6 +43,7 @@ div.Room_Content{
 
 div#btnMeetingRoom {
     /* margin : 0px 30px 0px 50px; */
+    display: inline-block;
     width : 150px;
     height : 40px;
     background-color: #f89406;
@@ -53,6 +54,21 @@ div#btnMeetingRoom {
     line-height: 40px;
     text-align: center;
     margin-bottom: 30px;
+}
+div#btnTeamPeopleManage {
+    /* margin : 0px 30px 0px 50px; */
+    display: inline-block;
+    width : 150px;
+    height : 40px;
+    background-color: #f89406;
+    border-radius: 37px;
+    font-size : 15px;
+    color : #ffffff;
+    box-shadow: 0 3px 6px 0;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-left: 10px;
 }
 
 div#btnShare {

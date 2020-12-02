@@ -36,14 +36,15 @@ class StudyRoom extends Component {
                 console.log(res.data.msg)
             }
         });
-        
-        callAPI(`study/schedule/${study_id}`, 'GET', {...this.getToken()}, null).then(res => {
+
+        callAPI(`study/reference/${study_id}`, 'GET', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
-                    schedule: res.data.data
+                    reference: res.data.data
                 })
             } else {
-                console.log(res.data.msg)
+                alert(res.data.msg)
+
             }            
         });
     }
@@ -64,7 +65,10 @@ class StudyRoom extends Component {
                     return (
                         <div id="StudyRoom">
                             <div id="StudyName">{item.name}</div>
-                            <div id="btnMeetingRoom">미팅룸 입장</div>
+                            <div>
+                                <a href={item.link} className="container-meeting-room" target='_blank'><div id="btnMeetingRoom">미팅룸 입장</div></a>
+                                <div id="btnTeamPeopleManage">팀원 관리</div>
+                            </div>
                             <div id="StudyContent">
                                 <div id="StudyReference">
                                     <div class="Room_Title">자료실</div>
@@ -73,7 +77,7 @@ class StudyRoom extends Component {
                                 <div id="StudySchedule">
                                     <div class="Room_Title">스터디 일정</div>
                                     <div class="Room_Content">
-                                        <StudySchedule  />
+                                        <StudySchedule token={this.getToken()} study_id={this.props.match.params.study_id} calendar_id={item.calendarId}/>
                                     </div>
                                 </div>
                             </div>
