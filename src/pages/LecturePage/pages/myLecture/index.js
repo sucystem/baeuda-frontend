@@ -41,6 +41,7 @@ class MyLecture extends Component {
     render() {
         let history = this.props.history;
         return <div id="myLecture">
+            <div id="SubjectName">수강중 강의</div><br/>
             <div id="myLectureRoom">
                 {this.state.lectures.map((lecture, i) => {
                     return (

@@ -50,3 +50,12 @@ li.LectureWaitInfo div.lectureEnroll{
     line-height: 35px;
     margin-left: 20px;
 }
+
+div#SubjectName{
+    /*width : 100%;
+    height : 80px;*/
+    font-size : 30px;
+    /*line-height : 80px;*/
+    color : #f89406;
+    text-align: left;
+}

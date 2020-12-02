@@ -51,6 +51,7 @@ class MyLectureWait extends Component {
     render() {
         let history = this.props.history;
         return <div id="myLectureWait">
+            <div id="SubjectName">승인대기 강의</div><br/>
             <ul id="LectureWaitList">
                 {this.state.lectures.map((lecture, i) => { return(
                     <li className="LectureWaitInfo">

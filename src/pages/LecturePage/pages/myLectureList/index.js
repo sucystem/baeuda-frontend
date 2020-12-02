@@ -63,6 +63,7 @@ class MyLectureApply extends Component {
     render() {
         let history = this.props.history;
         return <div id="myLectureList">
+            <div id="SubjectName">강의 신청</div><br/>
             <div class="lectureList">
                 <ul>
                     {this.state.lectures.map((lecture, index) => {

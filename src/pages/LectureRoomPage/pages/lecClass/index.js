@@ -55,7 +55,7 @@ class LectureClass extends Component {
     render() {
         let history = this.props.history;
         return <div id="LecClass">
-            <div id="SubjectName">{this.state.lecture.name}</div>
+            <div id="SubjectName">{this.state.lecture.name} - 수강하기</div>
             <div id="SubjectProgression">
                 <ul>
                     {this.state.lessons.map((lesson, i) => {
