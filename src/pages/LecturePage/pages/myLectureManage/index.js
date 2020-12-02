@@ -54,7 +54,7 @@ class MyLectureManage extends Component {
         });
     }
 
-    deleteLecture = async (id) => () => {
+    deleteLecture = (id) => () => {
         callAPI(`lecture/delete/${id}`, 'POST', { ...this.getToken() }, null).then(res => {
             // if (res.data.result === 'true') {
             //     alert(res.data.msg)
