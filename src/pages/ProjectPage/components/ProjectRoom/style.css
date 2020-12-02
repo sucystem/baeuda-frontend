@@ -37,6 +37,9 @@ div.Room_Title{
     text-align: left;
 }
 
+a.container-meeting-room {
+    text-decoration: none;
+}
 
 div.Room_Content li div{
     float : left;

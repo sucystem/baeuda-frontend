@@ -19,21 +19,15 @@ class StudySchedule extends React.Component {
     constructor(props) {
         super(props);
         // https://ko.reactjs.org/docs/refs-and-the-dom.html
-        this.calendarRef = createRef(); 
+        this.calendarRef = createRef();
     }
 
-    getToken = () => {
-        const token = localStorage.getItem('token');
-        return {
-            auth_token: token,
-        }
-    }
     fetchDatas = async () => {
 
         const res = await callAPI(
-            `schedule/month/${this.state.month}`, 
+            `study/schedule/${this.props.study_id}`, 
             'GET', 
-            { ...this.getToken() }, 
+            { ...this.props.token }, 
             null,
         );
 
@@ -60,19 +54,39 @@ class StudySchedule extends React.Component {
 
         return [];
     }
+
+    addData = async(schedule) => {
+        const res = callAPI(
+            `schedule/add/${this.props.calendar_id}`, 
+            'POST', 
+            { ...this.props.token },
+            {
+                calendarId: this.props.calendar_id,
+                title: schedule.title,
+                start: schedule.start,
+                end: schedule.end,
+                category: 'time'
+            }
+        );
+        if(res.data.result === 'false') {
+            alert(res.data.msg)
+        }
+
+    }
     
 
     componentDidMount() {
         const newCalendar = new TuiCalendar(this.calendarRef.current, { 
             defaultView: 'month',
-            taskView: true,
+            taskView: false,
             useDetailPopup: true,
             useCreationPopup: true
         });
         this.fetchDatas().then(schedules => newCalendar.createSchedules(schedules));
+        
         newCalendar.on('beforeCreateSchedule', scheduleData => {
             const schedule = {
-              calendarId: 'Major Lecture',
+              calendarId: this.props.calendar_id,
               id: String(Math.random() * 100000000000000000),
               title: scheduleData.title,
               isAllDay: scheduleData.isAllDay,
@@ -80,17 +94,16 @@ class StudySchedule extends React.Component {
               end: scheduleData.end,
               category: scheduleData.isAllDay ? 'allday' : 'time'
             };
+            this.addData(schedule);
           
             newCalendar.createSchedules([schedule]);
-          
-            alert('일정 생성 완료');
           });
 
           newCalendar.on('beforeUpdateSchedule', scheduleData => {
             const {schedule} = scheduleData;
-            console.log(schedule)
           
             newCalendar.updateSchedule(schedule.id, schedule.calendarId, schedule);
+
           });
 
           newCalendar.on('beforeDeleteSchedule', scheduleData => {
@@ -100,6 +113,7 @@ class StudySchedule extends React.Component {
             schedule.end = end;
             newCalendar.deleteSchedule(schedule.id, schedule.calendarId);
           });
+          
 
         this.setState({ calendar: newCalendar }); 
         
