@@ -8,7 +8,8 @@ class StudyReference extends Component {
         super(props);
 
         this.state = {
-            reference: []
+            reference: [],
+            file: ""
         }
     }
    
@@ -21,7 +22,8 @@ class StudyReference extends Component {
 
     handleClickAddFile = (event) => {
         event.preventDefault();
-        const file = document.createElement('input');
+        this.state.file = document.createElement('input');
+        const file = this.state.file;
         file.setAttribute("type", "file");
         file.setAttribute("name", "file");
         document.body.appendChild(file);
@@ -36,6 +38,7 @@ class StudyReference extends Component {
                 this.setState ({
                     reference: res.data.data
                 })
+                console.log(this.state);
             } else {
                 console.log(res.data.msg)
             }            
@@ -60,6 +63,8 @@ class StudyReference extends Component {
                 console.log(res.data.msg);
             }
 
+            document.body.removeChild(this.state.file);
+
             this.getReferences();
 
         } else {
@@ -67,6 +72,16 @@ class StudyReference extends Component {
                 [name] : value
             })
         }
+    }
+    
+    handleDownloadFile = async (event) => {
+        event.preventDefault();
+        var { name } = event.target;
+        const link = document.createElement('a');
+        link.href = `${process.env.REACT_APP_SERVER_API}/download/${name}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 
     componentDidMount() {
@@ -83,7 +98,7 @@ class StudyReference extends Component {
                             this.state.reference.map((ref) => {
                                 return (
                                     <li>
-                                        <div class="RefName">{ref.name}</div>
+                                        <a class="RefName" name={ref.path + '/' + ref.name} onClick={(event) => this.handleDownloadFile(event)}>{ref.name}</a>
                                         <div class="RefWriter">{ref.user_name} &nbsp;&nbsp; {moment(ref.upload_date).format('YYYY-MM-DD')}</div>
                                     </li>
                                 )
