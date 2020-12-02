@@ -3,12 +3,14 @@ import './style.css'
 import { useHistory } from 'react-router-dom';
 import callAPI from '../../../../_utils/apiCaller';
 import moment from 'moment';
+import StudyInfoModal from '../StudyInfoModal/StudyInfoModal';
 
 class StudyRecruit extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            post: []
+            post: [],
+            openModalIndex: -1
         }
 
     }
@@ -18,6 +20,15 @@ class StudyRecruit extends Component{
         return {
             auth_token: token,
         }
+    }
+
+    openModal = (index) => () => {
+        this.setState({ openModalIndex: index });
+
+    }
+    closeModal = () => {
+        this.setState({ openModalIndex: -1 });
+
     }
 
     getPosts = async() => {
@@ -58,13 +69,13 @@ class StudyRecruit extends Component{
         <ul>
             {
                 this.state.post.map((item, index) =>{
-                    console.log(item)
                     return (
                         <li>
                             <div class="boardName" onClick={() => history.push("/study/StudyInfo")}>{item.recruitTitle}</div>
                             <div class="boardMember">{item.currentSeat}/{item.maxSeat}</div>
                             <div class="boardJoin" onClick={this.handleSubmitJoin(item.id)}>신청</div> 
-                            <div class="boardInfo" onClick={() => history.push("/study/StudyInfo/" + item.studyid)}>정보보기</div>
+                            <div class="boardInfo" onClick={this.openModal(index)}>정보보기</div>
+                            <StudyInfoModal token={this.getToken()} info={item.recruitContent} isOpen={this.state.openModalIndex == index} close={this.closeModal} />
                         </li>
                     )
                 })
