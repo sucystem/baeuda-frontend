@@ -11,13 +11,14 @@ div#studyRoom{
 }
 
 div.study_room_box{
-    position: absolute;
+    position: relative;
     float : left;
     height : 300px;
     width : 300px;
     border-radius: 41px;
     box-shadow: 3px 3px 6px 0;
     background-color: #ffffff;
+    margin: 10px;
 }
 
 div.study_box_name{
