@@ -13,7 +13,7 @@ ul#LectureWaitList{
 
 li.LectureWaitInfo{
     width : 700px;
-    
+    height: 40px;    
 }
 
 li.LectureWaitInfo div{
@@ -21,17 +21,32 @@ li.LectureWaitInfo div{
     box-sizing: border-box;
 }
 
-div.LectureName{
-    width : 500px;
+li.LectureWaitInfo div.LectureName{
+    width : 400px;
     height : 40px;
+    padding-top : 10px;
 }
 
-div.LectureProf{
-    width : 100px;
+li.LectureWaitInfo div.LectureProf{
+    width : 70px;
     height : 40px;
+    padding-top : 10px;
 }
 
-div.LectureQuota{
-    width : 100px;
+li.LectureWaitInfo div.LectureQuota{
+    width : 70px;
     height : 40px;
+    padding-top : 10px;
+}
+
+li.LectureWaitInfo div.lectureEnroll{
+    width: 8%;
+    height: 35px;
+    border-radius: 37px;
+    box-shadow: 0 3px 6px 0;
+    background-color: #22a7f0;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-left: 20px;
 }

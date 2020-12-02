@@ -15,7 +15,7 @@ class LectureRoomSidebar extends Component {
         const lecture_id = this.props.match.params.lecture_id;
         if(JSON.parse(localStorage.getItem('user')).level == 2){
             this.setState({
-                accept: <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/accept`)}>수강신청승인</li>
+                accept: <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/accept`)}>수강생</li>
             })
         }
     }

@@ -31,7 +31,7 @@ class StudyPage extends Component{
                         <Route exact path = {`${match.url}/StudySchedule`} component = {StudySchedule} />
                         <Route exact path = {`${match.url}/StudyRecruit`} component = {StudyRecruit} />
                         <Route exact path = {`${match.url}/MakeStudy`} component = {MakeStudy} />
-                        <Route exact path = {`${match.url}/StudyRoom`} component = {StudyRoom} />
+                        <Route exact path = {`${match.url}/StudyRoom/:study_id`} component = {StudyRoom} />
                     </Switch>                    
                 </div>
             </div>
