@@ -38,7 +38,7 @@ class LectureAssignment extends Component {
 
     getAssignment = async () => {
         const lecture_id = this.state.lecture_id;
-        callAPI(`lecture/assignment/${lecture_id}`, 'GET', { ...this.getToken() }, null).then(res => {
+        callAPI(`lecture/assignment/${lecture_id}`, 'POST', { ...this.getToken() }, null).then(res => {
             if (res.data.result === 'true') {
                 this.setState({
                     posts: res.data.data
@@ -80,7 +80,7 @@ class LectureAssignment extends Component {
                             <li>
                                 <div class="Name" name={post.id} onClick= {() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/assignmentInfo/${post.id}`)}>{post.title}</div>
                                 <div class="Date">{moment(post.regDate).format("YYYY-MM-DD hh:mm:ss")}</div>
-                                <div class="Submit" name={post.id} onClick={(event) => this.handleSubmit(event)}>제출하기</div>
+                                <div class="Submit TD" name={post.id} onClick={(event) => this.handleSubmit(event)}>제출하기</div>
                             </li>
                         );
                     })}
