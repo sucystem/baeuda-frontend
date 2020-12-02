@@ -32,7 +32,7 @@ class StudyInfo extends Component{
     getPosts = async() => {
         const boardId = this.props.match.params.board_id;
         const {study_id} = this.state;
-        callAPI(`study/${study_id}/recruit_info`, 'GET', {...this.getToken()}, null).then(res => {
+        callAPI(`study/${study_id}/recruit_info`, 'POST', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
                     posts: res.data.data

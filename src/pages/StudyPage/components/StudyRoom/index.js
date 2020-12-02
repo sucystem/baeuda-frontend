@@ -24,7 +24,7 @@ class StudyRoom extends Component{
 
     getPosts = async() => {
         const boardId = this.props.match.params.board_id;
-        callAPI(`study/${study_id}`, 'GET', {...this.getToken()}, null).then(res => {
+        callAPI(`study/${study_id}`, 'POST', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
                     posts: res.data.data
@@ -33,7 +33,7 @@ class StudyRoom extends Component{
                 alert(res.data.msg)
             }            
         });
-        callAPI(`study/${study_id}/reference`, 'GET', {...this.getToken()}, null).then(res => {
+        callAPI(`study/${study_id}/reference`, 'POST', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
                     reference: res.data.data
@@ -42,7 +42,7 @@ class StudyRoom extends Component{
                 alert(res.data.msg)
             }            
         });
-        callAPI(`study/${study_id}/schedule`, 'GET', {...this.getToken()}, null).then(res => {
+        callAPI(`study/${study_id}/schedule`, 'POST', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
                     schedule: res.data.data
