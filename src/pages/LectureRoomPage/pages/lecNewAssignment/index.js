@@ -90,9 +90,9 @@ class LectureNewAssignment extends Component {
                 formData.append('board', this.props.match.params.board);
                 formData.append('title', title);
                 formData.append('content', content);
-                callAPI(`lecture/assignment`, 'POST', { ...this.getToken() }, formData).then(res => {
+                callAPI(`lecture/newAssignment`, 'POST', { ...this.getToken() }, formData).then(res => {
                     if (res.data.result === 'true'){
-                        this.props.history.push(`/lectureroom/${lecture_id}/${lecture_id}/assignment`)
+                        this.props.history.push(`/lectureroom/${lecture_id}/${lecture_id}/assignmentInfo/${res.data.data.assignment_id}`)
                     } else {
                         alert(res.data.msg)
                     }
