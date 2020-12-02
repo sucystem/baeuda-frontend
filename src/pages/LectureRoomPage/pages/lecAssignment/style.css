@@ -38,22 +38,18 @@ div.Name{
     color : #707070;
 }
 
-div.Writer{
-    width : 150px;
-    text-align: center;
-    color : #707070;
-}
-
-div.Hits{
-    width : 150px;
-    text-align: center;
-    color : #707070;
-}
-
 div.Date{
     width: 350px;
     text-align: center;
     color : #707070;
+}
+
+div.Submit{
+    width : 500px;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 37px;
+    background-color: #22a7f0;
 }
 
 div.TH{

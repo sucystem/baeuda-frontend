@@ -36,9 +36,9 @@ class LectureAssignment extends Component {
         })
     }
 
-    getNotices = async () => {
+    getAssignment = async () => {
         const lecture_id = this.state.lecture_id;
-        callAPI(`lecture/room/notices/${lecture_id}`, 'GET', { ...this.getToken() }, null).then(res => {
+        callAPI(`lecture/assignment/${lecture_id}`, 'GET', { ...this.getToken() }, null).then(res => {
             if (res.data.result === 'true') {
                 this.setState({
                     posts: res.data.data
@@ -56,7 +56,12 @@ class LectureAssignment extends Component {
                 prof : true
             })
         this.getLecture();
-        this.getNotices();
+        this.getAssignment();
+    }
+
+    handleSubmit = (event) => {
+        const assingment_id = event.target;
+        this.props.history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/lecSubmit/${assingment_id}`)
     }
 
     render() {
@@ -67,17 +72,15 @@ class LectureAssignment extends Component {
                 <ul>
                     <li>
                         <div class="Name TH">글 제목</div>
-                        <div class="Writer TH">작성자</div>
-                        <div class="Hits TH">조회수</div>
                         <div class="Date TH">작성일</div>
+                        <div class="Submit TH"></div>
                     </li>
                     {this.state.posts.map((post, i) => {
                         return (
-                            <li onClick= {() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/post/${post.id}`)}>
-                                <div class="Name">{post.title}</div>
-                                <div class="Writer">{post.user_name}</div>
-                                <div class="Hits">{post.count}</div>
+                            <li>
+                                <div class="Name" name={post.id} onClick= {() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/assignmentInfo/${post.id}`)}>{post.title}</div>
                                 <div class="Date">{moment(post.regDate).format("YYYY-MM-DD hh:mm:ss")}</div>
+                                <div class="Submit" name={post.id} onClick={(event) => this.handleSubmit(event)}>제출하기</div>
                             </li>
                         );
                     })}
