@@ -12,7 +12,6 @@ class AssignmentInfo extends Component {
             assignment_id: this.props.match.params.assignment_id,
             post: [],
             delete: "",
-            board_id: 0,
             files: [],
         }
     }
@@ -68,8 +67,6 @@ class AssignmentInfo extends Component {
                 if (res.data.result === 'true') {
                     this.setState({
                         post: res.data.data.post,
-                        commentList: res.data.data.comments,
-                        board_id: res.data.data.post[0].board_id,
                         files: res.data.data.files
                     });
                     if(res.data.data.post[0].writer == (JSON.parse(localStorage.getItem('user'))).id){

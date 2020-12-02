@@ -21,7 +21,7 @@ div#SubjectNotice{
 }
 
 div#SubjectNotice li{
-    width : 1400px;
+    width : 1000px;
     height : 50px;
 }
 
@@ -33,7 +33,7 @@ div#SubjectNotice li div{
 }
 
 div.Name{
-    width : 750px;
+    width : 450px;
     text-align: left;
     color : #707070;
 }
@@ -45,8 +45,12 @@ div.Date{
 }
 
 div.Submit{
-    width : 500px;
+    width : 200px;
     text-align: center;
+    
+}
+
+div.TD{
     color: #ffffff;
     border-radius: 37px;
     background-color: #22a7f0;
