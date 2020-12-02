@@ -23,6 +23,7 @@ class StudyRoom extends Component {
         }
     }
 
+<<<<<<< HEAD
     getPosts = async () => {
         const { study_id } = this.props.match.params;
         callAPI(`study/info/${study_id}`, 'GET', { ...this.getToken() }, null).then(res => {
@@ -30,6 +31,15 @@ class StudyRoom extends Component {
                 this.setState({
                     study: res.data.data
                 });
+=======
+    getPosts = async() => {
+        const study_id = this.props.match.params.study_id;
+        callAPI(`study/${study_id}`, 'POST', {...this.getToken()}, null).then(res => {
+            if(res.data.result === 'true'){
+                this.setState ({
+                    posts: res.data.data
+                })
+>>>>>>> 4d3e4f6fdb93637067fd18120c48390b135b939d
             } else {
                 alert(res.data.msg)
             }
