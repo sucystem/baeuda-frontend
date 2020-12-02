@@ -24,6 +24,7 @@ function MyCalendar() {
         const newCalendar = new TuiCalendar(calendarRef.current, {
             defaultView: 'month',
             taskView: true,
+            useCreationPopup: true
         });
 
         newCalendar.createSchedules([

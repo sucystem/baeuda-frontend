@@ -65,7 +65,7 @@ class MakeStudy extends Component{
                 <div class="StudyInfo">
                     <div class="StudySubject"><input id="StudySubject" type="text" name="name" placeholder="스터디 제목"required onChange={event => this.handleChange(event)} /></div>
                     <div class="BoardName"><input id="StudyName" type="text" name="recruitTitle" placeholder="구인글 제목"required onChange={event => this.handleChange(event)}/></div>
-                    <div class="StudyMember"><input id="StudyMember" type="text" name="maxSeat" placeholder="스터디 정원"required onChange={event => this.handleChange(event)}/></div>
+                    <div class="StudyMember"><input id="StudyMember" type="number" name="maxSeat" placeholder="스터디 정원"required onChange={event => this.handleChange(event)}/></div>
                 </div>
                 <div class="StudyContent"><input id="StudyContent" type="text" name="recruitContent" placeholder="구인글 내용" required onChange={event => this.handleChange(event)}/></div>
                 <div class="StudyAdd" onClick={(event) => this.handleSubmit(event)}>올리기</div>
