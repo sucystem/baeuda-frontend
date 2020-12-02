@@ -53,7 +53,7 @@ class CommunityNewPost extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        var { title, content, file } = this.state;
+        var { title, content, inputFile } = this.state;
         try {
             if (this.state.title && this.state.content) {
                 const boardId = this.props.match.params.board_id;
@@ -62,21 +62,26 @@ class CommunityNewPost extends Component {
 
                 const data = {
                     title: title,
-                    content: content
+                    content: content,
+                    inputFile: inputFile
                 }
-                for(let i = 0; i < file.length; i++){
-                   formData.append('file', file[i]);
+                for(let i = 0; i < inputFile.length; i++){
+                    formData.append('file', inputFile[i]);
                 }
                 formData.append('title', title);
                 formData.append('content', content);
 
-                //callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken() }, formData).then(res => {
+                    
                 callAPI(`board/${boardId}/newPost`, 'POST', {...this.getToken()}, data).then(res => {
-                    if (res.data.result === 'true'){
-                        this.props.history.push(`/community/${boardId}/postdetail/${res.data.postid}`)
-                    } else {
-                        alert(res.data.msg)
-                    }
+ //               callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken() }, formData).then(res => {
+//                for (var pair of formData.entries()) { 
+//                    alert("formData 출력: "+ pair[0]+ ', ' + pair[1]); 
+//                }
+                if (res.data.result === 'true'){
+                    this.props.history.push(`/community/${boardId}/postdetail/${res.data.postid}`);
+                } else {
+                    alert(res.data.msg);
+                }
                 });
             }
         } catch (e) {
@@ -84,16 +89,16 @@ class CommunityNewPost extends Component {
         }
     }
 
-                    //<input type="file" name="file" multiple onChange={event => this.handleChange(event)}/>
+//                    <button className="btn_file_upload">파일 선택</button>
     render() {
         let history = this.props.history;
         return <div id="community-post">
-            <form method="post" onSubmit={this.handleSubmit}>
-                <input type="text" name="title" placeholder="글 제목" onChange={event => this.handleChange(event)} />
+            <form method="post" enctype = "multipart/form-data" onSubmit={this.handleSubmit}>
+                <input type="text" name="title" placeholder="글 목" onChange={event => this.handleChange(event)} />
                 <textarea name="content" placeholder="글 내용" onChange={event => this.handleChange(event)} />
                 <div className="container-file-upload">
                     <input disabled type="text" id="upload-file-name" placeholder="파일 첨부" />
-                    <button className="btn_file_upload">파일 선택</button>
+                    <input type="file" name="inputFile" multiple onChange={event => this.handleChange(event)}/>
                 </div>
                 <div className="container-submit">
                     <input type="submit" value="올리기" onClick={(event) => this.handleSubmit(event)} />
