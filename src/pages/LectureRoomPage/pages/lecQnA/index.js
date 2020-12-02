@@ -76,6 +76,7 @@ class LectureQnA extends Component {
                         );
                     })}
                 </ul>
+        <button className="btn_new_post" onClick={() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/newpost/qna`) }>새 글 작성</button>
         </div>
         </div>
     }

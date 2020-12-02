@@ -34,7 +34,7 @@ class StudyRecruit extends Component{
     }
 
     handleSubmitJoin = (study_id) => () => {
-        callAPI(`study/joinStudy/${study_id}`, 'POST', { ...this.getToken() }, null).then(res => { // TO-DO : Edit URL
+        callAPI(`study/apply/${study_id}`, 'POST', { ...this.getToken() }, null).then(res => { // TO-DO : Edit URL
             if (res.data.msg === '가입 신청을 성공했습니다.') {
                 window.location.reload();
             } else {

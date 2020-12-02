@@ -62,3 +62,19 @@ div.TH{
     text-align: center;
     margin-bottom: 10px;
 }
+
+.btn_new_post {
+    font-size: 14px;
+    padding: 0.6rem;
+    font-family: LotteMartHappy;
+    font-weight: 800;
+    color: white;
+    border-radius: 37px;
+    width: 100px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border: none;
+    outline: none;
+    background-color: #22a7f0;
+    margin-top: 20px;
+    float: right;
+}
