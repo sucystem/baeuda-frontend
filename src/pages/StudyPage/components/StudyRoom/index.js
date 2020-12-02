@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { useHistory } from 'react-router-dom';
 import './style.css'
 import callAPI from '../../../../_utils/apiCaller';
+import StudySchedule from '../StudySchedule';
 const moment = require('moment');
 
 class StudyRoom extends Component {
@@ -48,6 +49,7 @@ class StudyRoom extends Component {
                 this.setState ({
                     schedule: res.data.data
                 })
+                console.log(res.data)
             } else {
                 alert(res.data.msg)
             }            
@@ -70,9 +72,11 @@ class StudyRoom extends Component {
                     return (
                         <div id="StudyRoom">
                             <div id="StudyName">{item.name}</div>
+                            <div id="btnMeetingRoom">미팅룸 입장</div>
                             <div id="StudyContent">
                                 <div id="StudyReference">
                                     <div class="Room_Title">자료실</div>
+                                    <div id="btnShare">자료 업로드</div>
                                     <div class="Room_Content">
                                         <ul>
                                             {
@@ -91,18 +95,7 @@ class StudyRoom extends Component {
                                 <div id="StudySchedule">
                                     <div class="Room_Title">스터디 일정</div>
                                     <div class="Room_Content">
-                                        <ul>
-                                            {
-                                                this.state.schedule.map((sche) => {
-                                                    return (
-                                                        <li>
-                                                            <div class="ScheName">{sche.name}</div>
-                                                            <div class="ScheDate">{sche.date}</div>
-                                                        </li>
-                                                    )
-                                                })
-                                            }
-                                        </ul>
+                                        <StudySchedule  />
                                     </div>
                                 </div>
                             </div>

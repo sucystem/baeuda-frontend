@@ -32,21 +32,11 @@ div#ProjectSchedule{
 
 div.Room_Title{
     width : 400px;
-    height : 80px;
     font-size: 30px;
     color : #22a7f0;
     text-align: left;
 }
 
-div.Room_Content{
-    width : 600px;
-    height : 720px;
-}
-
-div.Room_Content li{
-    width : 600px;
-    height : 60px;
-}
 
 div.Room_Content li div{
     float : left;
