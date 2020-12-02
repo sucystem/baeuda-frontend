@@ -63,8 +63,8 @@ class StudySchedule extends React.Component {
             {
                 calendarId: this.props.calendar_id,
                 title: schedule.title,
-                start: schedule.start,
-                end: schedule.end,
+                start: schedule.start._date,
+                end: schedule.end._date,
                 category: 'time'
             }
         );
@@ -81,7 +81,12 @@ class StudySchedule extends React.Component {
             defaultView: 'month',
             taskView: false,
             useDetailPopup: true,
-            useCreationPopup: true
+            useCreationPopup: true,
+            timezones: [{
+                timezoneOffset: 540,
+                displayLabel: 'GMT+09:00',
+                tooltip: 'Seoul'
+            }]
         });
         this.fetchDatas().then(schedules => newCalendar.createSchedules(schedules));
         
