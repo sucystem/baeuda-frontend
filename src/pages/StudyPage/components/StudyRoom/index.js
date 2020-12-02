@@ -23,7 +23,7 @@ class StudyRoom extends Component{
     }
 
     getPosts = async() => {
-        const boardId = this.props.match.params.board_id;
+        const study_id = this.props.match.params.study_id;
         callAPI(`study/${study_id}`, 'POST', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({

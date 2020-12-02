@@ -23,7 +23,7 @@ class ProjectRoom extends Component{
     }
 
     getPosts = async() => {
-        const boardId = this.props.match.params.board_id;
+        const Project_id = this.props.match.params.project_id;
         callAPI(`project/${Project_id}`, 'POST', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
