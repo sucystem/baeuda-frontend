@@ -8,6 +8,8 @@ import LectureNotice from "./pages/lecNotice";
 import LectureAccept from "./pages/lecAccept";
 import LectureNewPost from './pages/lecNewPost';
 import LectureAssignment from './pages/lecAssignment';
+import LectureNewAssignment from './pages/lecNewAssignment';
+import LectureSubmit from './pages/lecSubmit';
 import Post from "./pages/post";
 import React, { Component } from 'react';
 
@@ -31,6 +33,8 @@ render() {
                 <Route exact path = {`${match.url}/:lecture_id/accept`} component = {LectureAccept} />
                 <Route exact path = {`${match.url}/:lecture_id/newpost/:board`} component = {LectureNewPost} />
                 <Route exact path = {`${match.url}/:lecture_id/assignment`} component = {LectureAssignment} />
+                <Route exact path = {`${match.url}/:lecture_id/newAssignment`} component = {LectureNewAssignment} />
+                <Route exact path = {`${match.url}/:lecture_id/submit`} component = {LectureSubmit} />
             </Switch>
         </>
     );
