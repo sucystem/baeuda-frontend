@@ -20,17 +20,17 @@ li.completedInfo div{
     float : left;
 }
 
-div.LectureName{
+li.completedInfo div.LectureName{
     width : 500px;
     height : 40px;
 }
 
-div.LectureProf{
+li.completedInfo div.LectureProf{
     width : 100px;
     height : 40px;
 }
 
-div.LectureGrade{
+li.completedInfo div.LectureGrade{
     width : 100px;
     height : 40px;
 }
