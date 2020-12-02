@@ -9,7 +9,8 @@ class MyLectureApply extends Component {
 
         this.state = {
             lectures: [],
-            openModalIndex: -1
+            openModalIndex: -1,
+            error: ""
         }
     }
 
@@ -37,7 +38,7 @@ class MyLectureApply extends Component {
                     lectures: res.data.data
                 })
             } else {
-                alert(res.data.msg)
+                this.setState({error:res.data.msg})
             }
         });
     }
@@ -76,6 +77,7 @@ class MyLectureApply extends Component {
                         <LectureInfoModal token={this.getToken()} lectureId={lecture.id} isOpen={this.state.openModalIndex == index} close={this.closeModal} />
                     </li>);
                     })}
+                    {this.state.error}
                 </ul>
             </div>
         </div>

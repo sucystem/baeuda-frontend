@@ -17,8 +17,8 @@ class Icon extends Component {
 
     handleIcon = (event) => {
         event.preventDefault();
-        const { name } = event.target;
-        if (name === 'icon_message') {
+        const { id } = event.target;
+        if (id === 'icon_message') {
             if (this.state.chat === "") {
                 this.setState({
                     chat: <Chat />
@@ -28,7 +28,7 @@ class Icon extends Component {
                     chat: ""
                 });
             }
-        } else if (name === 'icon_alarm') {
+        } else if (id === 'icon_alarm') {
             if (this.state.alarm === "") {
                 this.setState({
                     alarm: <Alarm />

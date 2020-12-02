@@ -62,7 +62,14 @@ class LectureAccept extends Component {
                     { ...this.getToken() },
                     data
                 );
-            } else {
+            } else if(name === 'delete') {
+                res = await callAPI(
+                    `lecture/outstudent/${lecture_id}`,
+                    `POST`,
+                    {...this.getToken()},
+                    data
+                )
+            }else {
                 res = await callAPI(
                     `lecture/accept/${lecture_id}`,
                     'POST',
@@ -97,6 +104,7 @@ class LectureAccept extends Component {
                                 <div class="student-univ">{student.univid}</div>
                                 <div class="student-id">{student.student_id}</div>
                                 <button name="graduate" value={student.id} onClick={(event) => this.handleSubmit(event)}>이수</button>
+                                <button name="delete" value={student.id} onClick={(event) => this.handleSubmit(event)}>이수</button>
                             </li>
                         );
                     })}

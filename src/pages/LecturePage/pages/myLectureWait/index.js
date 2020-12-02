@@ -7,7 +7,8 @@ class MyLectureWait extends Component {
         super(props);
 
         this.state = {
-            lectures: []
+            lectures: [],
+            error: ""
         }
     }
     
@@ -25,7 +26,7 @@ class MyLectureWait extends Component {
                     lectures: res.data.data
                 })
             } else {
-                alert(res.data.msg)
+                this.setState({error:res.data.msg})
             }
         });
     }
@@ -61,6 +62,7 @@ class MyLectureWait extends Component {
                         <div className="lectureEnroll" id={lecture.id} onClick={(event) => this.handleCancel(event)}>취소</div>
                     </li>
                 );})}
+                {this.state.error}
             </ul>
         </div>
     }
