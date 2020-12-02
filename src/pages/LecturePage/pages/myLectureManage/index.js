@@ -14,12 +14,7 @@ class MyLectureManage extends Component {
             isAddModalOpen: false,
             isUpdateModalOpen: false
         }
-
-        // this.handleDeleteLecture = this.handleDeleteLecture.bind();
-        // this.handleAddLecture = this.handleAddLecture.bind();
-        // this.handleUpdateLecture = this.handleUpdateLecture.bind();
-
-        
+       
     }
 
     openAddModal = () => {
