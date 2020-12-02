@@ -93,6 +93,10 @@ class Chat extends Component{
     render() {
         return (
         <div id='chat' class='popup'>
+            <div class="popup_menu chat_popup">
+            <div class="popup_title">채팅 리스트</div>            
+            <div class="popup_exit">×</div>
+            </div>
             <ul>
                 {this.state.chatRoom.map((chat, i) => {
                     return(

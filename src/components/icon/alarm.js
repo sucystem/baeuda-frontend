@@ -66,6 +66,10 @@ class Alarm extends Component{
     render() {
         return (
         <div id='alarm' class='popup'>
+            <div class="popup_menu">
+            <div class="popup_title">알람 리스트</div>            
+            <div class="popup_exit">×</div>
+            </div>
             <ul>
                 {
                     this.state.alarm.map((alarm) => {
