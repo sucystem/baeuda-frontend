@@ -104,7 +104,8 @@ class LectureAccept extends Component {
                                 <div class="student-univ">{student.univid}</div>
                                 <div class="student-id">{student.student_id}</div>
                                 <button name="graduate" value={student.id} onClick={(event) => this.handleSubmit(event)}>이수</button>
-                                <button name="delete" value={student.id} onClick={(event) => this.handleSubmit(event)}>이수</button>
+                                &nbsp;
+                                <button name="delete" value={student.id} onClick={(event) => this.handleSubmit(event)}>퇴출</button>
                             </li>
                         );
                     })}

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import './style.css'
 import callAPI from '../../../../_utils/apiCaller';
 import StudySchedule from '../StudySchedule';
+import StudyReference from '../studyReference';
 const moment = require('moment');
 
 class StudyRoom extends Component {
@@ -32,26 +33,17 @@ class StudyRoom extends Component {
                     study: res.data.data
                 });
             } else {
-                alert(res.data.msg)
+                console.log(res.data.msg)
             }
         });
-        callAPI(`study/reference/${study_id}`, 'GET', {...this.getToken()}, null).then(res => {
-            if(res.data.result === 'true'){
-                this.setState ({
-                    reference: res.data.data
-                })
-            } else {
-                alert(res.data.msg)
-            }            
-        });
+        
         callAPI(`study/schedule/${study_id}`, 'GET', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
                     schedule: res.data.data
                 })
-                console.log(res.data)
             } else {
-                alert(res.data.msg)
+                console.log(res.data.msg)
             }            
         });
     }
@@ -76,21 +68,7 @@ class StudyRoom extends Component {
                             <div id="StudyContent">
                                 <div id="StudyReference">
                                     <div class="Room_Title">자료실</div>
-                                    <div id="btnShare">자료 업로드</div>
-                                    <div class="Room_Content">
-                                        <ul>
-                                            {
-                                                this.state.reference.map((ref) => {
-                                                    return (
-                                                        <li>
-                                                            <div class="RefName">{ref.name}</div>
-                                                            <div class="RefWriter">{ref.writer}</div>
-                                                        </li>
-                                                    )
-                                                })
-                                            }
-                                        </ul>
-                                    </div>
+                                    <StudyReference studyId={this.props.match.params.study_id}/>
                                 </div>
                                 <div id="StudySchedule">
                                     <div class="Room_Title">스터디 일정</div>
