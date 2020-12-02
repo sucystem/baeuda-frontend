@@ -12,7 +12,7 @@ class MyLectureManage extends Component {
         this.state = {
             lectures: [],
             isAddModalOpen: false,
-            isUpdateModalOpen: false
+            openUpdateModalIndex: -1
         }
        
     }
@@ -25,12 +25,11 @@ class MyLectureManage extends Component {
         this.setState({ isAddModalOpen: false });
     }
 
-    openUpdateModal = () => {
-        this.setState({ isUpdateModalOpen: true });
-
+    openUpdateModal = (index) => () => {
+        this.setState({ openUpdateModalIndex: index });
     }
     closeUpdateModal = () => {
-        this.setState({ isUpdateModalOpen: false });
+        this.setState({ openUpdateModalIndex: -1 });
 
     }
 
@@ -64,15 +63,7 @@ class MyLectureManage extends Component {
             }
         });
     }
-
-    handleUpdateLecture() {
-        this.openUpdateModal();
-    }
-
-    handleAddLecture() {
-        this.openAddModal();
-    }
-    
+   
 
     componentDidMount() {
         if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
@@ -86,7 +77,7 @@ class MyLectureManage extends Component {
         return <div id="myLecture">
             <div id="myLectureRoom">
             <div className="lec_add_button" onClick={this.openAddModal}>생성</div>
-                {this.state.lectures.map((lecture, i) => {
+                {this.state.lectures.map((lecture, index) => {
                     return (
                         <div>
                             <div className="lec_room_box">
@@ -95,10 +86,10 @@ class MyLectureManage extends Component {
                                     <div className="lec_box_prof">{lecture.user_name}</div>
                                 </div>
                                 <div className="lec_del_button" onClick={this.deleteLecture(lecture.id)}>삭제</div>
-                                <div className="lec_update_button" onClick={this.openUpdateModal}>수정</div>
+                                <div className="lec_update_button" onClick={this.openUpdateModal(index)}>수정</div>
                                 <div className="lec_box_button" onClick={() => history.push(`/lectureroom/${lecture.id}/${lecture.id}`)}>입장</div>
                             </div>
-                            <LectureUpdateModal token={this.getToken()} infoData={lecture} isOpen={this.state.isUpdateModalOpen} close={this.closeUpdateModal} />
+                            <LectureUpdateModal token={this.getToken()} infoData={lecture} isOpen={this.state.openUpdateModalIndex == index} close={this.closeUpdateModal} />
                         </div>
                     );
                 })

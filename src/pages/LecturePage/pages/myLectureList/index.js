@@ -9,7 +9,7 @@ class MyLectureApply extends Component {
 
         this.state = {
             lectures: [],
-            isModalOpen: false
+            openModalIndex: -1
         }
     }
 
@@ -20,12 +20,12 @@ class MyLectureApply extends Component {
         }
     }
 
-    openModal = () => {
-        this.setState({ isModalOpen: true });
+    openModal = (index) => () => {
+        this.setState({ openModalIndex: index });
 
     }
     closeModal = () => {
-        this.setState({ isModalOpen: false });
+        this.setState({ openModalIndex: -1 });
 
     }
 
@@ -65,14 +65,14 @@ class MyLectureApply extends Component {
         return <div id="myLectureList">
             <div class="lectureList">
                 <ul>
-                    {this.state.lectures.map((lecture, i) => {
+                    {this.state.lectures.map((lecture, index) => {
                     return(<li>
                         <div class="lectureName">{lecture.name}</div>
                         <div class="lectureProf">{lecture.prof_name}</div>
                         <div class="lectureQuota">{lecture.cur_student}/{lecture.max_student}</div>
                         <div class="lectureEnroll" id={lecture.id} onClick={(event) => this.handleRegist(event)}>신청</div>
-                        <div class="lectureInfo" onClick={this.openModal}>정보보기</div>
-                        <LectureInfoModal token={this.getToken()} lectureId={lecture.id} isOpen={this.state.isModalOpen} close={this.closeModal} />
+                        <div class="lectureInfo" onClick={this.openModal(index)}>정보보기</div>
+                        <LectureInfoModal token={this.getToken()} lectureId={lecture.id} isOpen={this.state.openModalIndex == index} close={this.closeModal} />
                     </li>);
                     })}
                 </ul>
