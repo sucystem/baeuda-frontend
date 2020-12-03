@@ -65,7 +65,27 @@ class Main extends Component {
                     </ul>
                 </div>
             </div>
-            <div id="studySchadule" class="menu_box">
+            <div id="studyRecruit" class="menu_box">
+                <div class="box_head" onClick={() => history.push("/study/StudyRecruit") }>스터디 모집</div>
+                <div>
+                    <ul>
+                        {   
+                            this.state.study_recruit.map((item) => {
+                                return (
+                                    <li key={item.id} onClick={() => history.push("/study/StudyRecruit")}>
+                                        <div>{item.name}</div>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+/*            <div id="studySchadule" class="menu_box">
                 <div class="box_head" onClick={() => history.push("/study/StudySchedule") }>스터디 일정</div>
                 <div>
                     <ul>
@@ -80,26 +100,6 @@ class Main extends Component {
                         }
                     </ul>
                 </div>
-            </div>
-            <div id="studyRecruit" class="menu_box">
-                <div class="box_head" onClick={() => history.push("/study/StudyRecruit") }>스터디 모집</div>
-                <div>
-                    <ul>
-                        {   
-                            this.state.study_recruit.map((item) => {
-                                return (
-                                    <li key={item.id} onClick={() => history.push("/study/StudyRoom/" + item.id)}>
-                                        <div>{item.name}</div>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    }
-}
+            </div>*/
 
 export default Main;

@@ -54,7 +54,6 @@ class StudyList extends Component{
                                     {item.name}
                                 </div>
                                 <div class="study_box_button_enter" onClick={() => history.push("/study/StudyRoom/" + item.id) }>입장</div>
-                                <div class="study_box_button_exit"  onClick={() => history.push("/study/StudyRoomExit/" + item.id) }>탈퇴하기</div>
                             </div>
                         )
                     })
@@ -63,6 +62,7 @@ class StudyList extends Component{
     </div>)
     }
 
+                                //<div class="study_box_button_exit"  onClick={() => history.push("/study/StudyRoomExit/" + item.id) }>탈퇴하기</div>
 }
 
 export default StudyList;
