@@ -48,7 +48,7 @@ class MyLectureManage extends Component {
                     lectures: res.data.data
                 });
             } else {
-                alert(res.data.msg);
+                this.setState({error:res.data.msg})
             }
             console.log(res.data.data)
         });
@@ -60,7 +60,7 @@ class MyLectureManage extends Component {
                 alert(res.data.msg)
                 window.location.reload();
             } else {
-                this.setState({error:res.data.msg})
+                alert(res.data.msg);
             }
         });
     }

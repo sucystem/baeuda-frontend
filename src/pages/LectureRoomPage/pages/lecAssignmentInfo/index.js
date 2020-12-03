@@ -35,12 +35,11 @@ class AssignmentInfo extends Component {
         event.preventDefault();
         try{
             const data ={
-                boardId: this.state.board_id,
-                postId: this.state.post_id
+                assignment_id: this.state.assignment_id
             }
-            callAPI('assignment/delete/post', 'POST', { ...this.getToken()}, data).then(res => {
+            callAPI('lecture/assignment/delete', 'POST', { ...this.getToken()}, data).then(res => {
                 if(res.data.result === 'true'){
-                    this.props.history.push(`community/${this.state.board_id}`);
+                    this.props.history.push(`/lectureroom/${this.props.match.params.lecture_id}/${this.props.match.params.lecture_id}/assignment`);
                 } else {
                     alert(res.data.msg);
                 }
@@ -61,15 +60,15 @@ class AssignmentInfo extends Component {
     }
 
     readPost = async () => {
-        const { post_id } = this.state;
+        const { assignment_id } = this.state;
         try {
-            await callAPI(`assignment/post/${post_id}`, 'POST', { ...this.getToken() }, null).then(res => {
+            await callAPI(`lecture/assignment/post/${assignment_id}`, 'GET', { ...this.getToken() }, null).then(res => {
                 if (res.data.result === 'true') {
                     this.setState({
                         post: res.data.data.post,
                         files: res.data.data.files
                     });
-                    if(res.data.data.post[0].writer == (JSON.parse(localStorage.getItem('user'))).id){
+                    if((JSON.parse(localStorage.getItem('user'))).level >= 1){
                         this.setState({
                             delete: <span id="delete" onClick={(event) => this.handleDelete(event)}>[삭제]</span>
                         })
@@ -100,7 +99,7 @@ class AssignmentInfo extends Component {
                     <p>
                         <span className="writer">{contact.user_name}</span>
                 &nbsp;
-                <span className="date">{moment(contact.regDate).format("YYYY-MM-DD")}</span>
+                <span className="date">기한:{moment(contact.dueDate).format("YYYY-MM-DD HH:mm")}</span>
                 {this.state.delete}   
                     </p>
                 </div>

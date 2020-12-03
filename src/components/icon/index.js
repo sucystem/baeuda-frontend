@@ -48,16 +48,16 @@ class Icon extends Component {
                 {this.state.alarm}
                 {this.state.chat}
                 <div class="icon_menu">
-                    <div class="icon">
-                        <img id="icon_alarm" src={aicon} alt={"logo"} onClick={(event => this.handleIcon(event))}/>
-            </div>
+                 
                     <div class="icon">
                         <img id="icon_message" src={micon} alt={"logo"} onClick={(event) => this.handleIcon(event)}/>
             </div>
                 </div>
             </>
         );
-    }
+    } /*  <div class="icon">
+                        <img id="icon_alarm" src={aicon} alt={"logo"} onClick={(event => this.handleIcon(event))}/>
+            </div>*/
 }
 
 export default Icon;

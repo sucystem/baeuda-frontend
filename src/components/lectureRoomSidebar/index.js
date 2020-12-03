@@ -18,11 +18,12 @@ class LectureRoomSidebar extends Component {
         if(this.state.user_level == 2){
             return(<div id="lec_room_side_bar">
             <ul>
-                <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/accept`)}>수강생</li>
+                <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}`)}>수강하기</li>
                 <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/notice`)}>공지사항</li>
                 <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/reference`)}>학습자료</li>
                 <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/qna`)}>질문답변</li>
-                <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/assignment`)}>과제등록</li>
+                <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/assignment`)}>과제</li>
+                <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/accept`)}>수강생</li>
             </ul>
         </div>
 
@@ -34,7 +35,7 @@ class LectureRoomSidebar extends Component {
                 <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/notice`)}>공지사항</li>
                 <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/reference`)}>학습자료</li>
                 <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/qna`)}>질문답변</li>
-                <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/assignment`)}>과제제출</li>
+                <li onClick={() => history.push(`/lectureroom/${lecture_id}/${lecture_id}/assignment`)}>과제</li>
             </ul>
         </div>);
         }        

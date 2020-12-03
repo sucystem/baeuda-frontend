@@ -87,12 +87,12 @@ class LectureNewAssignment extends Component {
                    formData.append('file', file[i]);
                 }
                 formData.append('lectureId', lecture_id);
-                formData.append('board', this.props.match.params.board);
+                formData.append('dueDate', new Date());
                 formData.append('title', title);
                 formData.append('content', content);
-                callAPI(`lecture/newAssignment`, 'POST', { ...this.getToken() }, formData).then(res => {
+                callAPI(`lecture/assignment/new`, 'POST', { ...this.getToken() }, formData).then(res => {
                     if (res.data.result === 'true'){
-                        this.props.history.push(`/lectureroom/${lecture_id}/${lecture_id}/assignmentInfo/${res.data.data.assignment_id}`)
+                        this.props.history.push(`/lectureroom/${lecture_id}/${lecture_id}/assignmentInfo/${res.data.assignment_id}`)
                     } else {
                         alert(res.data.msg)
                     }

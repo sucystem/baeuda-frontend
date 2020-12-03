@@ -12,7 +12,7 @@ class LectureAssignment extends Component {
             lecture_id: lecture_id,
             lecture: [],
             posts: [],
-            prof : false
+            prof : false,
         }
     }
 
@@ -38,13 +38,13 @@ class LectureAssignment extends Component {
 
     getAssignment = async () => {
         const lecture_id = this.state.lecture_id;
-        callAPI(`lecture/assignment/${lecture_id}`, 'POST', { ...this.getToken() }, null).then(res => {
+        callAPI(`lecture/assignment/${lecture_id}`, 'GET', { ...this.getToken() }, null).then(res => {
             if (res.data.result === 'true') {
                 this.setState({
                     posts: res.data.data
                 })
             } else {
-                alert(res.data.msg);
+                console.log(res.data.msg);
             }
         });
     }
@@ -67,25 +67,25 @@ class LectureAssignment extends Component {
     render() {
         let history = this.props.history;
         return <div id="lecNotice">
-            <div id="SubjectName">{this.state.lecture.name} - 과제등록</div>
+            <div id="SubjectName">{this.state.lecture.name} - 과제</div>
             <div id="SubjectNotice">
                 <ul>
                     <li>
-                        <div class="Name TH">글 제목</div>
-                        <div class="Date TH">작성일</div>
+                        <div class="Name TH">과제</div>
+                        <div class="Date TH">기한</div>
                         <div class="Submit TH"></div>
                     </li>
                     {this.state.posts.map((post, i) => {
                         return (
                             <li>
                                 <div class="Name" name={post.id} onClick= {() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/assignmentInfo/${post.id}`)}>{post.title}</div>
-                                <div class="Date">{moment(post.regDate).format("YYYY-MM-DD hh:mm:ss")}</div>
-                                <div class="Submit TD" name={post.id} onClick={(event) => this.handleSubmit(event)}>제출하기</div>
+                                <div class="Date">{moment(post.dueDate).format("YYYY-MM-DD HH:mm")}</div>
+                                {!this.state.prof && <div class="Submit TD" name={post.id} onClick={(event) => this.handleSubmit(event)}>제출하기</div>}
                             </li>
                         );
                     })}
                 </ul>
-        {this.state.prof && <button className="btn_new_post" onClick={() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/newAssignment`) }>새 글 작성</button>}
+        {this.state.prof && <button className="btn_new_post" onClick={() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/newAssignment`) }>과제등록</button>}
         </div>
         </div>
     }
