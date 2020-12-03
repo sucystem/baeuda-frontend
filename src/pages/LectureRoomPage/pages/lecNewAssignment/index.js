@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { useHistory } from 'react-router-dom';
 import './style.css'
 import callAPI from '../../../../_utils/apiCaller';
+import DatePicker, { registerLocale } from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
+import ko from 'date-fns/locale/ko';
+
+registerLocale('ko', ko);
 
 class LectureNewAssignment extends Component {
     constructor(props) {
@@ -12,8 +17,18 @@ class LectureNewAssignment extends Component {
             title: "", 
             content: "",
             file: [],
-            lecture: {}
+            lecture: {},
+            date: new Date()
         }
+        this.handleChangeDate = this.handleChangeDate.bind(this);
+
+    }
+
+    handleChangeDate = (e) => {
+        this.setState({
+            date: e
+        })
+        console.log(e)
     }
 
     componentDidMount() {
@@ -87,7 +102,7 @@ class LectureNewAssignment extends Component {
                    formData.append('file', file[i]);
                 }
                 formData.append('lectureId', lecture_id);
-                formData.append('dueDate', new Date());
+                formData.append('dueDate', this.state.date);
                 formData.append('title', title);
                 formData.append('content', content);
                 callAPI(`lecture/assignment/new`, 'POST', { ...this.getToken() }, formData).then(res => {
@@ -106,7 +121,10 @@ class LectureNewAssignment extends Component {
     render() {
         let history = this.props.history;
         return <div id="community-post">
-            <div id="SubjectName">{this.state.lecture.name} - 과제등록</div><br/>
+            <div>
+            <div id="SubjectName">{this.state.lecture.name} - 과제등록</div>
+            <DatePicker locale="ko" showTimeInput selected={this.state.date} onChange={this.handleChangeDate}/><br/>
+            </div>
             <form method="post" onSubmit={this.handleSubmit}>
                 <input type="text" name="title" placeholder="글 제목" onChange={event => this.handleChange(event)} />
                 <textarea name="content" placeholder="글 내용" onChange={event => this.handleChange(event)} />
