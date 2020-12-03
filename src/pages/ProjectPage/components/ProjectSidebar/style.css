@@ -1,4 +1,4 @@
-div#Project_side_bar{
+div#project_side_bar{
     font-size: 20px;
     position : absolute;
     height : auto;
@@ -7,6 +7,6 @@ div#Project_side_bar{
     top : 20%;
 }
 
-div#Project_side_bar li{
+div#project_side_bar li{
     margin : 50px auto;
 }

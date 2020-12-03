@@ -30,7 +30,7 @@ class MakeProject extends Component{
         const { name, value } = event.target;
         this.setState({
             [name] : value
-        })        
+        })  
     }
 
     handleSubmit = async (event) => {
@@ -46,7 +46,7 @@ class MakeProject extends Component{
                 }
                 callAPI(`project/newProject`, 'POST', {...this.getToken()}, data).then(res => {
                     if (res.data.result === 'true'){
-                        this.props.history.push(`/project/ProjectRoom/${res.data.Projectid}`)
+                        this.props.history.push(`/project/ProjectRoom/${res.data.projectId}`)
                     } else {
                         alert(res.data.msg)
                     }
@@ -57,14 +57,15 @@ class MakeProject extends Component{
         }
     }
 
+
     render() {
         let history = this.props.history;
         return <div id="MakingProject">
             <form method="post" onSubmit={this.handleSubmit}>
                 <div class="ProjectInfo">
-                    <div class="ProjectSubject"><input id="ProjectSubject" type="text" name="name" placeholder="팀 프로젝트 제목"required onChange={event => this.handleChange(event)} /></div>
+                    <div class="ProjectSubject"><input id="ProjectSubject" type="text" name="name" placeholder="프로젝트 제목"required onChange={event => this.handleChange(event)} /></div>
                     <div class="BoardName"><input id="ProjectName" type="text" name="recruitTitle" placeholder="구인글 제목"required onChange={event => this.handleChange(event)}/></div>
-                    <div class="ProjectMember"><input id="ProjectMember" type="text" name="maxseat" placeholder="팀 프로젝트 정원"required onChange={event => this.handleChange(event)}/></div>
+                    <div class="ProjectMember"><input id="ProjectMember" type="number" name="maxseat" placeholder="프로젝트 정원"required onChange={event => this.handleChange(event)}/></div>
                 </div>
                 <div class="ProjectContent"><input id="ProjectContent" type="text" name="recruitContent" placeholder="구인글 내용" required onChange={event => this.handleChange(event)}/></div>
                 <div class="ProjectAdd" onClick={(event) => this.handleSubmit(event)}>올리기</div>

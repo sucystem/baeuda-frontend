@@ -24,14 +24,14 @@ class ProjectPage extends Component{
             <Header history={this.props.history}/>
             <div className="content-body">
                 <ProjectSidebar/>
-                <div className="Project-content">
+                <div className="project-content">
                     <Switch>
                         <Route exact path = {`${match.url}`} component = {ProjectMain} />
                         <Route exact path = {`${match.url}/ProjectList`} component = {ProjectList} />
                         <Route exact path = {`${match.url}/ProjectSchedule`} component = {ProjectSchedule} />
                         <Route exact path = {`${match.url}/ProjectRecruit`} component = {ProjectRecruit} />
                         <Route exact path = {`${match.url}/MakeProject`} component = {MakeProject} />
-                        <Route exact path = {`${match.url}/ProjectRoom`} component = {ProjectRoom} />
+                        <Route exact path = {`${match.url}/ProjectRoom/:project_id`} component = {ProjectRoom} />
                     </Switch>                    
                 </div>
             </div>

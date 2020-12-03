@@ -25,16 +25,16 @@ class ProjectList extends Component{
     }
 
     getPosts = async() => {
-        const boardId = this.props.match.params.board_id;
         callAPI(`project/showList`, 'GET', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
                     posts: res.data.data
                 })
+                
             } else {
                 alert(res.data.msg)
             }
-            
+            console.log(res)
         });
     }
 
@@ -45,16 +45,15 @@ class ProjectList extends Component{
     render(){
         let history = this.props.history;
         return(<div id="ProjectList">
-        <div id="ProjectRoom">
+        <div id="projectRoom">
                 {
                     this.state.posts.map((item) => {
                         return (
-                            <div class="Project_room_box">
-                                <div class="Project_box_name">
+                            <div class="project_room_box">
+                                <div class="project_box_name">
                                     {item.name}
                                 </div>
-                                <div class="Project_box_button_enter" onClick={() => history.push("/project/ProjectRoom/" + item.id) }>입장</div>
-                                <div class="Project_box_button_exit"  onClick={() => history.push("/project/ProjectRoomExit/" + item.id) }>탈퇴하기</div>
+                                <div class="project_box_button_enter" onClick={() => history.push("/project/ProjectRoom/" + item.id) }>입장</div>
                             </div>
                         )
                     })
@@ -63,6 +62,7 @@ class ProjectList extends Component{
     </div>)
     }
 
+                                //<div class="project_box_button_exit"  onClick={() => history.push("/project/ProjectRoomExit/" + item.id) }>탈퇴하기</div>
 }
 
 export default ProjectList;

@@ -5,11 +5,11 @@ div#ProjectRoom{
 div#ProjectName{
     width : 500px;
     height : 80px;
-    font-size: 60px;
+    font-size: 30px;
     color : #f89406;
     line-height: 80px;
     text-align: left;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 div#ProjectContent{
@@ -21,7 +21,6 @@ div#ProjectReference{
     width : 600px;
     height : 800px;
     float : left;
-    margin-right: 100px;
 }
 
 div#ProjectSchedule{
@@ -37,12 +36,54 @@ div.Room_Title{
     text-align: left;
 }
 
-a.container-meeting-room {
-    text-decoration: none;
+div.Room_Content{
+    width : 400px;
+    height : 720px;
 }
 
-div.Room_Content li div{
-    float : left;
+div#btnMeetingRoom {
+    /* margin : 0px 30px 0px 50px; */
+    display: inline-block;
+    width : 150px;
+    height : 40px;
+    background-color: #f89406;
+    border-radius: 37px;
+    font-size : 15px;
+    color : #ffffff;
+    box-shadow: 0 3px 6px 0;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+div#btnTeamPeopleManage {
+    /* margin : 0px 30px 0px 50px; */
+    display: inline-block;
+    width : 150px;
+    height : 40px;
+    background-color: #f89406;
+    border-radius: 37px;
+    font-size : 15px;
+    color : #ffffff;
+    box-shadow: 0 3px 6px 0;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+div#btnShare {
+    /* margin : 0px 30px 0px 50px; */
+    width : 150px;
+    height : 40px;
+    background-color: #22a7f0;
+    border-radius: 37px;
+    font-size : 15px;
+    color : #ffffff;
+    box-shadow: 0 3px 6px 0;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 div.RefName{

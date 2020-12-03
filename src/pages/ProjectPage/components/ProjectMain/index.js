@@ -13,9 +13,9 @@ class Main extends Component {
         }
 
         this.state = {
-            Project_list: [],
-            Project_schedule : [],
-            Project_recruit : []
+            project_list: [],
+            project_schedule : [],
+            project_recruit : []
         }
     }
 
@@ -31,9 +31,9 @@ class Main extends Component {
         callAPI(`project/main`, 'GET', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
-                    Project_list : res.data.data.row1,
-                    Project_schedule : res.data.data.row2,
-                    Project_recruit : res.data.data.row3
+                    project_list : res.data.data.row1,
+                    project_schedule : res.data.data.row2,
+                    project_recruit : res.data.data.row3
                 })
             } else {
                 alert(res.data.msg)
@@ -48,15 +48,15 @@ class Main extends Component {
 
     render() {
         let history = this.props.history;
-        return <div id="ProjectMain">
-            <div id="ProjectList" class="menu_box">
-                <div class="box_head" onClick={() => history.push("/ProjectList") }>스터디 목록</div>
+        return <div id="projectMain">
+            <div id="projectList" class="menu_box">
+                <div class="box_head" onClick={() => history.push("project/ProjectList") }>프로젝트 목록</div>
                 <div>
                     <ul>
                         {   
-                            this.state.Project_list.map((item) => {
+                            this.state.project_list.map((item) => {
                                 return (
-                                    <li key={item.id} onClick={() => history.push("/project/ProjectRoom/" + item.id)}>
+                                    <li key={item.id} onClick={() => history.push("/project/projectRoom/" + item.id)}>
                                         <div>{item.name}</div>
                                     </li>
                                 )
@@ -65,30 +65,14 @@ class Main extends Component {
                     </ul>
                 </div>
             </div>
-            <div id="ProjectSchadule" class="menu_box">
-                <div class="box_head" onClick={() => history.push("/project/ProjectSchedule") }>스터디 일정</div>
+            <div id="projectRecruit" class="menu_box">
+                <div class="box_head" onClick={() => history.push("/project/ProjectRecruit") }>프로젝트 모집</div>
                 <div>
                     <ul>
                         {   
-                            this.state.Project_schedule.map((item) => {
+                            this.state.project_recruit.map((item) => {
                                 return (
-                                    <li key={item.id} onClick={() => history.push("project/ProjectSchedule/" + item.id)}>
-                                        <div>{item.name}</div>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div id="ProjectRecruit" class="menu_box">
-                <div class="box_head" onClick={() => history.push("/project/ProjectRecruit") }>스터디 모집</div>
-                <div>
-                    <ul>
-                        {   
-                            this.state.Project_recruit.map((item) => {
-                                return (
-                                    <li key={item.id} onClick={() => history.push("/project/ProjectRoom/" + item.id)}>
+                                    <li key={item.id} onClick={() => history.push("/project/ProjectRecruit")}>
                                         <div>{item.name}</div>
                                     </li>
                                 )
@@ -101,5 +85,21 @@ class Main extends Component {
 
     }
 }
+/*            <div id="projectSchadule" class="menu_box">
+                <div class="box_head" onClick={() => history.push("/project/ProjectSchedule") }>프로젝트 일정</div>
+                <div>
+                    <ul>
+                        {   
+                            this.state.project_schedule.map((item) => {
+                                return (
+                                    <li key={item.id} onClick={() => history.push("/project/ProjectSchedule/" + item.id)}>
+                                        <div>{item.name}</div>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            </div>*/
 
 export default Main;
