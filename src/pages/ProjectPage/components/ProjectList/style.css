@@ -6,21 +6,22 @@ div#ProjectList{
     width : 50%;
 }
 
-div#ProjectRoom{
+div#projectRoom{
     width : 100%;
 }
 
-div.Project_room_box{
-    position: absolute;
+div.project_room_box{
+    position: relative;
     float : left;
     height : 300px;
     width : 300px;
     border-radius: 41px;
     box-shadow: 3px 3px 6px 0;
     background-color: #ffffff;
+    margin: 10px;
 }
 
-div.Project_box_name{
+div.project_box_name{
     position: absolute;
     top : 15px; 
     left: 50%; 
@@ -30,7 +31,7 @@ div.Project_box_name{
     height : 35px;
 }
 
-div.Project_box_button_enter{
+div.project_box_button_enter{
     position : absolute;
     width: 100px;
     height : 35px;
@@ -46,7 +47,7 @@ div.Project_box_button_enter{
     color : #ffffff;
 }
 
-div.Project_box_button_exit{
+div.project_box_button_exit{
     position : absolute;
     width: 100px;
     height : 35px;

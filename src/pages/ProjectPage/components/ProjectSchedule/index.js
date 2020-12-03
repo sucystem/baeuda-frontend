@@ -1,51 +1,138 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { createRef } from 'react';
 
 import TuiCalendar from 'tui-calendar';
+import moment from 'moment';
 
 import 'tui-calendar/dist/tui-calendar.css';
 
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 
+import callAPI from '../../../../_utils/apiCaller';
 
-const data = [
-    
-];
+class ProjectSchedule extends React.Component {
+    state = {
+        month: moment().format('MM'),
+        calendar: null
+    };
 
-function MyCalendar() {
-    const history = useHistory();
+    constructor(props) {
+        super(props);
+        // https://ko.reactjs.org/docs/refs-and-the-dom.html
+        this.calendarRef = createRef();
+    }
 
-    const calendarRef = useRef(null);
+    fetchDatas = async () => {
 
-    const [calendar, setCalendar] = useState(null);
+        const res = await callAPI(
+            `project/schedule/${this.props.project_id}`, 
+            'GET', 
+            { ...this.props.token }, 
+            null,
+        );
 
-    useEffect(() => {
-        const newCalendar = new TuiCalendar(calendarRef.current, {
-            defaultView: 'month',
-            taskView: true,
-        });
+        if (res.data.result === 'true') {
+            // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+            return res.data.data.map(({
+                id,
+                calendarId,
+                title,
+                category,
+                dueDateClass,
+                start,
+                end,
+            }) => ({
+                id,
+                calendarId,
+                title,
+                category,
+                dueDateClass,
+                start,
+                end,
+            }));
+        }
 
-        newCalendar.createSchedules([
+        return [];
+    }
+
+    addData = async(schedule) => {
+        const res = await callAPI(
+            `schedule/add`, 
+            'POST', 
+            { ...this.props.token },
             {
-                id: '1',
-                calendarId: '1',
-                title: '프로젝트 모임',
-                category: 'time',
-                dueDateClass: '',
-                start: '2020-12-02T22:30:00+09:00',
-                end: '2020-12-04T02:30:00+12:00'
-            },
-        ]);
+                calendarId: this.props.calendar_id,
+                title: schedule.title,
+                start: schedule.start._date,
+                end: schedule.end._date,
+                category: 'time'
+            }
+        );
+        console.log(res);
+        // if(res.data.result === 'false') {
+        //     alert(res.data.msg)
+        // }
 
-        setCalendar(newCalendar);
-    }, []);
+    }
+    
 
-    return (
-        <div>
-            <div class = "scheduleBox" ref={calendarRef}></div>
-        </div>
-    );
-}
+    componentDidMount() {
+        const newCalendar = new TuiCalendar(this.calendarRef.current, { 
+            defaultView: 'month',
+            taskView: false,
+            useDetailPopup: true,
+            useCreationPopup: true,
+            timezones: [{
+                timezoneOffset: 540,
+                displayLabel: 'GMT+09:00',
+                tooltip: 'Seoul'
+            }]
+        });
+        this.fetchDatas().then(schedules => newCalendar.createSchedules(schedules));
+        
+        newCalendar.on('beforeCreateSchedule', scheduleData => {
+            const schedule = {
+              calendarId: this.props.calendar_id,
+              id: String(Math.random() * 100000000000000000),
+              title: scheduleData.title,
+              isAllDay: scheduleData.isAllDay,
+              start: scheduleData.start,
+              end: scheduleData.end,
+              category: scheduleData.isAllDay ? 'allday' : 'time'
+            };
+            this.addData(schedule);
+          
+            newCalendar.createSchedules([schedule]);
+          });
 
-export default MyCalendar;
+          newCalendar.on('beforeUpdateSchedule', scheduleData => {
+            const {schedule} = scheduleData;
+          
+            newCalendar.updateSchedule(schedule.id, schedule.calendarId, schedule);
+
+          });
+
+          newCalendar.on('beforeDeleteSchedule', scheduleData => {
+            const {schedule, start, end} = scheduleData;
+          
+            schedule.start = start;
+            schedule.end = end;
+            newCalendar.deleteSchedule(schedule.id, schedule.calendarId);
+          });
+          
+
+        this.setState({ calendar: newCalendar }); 
+        
+    }
+    
+
+    render() {
+        return (
+            <div className='MyCalendar'>
+                <div ref={this.calendarRef}></div>
+            </div>
+        );
+    }
+};
+
+export default ProjectSchedule;

@@ -37,7 +37,7 @@ div.ProjectMember{
 }
 
 input#ProjectMember{
-    width : 80px;
+    width : 100px;
     height : 60px;
     margin : auto;
 }
@@ -49,14 +49,14 @@ div.ProjectContent{
 
 input#ProjectContent{
     width : 1180px;
-    height : 550px;
+    height : 300px;
     margin : 25px 25px 25px 25px;
 }
 
 div.ProjectAdd{
     position : fixed;
-    bottom : 10%;
-    right : 20%;
+    bottom : 20%;
+    right : 45%;
     width : 150px;
     height : 50px;
     border-radius: 37px;

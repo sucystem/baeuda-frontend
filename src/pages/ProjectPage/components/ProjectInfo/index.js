@@ -31,8 +31,8 @@ class ProjectInfo extends Component{
 
     getPosts = async() => {
         const boardId = this.props.match.params.board_id;
-        const {Project_id} = this.state;
-        callAPI(`project/${Project_id}/recruit_info`, 'POST', {...this.getToken()}, null).then(res => {
+        const {project_id} = this.state;
+        callAPI(`project/${project_id}/recruit_info`, 'POST', {...this.getToken()}, null).then(res => {
             if(res.data.result === 'true'){
                 this.setState ({
                     posts: res.data.data
@@ -45,11 +45,11 @@ class ProjectInfo extends Component{
     }
 
     handleSubmitJoin = async (event) => {
-        const {Project_id} = event.target;
+        const {project_id} = event.target;
         event.preventDefault();
         try {
             if (this.state.comment) {
-                callAPI(`project/${Project_id}/joinProject`, 'POST', { ...this.getToken() }, null).then(res => {
+                callAPI(`project/${project_id}/joinProject`, 'POST', { ...this.getToken() }, null).then(res => {
                     if (res.data.msg === '가입 신청을 성공했습니다.') {
                         window.location.reload();
                     } else {
@@ -64,7 +64,7 @@ class ProjectInfo extends Component{
 
     render() {
         let history = this.props.history;
-        return (<div id="Project-post-detail">
+        return (<div id="project-post-detail">
         {this.state.post.map((item, i) => {
             return (<div><div id="title-writer-date">
                 <p className="title">{item.recruitTitle}
@@ -80,7 +80,7 @@ class ProjectInfo extends Component{
         <div id="content">
             <p>{item.recruitContent}</p>
         </div>
-        <input type="submit" name={item.Projectid} value="신청" onClick={(event) => this.handleSubmitJoin(event)}/>
+        <input type="submit" name={item.projectid} value="신청" onClick={(event) => this.handleSubmitJoin(event)}/>
         </div>
             );
         }
