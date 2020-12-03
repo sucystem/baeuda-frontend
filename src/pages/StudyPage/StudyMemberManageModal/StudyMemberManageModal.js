@@ -18,7 +18,6 @@ class StudyMemberManageModal extends Component {
 
     getStudentsList = async () => {
         await callAPI(`study/member/${this.props.study_id}`, 'GET', { ...this.props.token }, null).then(res => {
-            console.log(res)
             if (res.data.result === 'true') {
                 this.setState({
                     students: res.data.data
@@ -28,6 +27,41 @@ class StudyMemberManageModal extends Component {
             }
             
         });
+    }
+
+    acceptStudent = (student_id) => () => {
+        callAPI(`study/accept/${this.props.study_id}`, 'POST', { ...this.props.token }, {student_id : student_id}).then(res => {
+            console.log(res)
+            if (res.data.result === 'true') {
+                window.location.reload();
+            } else {
+                alert(res.data.msg);
+            }
+        });
+
+    }
+
+    outStudent = (student_id) => () => {
+        callAPI(`study/out/${this.props.study_id}`, 'POST', { ...this.props.token }, {student_id : student_id}).then(res => {
+            console.log(res)
+            if (res.data.result === 'true') {
+                window.location.reload();
+            } else {
+                alert(res.data.msg);
+            }
+        });
+
+    }
+
+    rejectStudent = (student_id) => () => {
+        callAPI(`study/cancel/${this.props.study_id}`, 'POST', { ...this.props.token }, {student_id : student_id}).then(res => {
+            if (res.data.result === 'true') {
+                window.location.reload();
+            } else {
+                alert(res.data.msg);
+            }
+        });
+
     }
 
     componentDidMount() {
@@ -52,11 +86,11 @@ class StudyMemberManageModal extends Component {
 
                                             <div className="div-user-name">{student.user_name}</div>
                                             <div className="container-btn-group">
-                                            {student.state == 0 ? <div className="btn-approve">승인</div>
+                                            {student.state == 0 ? <div className="btn-approve" onClick={this.acceptStudent(student.id)}>승인</div>
                                             : null}
-                                            {student.state == 0 ? <div className="btn-reject">거절</div>
+                                            {student.state == 0 ? <div className="btn-reject" onClick={this.rejectStudent(student.id)}>거절</div>
                                             : null}
-                                            {student.state == 1 ? <div className="btn-ban">추방</div>
+                                            {student.state == 1 ? <div className="btn-ban" onClick={this.outStudent(student.id)}>추방</div>
                                             : null}
                                             {
                                                 student.state == 2 ? <div className="div-leader">팀장</div>

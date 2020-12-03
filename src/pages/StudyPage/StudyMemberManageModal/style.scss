@@ -31,12 +31,13 @@
             display: flex;
             align-content: center;
             padding : 5px;
+            flex-wrap: nowrap;
 
             div.div-univ {
                 align-self: center;
             }
             div.div-student-id {
-                width: 100px;
+                width: 90px;
                 margin-left: 20px;
                 align-self: center;
                 
@@ -47,7 +48,7 @@
             }
             div.container-btn-group {
                 display: flex;
-                justify-content: flex-end;
+                margin-left: 20px;
 
                 div.btn-approve {
 
@@ -76,6 +77,7 @@
                     box-shadow: 0 3px 6px 0;
                     line-height: 40px;
                     text-align: center;
+                    margin-left: 5px;
     
         
                 }
