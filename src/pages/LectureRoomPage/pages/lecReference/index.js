@@ -69,7 +69,7 @@ class LectureReference extends Component {
                         <div class="Name TH">글 제목</div>
                         <div class="Writer TH">작성자</div>
                         <div class="Hits TH">조회수</div>
-                        <div class="Date TH">작성일</div>
+                        <div class="Write-Date TH">작성일</div>
                     </li>
                     {this.state.posts.map((post, i) => {
                         return (
