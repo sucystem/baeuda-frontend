@@ -60,7 +60,7 @@ class LectureAssignment extends Component {
     }
 
     handleSubmit = (event) => {
-        const assingment_id = event.target;
+        const assingment_id = event.target.name;
         this.props.history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/lecSubmit/${assingment_id}`)
     }
 
@@ -80,7 +80,7 @@ class LectureAssignment extends Component {
                             <li>
                                 <div class="Name" name={post.id} onClick= {() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/assignmentInfo/${post.id}`)}>{post.title}</div>
                                 <div class="Date">{moment(post.dueDate).format("YYYY-MM-DD HH:mm")}</div>
-                                {!this.state.prof && <div class="Submit TD" name={post.id} onClick={(event) => this.handleSubmit(event)}>제출하기</div>}
+                                {!this.state.prof && <div class="Submit TD" name={post.id} onClick={() => history.push(`/lectureroom/${this.state.lecture_id}/${this.state.lecture_id}/lecSubmit/${post.id}`)}>제출하기</div>}
                             </li>
                         );
                     })}

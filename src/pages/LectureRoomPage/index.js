@@ -35,7 +35,7 @@ render() {
                 <Route exact path = {`${match.url}/:lecture_id/newpost/:board`} component = {LectureNewPost} />
                 <Route exact path = {`${match.url}/:lecture_id/assignment`} component = {LectureAssignment} />
                 <Route exact path = {`${match.url}/:lecture_id/newAssignment`} component = {LectureNewAssignment} />
-                <Route exact path = {`${match.url}/:lecture_id/submit`} component = {LectureSubmit} />
+                <Route exact path = {`${match.url}/:lecture_id/lecSubmit/:assignment_id`} component = {LectureSubmit} />
                 <Route exact path = {`${match.url}/:lecture_id/assignmentInfo/:assignment_id`} component = {LectureAssignmentInfo} />
             </Switch>
         </>

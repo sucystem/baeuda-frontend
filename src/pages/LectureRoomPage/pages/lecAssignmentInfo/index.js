@@ -13,6 +13,8 @@ class AssignmentInfo extends Component {
             post: [],
             delete: "",
             files: [],
+            submits: [],
+            submitfiles: []
         }
     }
 
@@ -61,12 +63,15 @@ class AssignmentInfo extends Component {
 
     readPost = async () => {
         const { assignment_id } = this.state;
+        const { lecture_id } = this.props.match.params;
         try {
-            await callAPI(`lecture/assignment/post/${assignment_id}`, 'GET', { ...this.getToken() }, null).then(res => {
+            await callAPI(`lecture/assignment/post/${lecture_id}/${assignment_id}`, 'GET', { ...this.getToken() }, null).then(res => {
                 if (res.data.result === 'true') {
                     this.setState({
                         post: res.data.data.post,
-                        files: res.data.data.files
+                        files: res.data.data.files,
+                        submits: res.data.data.submits,
+                        submitfiles: res.data.data.submitfiles
                     });
                     if((JSON.parse(localStorage.getItem('user'))).level >= 1){
                         this.setState({
@@ -118,6 +123,26 @@ class AssignmentInfo extends Component {
                     </>
                 );
             })}
+
+            <div id="head-comment">제출정보</div>
+            {this.state.submits.map((submit, i) => {
+                return (
+                    <>
+                    <div className="comment">
+                            <p>
+                                <span className="comment-writer">{i + 1} {submit.user_name}</span>
+                    &nbsp; &nbsp;
+                    <span className="comment-content">{submit.content}</span>
+                            </p>
+                            <p className="comment-date">&nbsp; &nbsp;{moment(submit.date).format("YYYY-MM-DD")}
+                            <a name={submit.path + '/' + submit.name} onClick={(event) => this.handleDownloadFile(event)}>{submit.name}</a></p>
+                            <br/>
+                            <br/>
+                        </div>
+                    </>
+                );
+            })}
+
         </div>
     }
 }

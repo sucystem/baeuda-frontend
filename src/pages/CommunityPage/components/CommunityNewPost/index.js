@@ -8,10 +8,11 @@ import callAPI from '../../../../_utils/apiCaller';
 class CommunityNewPost extends Component {
     constructor(props) {
         super(props);
-                this.state = {
-            title: "", 
+        this.state = {
+            title: "",
             content: "",
-            file: []
+            file: [],
+            filetag: ""
         }
     }
 
@@ -30,7 +31,8 @@ class CommunityNewPost extends Component {
 
     handleClickAddFile = (event) => {
         event.preventDefault();
-        const file = document.createElement('input');
+        this.state.filetag = document.createElement('input');
+        const file = this.state.filetag;
         file.setAttribute("type", "file");
         file.setAttribute("name", "file");
         document.body.appendChild(file);
@@ -41,15 +43,20 @@ class CommunityNewPost extends Component {
     handleChange = async (event) => {
         const { name, value } = event.target;
         if (name === "file") {
-            this.setState({
-                file : [...this.state.file, event.target.files[0]]
-            })
-            if(document.getElementById('upload-file-name').value !== '')
-                document.getElementById('upload-file-name').value += ', ';
-            document.getElementById('upload-file-name').value += event.target.files[0].name;
+            document.body.removeChild(this.state.filetag);
+            if (event.target.files[0].size <= 314572800) {
+                this.setState({
+                    file: [...this.state.file, event.target.files[0]]
+                })
+                if (document.getElementById('upload-file-name').value !== '')
+                    document.getElementById('upload-file-name').value += ', ';
+                document.getElementById('upload-file-name').value += event.target.files[0].name;
+            } else {
+                alert('300 MB 이하의 파일만 업로드 할 수 있습니다!');
+            }
         } else {
             this.setState({
-                [name] : value
+                [name]: value
             })
         }
     }
@@ -68,23 +75,23 @@ class CommunityNewPost extends Component {
                     content: content,
                     inputFile: inputFile
                 }*/
-                for(let i = 0; i < file.length; i++){
+                for (let i = 0; i < file.length; i++) {
                     formData.append('file', file[i]);
                 }
                 formData.append('title', title);
                 formData.append('content', content);
 
-                    
+
                 //callAPI(`board/${boardId}/newPost`, 'POST', {...this.getToken()}, data).then(res => {
                 callAPI(`board/${boardId}/newPost`, 'POST', { ...this.getToken() }, formData).then(res => {
-//                for (var pair of formData.entries()) { 
-//                    alert("formData 출력: "+ pair[0]+ ', ' + pair[1]); 
-//                }
-                if (res.data.result === 'true'){
-                    this.props.history.push(`/community/${boardId}/postdetail/${res.data.postid}`);
-                } else {
-                    alert(res.data.msg);
-                }
+                    //                for (var pair of formData.entries()) { 
+                    //                    alert("formData 출력: "+ pair[0]+ ', ' + pair[1]); 
+                    //                }
+                    if (res.data.result === 'true') {
+                        this.props.history.push(`/community/${boardId}/postdetail/${res.data.postid}`);
+                    } else {
+                        alert(res.data.msg);
+                    }
                 });
             }
         } catch (e) {
@@ -95,12 +102,12 @@ class CommunityNewPost extends Component {
     render() {
         let history = this.props.history;
         return <div id="community-post">
-            <form method="post" enctype = "multipart/form-data" onSubmit={this.handleSubmit}>
+            <form method="post" enctype="multipart/form-data" onSubmit={this.handleSubmit}>
                 <input type="text" name="title" placeholder="글 제목" onChange={event => this.handleChange(event)} />
                 <textarea name="content" placeholder="글 내용" onChange={event => this.handleChange(event)} />
                 <div className="container-file-upload">
                     <input disabled type="text" id="upload-file-name" placeholder="파일 첨부" />
-                    <button className="btn_file_upload" onClick={(event)=>this.handleClickAddFile(event)}>파일 선택</button>
+                    <button className="btn_file_upload" onClick={(event) => this.handleClickAddFile(event)}>파일 선택</button>
                 </div>
                 <div className="container-submit">
                     <input type="submit" value="올리기" onClick={(event) => this.handleSubmit(event)} />

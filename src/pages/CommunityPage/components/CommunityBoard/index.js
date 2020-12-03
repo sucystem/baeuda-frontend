@@ -8,7 +8,8 @@ class CommunityBoard extends Component{
     constructor(props) {
         super(props);
                 this.state = {
-            posts: []
+            posts: [],
+            admin: false
         }
 
     }
@@ -43,7 +44,9 @@ class CommunityBoard extends Component{
         if (!(localStorage.getItem('token') && localStorage.getItem('user'))) {
             this.props.history.push('/')
         }
-
+        if(JSON.parse(localStorage.getItem('user')).level == 3){
+            this.state.admin = true;
+        }
         this.getPosts();
     }
 
@@ -74,7 +77,7 @@ class CommunityBoard extends Component{
                 }
             </tbody>
         </table>
-        <button className="btn_new_post" onClick={() => history.push(`/community/${this.props.match.params.board_id}/newpost`) }>새 글 작성</button>
+        {this.state.admin && <button className="btn_new_post" onClick={() => history.push(`/community/${this.props.match.params.board_id}/newpost`) }>새 글 작성</button>}
     </div>)
     }
     

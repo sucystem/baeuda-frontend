@@ -9,10 +9,10 @@ class ProjectReference extends Component {
 
         this.state = {
             reference: [],
-            file: ""
+            filetag: ""
         }
     }
-   
+
     getToken = () => {
         const token = localStorage.getItem('token');
         return {
@@ -22,7 +22,7 @@ class ProjectReference extends Component {
 
     handleClickAddFile = (event) => {
         event.preventDefault();
-        this.state.file = document.createElement('input');
+        this.state.filetag = document.createElement('input');
         const file = this.state.file;
         file.setAttribute("type", "file");
         file.setAttribute("name", "file");
@@ -33,33 +33,38 @@ class ProjectReference extends Component {
 
     getReferences = async () => {
         const project_id = this.props.projectId;
-        callAPI(`project/reference/${project_id}`, 'GET', {...this.getToken()}, null).then(res => {
-            if(res.data.result === 'true'){
-                this.setState ({
+        callAPI(`project/reference/${project_id}`, 'GET', { ...this.getToken() }, null).then(res => {
+            if (res.data.result === 'true') {
+                this.setState({
                     reference: res.data.data
                 })
             } else {
                 console.log(res.data.msg)
-            }            
+            }
         });
     }
 
     handleChange = async (event) => {
         const { name, value } = event.target;
         if (name === "file") {
-            let formData = new FormData();
+            if (event.target.files[0].size <= 314572800) {
 
-            formData.append('file', event.target.files[0]);
+                let formData = new FormData();
 
-            const res = await callAPI(
-                `project/reference/${this.props.projectId}`, 
-                `post`,
-                {...this.getToken()},
-                formData
-            );
+                formData.append('file', event.target.files[0]);
 
-            if(res.data.result !== 'true'){
-                console.log(res.data.msg);
+                const res = await callAPI(
+                    `project/reference/${this.props.projectId}`,
+                    `post`,
+                    { ...this.getToken() },
+                    formData
+                );
+
+                if (res.data.result !== 'true') {
+                    console.log(res.data.msg);
+                }
+            } else {
+                alert('300 MB 이하의 파일만 업로드 할 수 있습니다!');
             }
 
             document.body.removeChild(this.state.file);
@@ -68,11 +73,11 @@ class ProjectReference extends Component {
 
         } else {
             this.setState({
-                [name] : value
+                [name]: value
             })
         }
     }
-    
+
     handleDownloadFile = async (event) => {
         event.preventDefault();
         var { name } = event.target;

@@ -14,7 +14,8 @@ class LectureNewPost extends Component {
             title: "", 
             content: "",
             file: [],
-            lecture: {}
+            lecture: {},
+            filetag:""
         }
     }
 
@@ -48,7 +49,8 @@ class LectureNewPost extends Component {
 
     handleClickAddFile = (event) => {
         event.preventDefault();
-        const file = document.createElement('input');
+        this.state.filetag = document.createElement('input');
+        const file = this.state.filetag;
         file.setAttribute("type", "file");
         file.setAttribute("name", "file");
         document.body.appendChild(file);
@@ -56,18 +58,23 @@ class LectureNewPost extends Component {
         file.onchange = this.handleChange;
     }
 
-    handleChange = (event) => {
+    handleChange = async (event) => {
         const { name, value } = event.target;
         if (name === "file") {
-            this.setState({
-                file : [...this.state.file, event.target.files[0]]
-            })
-            if(document.getElementById('upload-file-name').value !== '')
-                document.getElementById('upload-file-name').value += ', ';
-            document.getElementById('upload-file-name').value += event.target.files[0].name;
+            document.body.removeChild(this.state.filetag);
+            if (event.target.files[0].size <= 314572800) {
+                this.setState({
+                    file: [...this.state.file, event.target.files[0]]
+                })
+                if (document.getElementById('upload-file-name').value !== '')
+                    document.getElementById('upload-file-name').value += ', ';
+                document.getElementById('upload-file-name').value += event.target.files[0].name;
+            } else {
+                alert('300 MB 이하의 파일만 업로드 할 수 있습니다!');
+            }
         } else {
             this.setState({
-                [name] : value
+                [name]: value
             })
         }
     }
