@@ -77,7 +77,7 @@ class CommunityBoard extends Component{
                 }
             </tbody>
         </table>
-        {this.state.admin && <button className="btn_new_post" onClick={() => history.push(`/community/${this.props.match.params.board_id}/newpost`) }>새 글 작성</button>}
+        <button className="btn_new_post" onClick={() => history.push(`/community/${this.props.match.params.board_id}/newpost`) }>새 글 작성</button>
     </div>)
     }
     
